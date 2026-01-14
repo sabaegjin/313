@@ -2,83 +2,22 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>책 표지 슬라이드</title>
+<title>313</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 html, body {
   margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#0b0b0e;
 }
-
-/* 각 페이지 */
-.page {
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  display:flex; justify-content:center; align-items:center;
-  opacity:0; transition:opacity 0.5s ease-in-out;
-}
-
-/* 활성화된 페이지 */
-.page.active { opacity:1; z-index:1; }
-
-/* 이미지 화면 꽉 채우기, 비율 무시 */
-.page img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill; /* 비율 상관없이 화면 꽉 채움 */
-}
-
-/* 하단 패널 */
-.panel {
-  position:absolute; bottom:20px; right:20px;
-  background:rgba(17,17,21,0.6);
-  color:#b5b5b5; padding:12px 20px; border-radius:12px;
-  font-family:sans-serif;
-  z-index:2;
+img {
+  width:100%;
+  height:100%;
+  object-fit:fill; /* 비율 무시, 화면 꽉 채움 */
 }
 </style>
 </head>
 <body>
 
-<!-- 슬라이드 페이지 -->
-<section class="page active"><img src="https://i.ibb.co/d4hT96Kj/414.gif" alt="책 표지"></section>
-<section class="page"><img src="https://i.ibb.co/8DbB7p6z/717.gif" alt="책 표지"></section>
-<section class="page"><img src="https://i.ibb.co/Vf0Ffpm/1.gif" alt="책 표지"></section>
-<!-- 하단 패널 -->
-<section class="page"><div class="panel">실시간 업데이트 2026.01.09 & 06:16</div></section>
-
-<script>
-const pages = document.querySelectorAll('.page');
-let current = 0;
-
-// 페이지 전환 함수
-function showPage(i){
-  pages[current].classList.remove('active');
-  current = i;
-  pages[current].classList.add('active');
-}
-
-// 마우스 휠 수동 전환
-window.addEventListener('wheel', e=>{
-  if(e.deltaY > 0) showPage((current+1) % pages.length);
-  else showPage((current-1+pages.length-1) % pages.length);
-}, {passive:true});
-
-// 키보드 전환
-window.addEventListener('keydown', e=>{
-  if(e.key==='ArrowDown'||e.key==='PageDown') showPage((current+1)%pages.length);
-  if(e.key==='ArrowUp'||e.key==='PageUp') showPage((current-1+pages.length-1)%pages.length);
-});
-
-// 터치 스와이프 전환
-let startY=0;
-window.addEventListener('touchstart', e=> startY=e.touches[0].clientY, {passive:true});
-window.addEventListener('touchend', e=>{
-  const diff = startY - e.changedTouches[0].clientY;
-  if(Math.abs(diff)>50) diff>0 ? showPage((current+1)%pages.length) : showPage((current-1+pages.length-1)%pages.length);
-});
-
-// 자동 슬라이드 (5초 간격)
-setInterval(()=>showPage((current+1)%pages.length), 5000);
-</script>
+<img src="https://i.ibb.co/d4hT96Kj/414.gif" alt="책 표지">
 
 </body>
 </html>
