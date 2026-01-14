@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>社 百 眞</title>
 
+<!-- OG 미리보기 태그 -->
 <meta property="og:title" content="313">
 <meta property="og:description" content="社 百 眞">
 <meta property="og:image" content="https://i.ibb.co/zH8YVJpk/preview.png">
@@ -17,7 +17,6 @@
   :root {
     --font-primary: 'Cormorant Garamond', serif;
     --font-script: 'Great Vibes', cursive;
-
     --color-bg: #0b0a08;
     --color-text: #f4f1ea;
     --color-primary: #d4af37;
@@ -173,12 +172,8 @@
     text-shadow: 0 0 4px rgba(0,0,0,0.3);
   }
 
-  .page {
-    display: none;
-  }
-  .page.active {
-    display: block;
-  }
+  .page { display: none; }
+  .page.active { display: block; }
 
   .fancy-link {
     color: var(--color-primary);
@@ -221,194 +216,168 @@
   }
 
   @keyframes sparkle {
-    0%, 100% {
-      text-shadow:
-        0 0 5px var(--color-primary),
-        0 0 10px rgba(212,175,55,0.8),
-        0 0 15px rgba(212,175,55,0.4);
-    }
-    50% {
-      text-shadow:
-        0 0 10px var(--color-primary),
-        0 0 20px rgba(212,175,55,1),
-        0 0 30px rgba(212,175,55,0.8);
-    }
+    0%, 100% { text-shadow: 0 0 5px var(--color-primary), 0 0 10px rgba(212,175,55,0.8), 0 0 15px rgba(212,175,55,0.4); }
+    50% { text-shadow: 0 0 10px var(--color-primary), 0 0 20px rgba(212,175,55,1), 0 0 30px rgba(212,175,55,0.8); }
   }
 
-  .animated-link {
-    animation: sparkle 3s ease-in-out infinite;
-  }
+  .animated-link { animation: sparkle 3s ease-in-out infinite; }
 </style>
 </head>
 
 <body>
-  <div class="cover active" id="cover">
-    <h1>社 百 眞</h1>
-    <p>Incipiunt vera pacta spiritualia<br>“Veritas Animae et Lux Aeterna”</p>
-    <button onclick="showLock()">3 1 3</button>
+<div class="cover active" id="cover">
+  <h1>社 百 眞</h1>
+  <p>Incipiunt vera pacta spiritualia<br>“Veritas Animae et Lux Aeterna”</p>
+  <button onclick="showLock()">3 1 3</button>
+</div>
+
+<div class="lock" id="lock">
+  <h1>🔒 Secret Code</h1>
+  <p>玉 皇 上 帝</p>
+  <input type="password" id="inputCode" placeholder="Enter Code" autocomplete="off" />
+  <div class="error" id="errorMsg"></div>
+  <button onclick="verifyCode()">O</button>
+</div>
+
+<div class="container" id="main">
+  <h1>巳 白 眞</h1>
+
+  <div id="page1" class="page active">
+    <h2 id="title1">📖 Pactum</h2>
+    <div class="paragraph" id="para1"></div>
+
+    <h2 id="title2">📜 Recordatio</h2>
+    <div class="paragraph" id="para2"></div>
+
+    <h2 id="title3">🕊 Editio</h2>
+    <div class="paragraph" id="para3"></div>
+
+    <h2 id="title4">🕯 Essentia</h2>
+    <div class="paragraph" id="para4"></div>
   </div>
 
-  <div class="lock" id="lock">
-    <h1>🔒 Secret Code</h1>
-    <p>玉 皇 上 帝</p>
-    <input type="password" id="inputCode" placeholder="Enter Code" autocomplete="off" />
-    <div class="error" id="errorMsg"></div>
-    <button onclick="verifyCode()">O</button>
+  <div id="page2" class="page">
+    <h2 id="title5"><a href="https://www.313.kr/1.html" target="_blank" class="fancy-link animated-link">🔐 Clavis</a></h2>
+    <div class="paragraph" id="para5"></div>
+
+    <h2 id="title6">⚖️ Statum</h2>
+    <div class="paragraph" id="para6"></div>
+
+    <h2 id="title7"><a href="https://invite.kakao.com/tc/52clnCox79" target="_blank" class="fancy-link animated-link">🕯 Confirmatio</a></h2>
+    <div class="paragraph" id="para7"></div>
   </div>
-
-  <div class="container" id="main">
-    <h1>巳 白 眞</h1>
-
-    <div id="page1" class="page active">
-      <h2 id="title1">📖 Pactum</h2>
-      <div class="paragraph" id="para1"></div>
-
-      <h2 id="title2">📜 Recordatio</h2>
-      <div class="paragraph" id="para2"></div>
-
-      <h2 id="title3">🕊 Editio</h2>
-      <div class="paragraph" id="para3"></div>
-
-      <h2 id="title4">🕯 Essentia</h2>
-      <div class="paragraph" id="para4"></div>
-    </div>
-
-    <div id="page2" class="page">
-      <h2 id="title5"><a href="https://www.313.kr/1.html" target="_blank" class="fancy-link animated-link">🔐 Clavis</a></h2>
-      <div class="paragraph" id="para5"></div>
-
-      <h2 id="title6">⚖️ Statum</h2>
-      <div class="paragraph" id="para6"></div>
-
-      <h2 id="title7"><a href="https://invite.kakao.com/tc/52clnCox79" target="_blank" class="fancy-link animated-link">🕯 Confirmatio</a></h2>
-      <div class="paragraph" id="para7"></div>
-    </div>
-  </div>
+</div>
 
 <script>
-  const correctPrefix = "1172006817";
-  const defaultSuffix = "1";
+const correctPrefix = "1172006817";
+const defaultSuffix = "1";
 
-  const inputCodeElem = document.getElementById("inputCode");
-  inputCodeElem.addEventListener("input", () => {
-    let val = inputCodeElem.value;
-    val = val.replace(/[^0-9]/g, "");
-    inputCodeElem.value = val;
-  });
+const inputCodeElem = document.getElementById("inputCode");
+inputCodeElem.addEventListener("input", () => {
+  let val = inputCodeElem.value;
+  val = val.replace(/[^0-9]/g, "");
+  inputCodeElem.value = val;
+});
 
-  const paragraphsText = [
+const paragraphsText = [
 `『사백진』 (巳白眞)`,
-
 `(Closed Sacred Edition)
 (Verum Pactum Spirituale)`,
-
 `(Praedictum Anno MMXXV)
 (Integrum Restitutio Pecuniae)`,
-
 `Pactum non est commercium, sed votum.`,
-
 `NO. 313 - 1
 (Codex Unicus Privatus)
 (Accessum ad Portam Digitalem Sanctam)
 (Exceptum est pro codice NO. 313 - 1)`, 
-
 `Hoc certificatum etiam sine sigillo
 validitatem legalem habet, et cum originali congruit.`,
-
 `Issued By : Tria Unitas 313
 Issued At : Dosijiwon-ro 121, KR
 Issue Date : 3. 13. 2026`
-  ];
+];
 
-  const typingSpeed = 25;
-  const waitAfterTyping = 400;
+const typingSpeed = 25;
+const waitAfterTyping = 400;
 
-  function showLock() {
-    document.getElementById('cover').classList.remove('active');
-    document.getElementById('lock').classList.add('active');
-    document.getElementById('inputCode').focus();
+function showLock() {
+  document.getElementById('cover').classList.remove('active');
+  document.getElementById('lock').classList.add('active');
+  document.getElementById('inputCode').focus();
+}
+
+function verifyCode() {
+  const input = document.getElementById('inputCode').value.trim();
+  const error = document.getElementById('errorMsg');
+  error.textContent = "";
+  if(input.startsWith(correctPrefix)) {
+    document.getElementById('lock').classList.remove('active');
+    document.getElementById('main').classList.add('active');
+    autoPlayPages(input);
+  } else {
+    error.textContent = "Code Error.";
   }
+}
 
-  function verifyCode() {
-    const input = document.getElementById('inputCode').value.trim();
-    const error = document.getElementById('errorMsg');
-    error.textContent = "";
+function typeParagraph(element, text, speed) {
+  return new Promise((resolve) => {
+    let i = 0;
+    element.textContent = "";
+    element.style.opacity = "1";
+    function typing() {
+      if(i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      } else resolve();
+    }
+    typing();
+  });
+}
 
-    if(input.startsWith(correctPrefix)) {
-      document.getElementById('lock').classList.remove('active');
-      document.getElementById('main').classList.add('active');
-      autoPlayPages(input);
+async function showSequentially(pageNum, inputCode) {
+  const startIndex = pageNum === 1 ? 0 : 4;
+  const endIndex = pageNum === 1 ? 4 : 7;
+  for(let i = startIndex; i < endIndex; i++) {
+    const title = document.getElementById(`title${i+1}`);
+    const para = document.getElementById(`para${i+1}`);
+    title.style.opacity = "1";
+    await new Promise(r => setTimeout(r, 750));
+    if(i === 4) {
+      let suffix = inputCode.slice(correctPrefix.length);
+      if(suffix.length === 0) suffix = defaultSuffix;
+      let textWithCode = paragraphsText[i].replace(/NO\. 313 - \d+/, `NO. 313 - ${suffix}`);
+      await typeParagraph(para, textWithCode, typingSpeed);
     } else {
-      error.textContent = "Code Error.";
+      await typeParagraph(para, paragraphsText[i], typingSpeed);
     }
+    await new Promise(r => setTimeout(r, waitAfterTyping));
   }
+}
 
-  function typeParagraph(element, text, speed) {
-    return new Promise((resolve) => {
-      let i = 0;
-      element.textContent = "";
-      element.style.opacity = "1";
-      function typing() {
-        if(i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-          setTimeout(typing, speed);
-        } else {
-          resolve();
-        }
-      }
-      typing();
-    });
+function resetPage(pageNum) {
+  const startIndex = pageNum === 1 ? 0 : 4;
+  const endIndex = pageNum === 1 ? 4 : 7;
+  for(let i = startIndex; i < endIndex; i++) {
+    const title = document.getElementById(`title${i+1}`);
+    const para = document.getElementById(`para${i+1}`);
+    title.style.opacity = "0";
+    para.style.opacity = "0";
+    para.textContent = "";
   }
+}
 
-  async function showSequentially(pageNum, inputCode) {
-    const startIndex = pageNum === 1 ? 0 : 4;
-    const endIndex = pageNum === 1 ? 4 : 7;
-
-    for(let i = startIndex; i < endIndex; i++) {
-      const title = document.getElementById(`title${i+1}`);
-      const para = document.getElementById(`para${i+1}`);
-
-      title.style.opacity = "1";
-      await new Promise(r => setTimeout(r, 750));
-
-      if(i === 4) {
-        let suffix = inputCode.slice(correctPrefix.length);
-        if(suffix.length === 0) suffix = defaultSuffix;
-        let textWithCode = paragraphsText[i].replace(/NO\. 313 - \d+/, `NO. 313 - ${suffix}`);
-        await typeParagraph(para, textWithCode, typingSpeed);
-      } else {
-        await typeParagraph(para, paragraphsText[i], typingSpeed);
-      }
-      await new Promise(r => setTimeout(r, waitAfterTyping));
+async function autoPlayPages(inputCode) {
+  for(let p = 1; p <= 2; p++) {
+    if(p > 1) {
+      resetPage(p-1);
+      document.getElementById(`page${p-1}`).classList.remove('active');
     }
+    document.getElementById(`page${p}`).classList.add('active');
+    await showSequentially(p, inputCode);
+    if(p !== 2) await new Promise(r => setTimeout(r, 3000));
   }
-
-  function resetPage(pageNum) {
-    const startIndex = pageNum === 1 ? 0 : 4;
-    const endIndex = pageNum === 1 ? 4 : 7;
-
-    for(let i = startIndex; i < endIndex; i++) {
-      const title = document.getElementById(`title${i+1}`);
-      const para = document.getElementById(`para${i+1}`);
-
-      title.style.opacity = "0";
-      para.style.opacity = "0";
-      para.textContent = "";
-    }
-  }
-
-  async function autoPlayPages(inputCode) {
-    for(let p = 1; p <= 2; p++) {
-      if(p > 1) {
-        resetPage(p-1);
-        document.getElementById(`page${p-1}`).classList.remove('active');
-      }
-      document.getElementById(`page${p}`).classList.add('active');
-      await showSequentially(p, inputCode);
-      if(p !== 2) await new Promise(r => setTimeout(r, 3000));
-    }
-  }
+}
 </script>
 </body>
 </html>
