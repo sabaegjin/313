@@ -2,111 +2,87 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>巳 白 眞</title>
+<title>책 표지 슬라이드</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-    --bg-gradient: linear-gradient(135deg, #0b0b0e, #1a1a24);
-    --panel: rgba(17,17,21,0.85);
-    --text: #e5e5e5;
-    --muted: #b5b5b5;
-    --accent: #c9a44d;
+html, body {
+  margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#0b0b0e;
 }
 
-* { box-sizing: border-box; margin:0; padding:0; }
-html, body { height:100%; overflow:hidden; font-family: 'Playfair Display', serif; color: var(--text); background: var(--bg-gradient); }
-
-/* ===== 페이지 공통 ===== */
+/* 각 페이지 */
 .page {
-    position:absolute;
-    top:0; left:0;
-    width:100vw; height:100vh;
-    display:flex; align-items:center; justify-content:center;
-    opacity:0;
-    transform:translateY(50px) scale(0.98);
-    transition: opacity 0.9s, transform 0.9s;
-    z-index:0;
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  display:flex; justify-content:center; align-items:center;
+  opacity:0; transition:opacity 0.5s ease-in-out;
 }
-.page:not(.cover) { padding:60px 20px; }
-.page.active { opacity:1; transform:translateY(0) scale(1); z-index:1; }
 
-/* ===== 책 표지 ===== */
-.cover img, .cover picture { width:100vw; height:100vh; display:block; }
+/* 활성화된 페이지 */
+.page.active { opacity:1; z-index:1; }
 
-/* ===== 패널 ===== */
+/* 이미지 화면 꽉 채우기, 비율 무시 */
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* 비율 상관없이 화면 꽉 채움 */
+}
+
+/* 하단 패널 */
 .panel {
-    width:100%;
-    max-width:1000px;
-    background: var(--panel);
-    border-radius:20px;
-    padding:40px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
+  position:absolute; bottom:20px; right:20px;
+  background:rgba(17,17,21,0.6);
+  color:#b5b5b5; padding:12px 20px; border-radius:12px;
+  font-family:sans-serif;
+  z-index:2;
 }
-h2 { font-family: 'Montserrat', sans-serif; font-weight:600; font-size:1.9rem; color: var(--accent); margin-bottom:32px; }
-.signature { text-align:right; color: var(--muted); }
-
 </style>
 </head>
 <body>
 
-<!-- ===== 책 표지 ===== -->
-<section class="page active cover">
-<picture>
-<source media="(max-width: 777px)" srcset="https://i.ibb.co/d4hT96Kj/414.gif">
-<img src="https://i.ibb.co/d4hT96Kj/414.gif" alt="책 표지">
-</picture>
-</section>
-<section class="page"><img src="https://i.ibb.co/8DbB7p6z/717.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
-<section class="page"><img src="https://i.ibb.co/Vf0Ffpm/1.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
-<section class="page"><img src="https://i.ibb.co/Mk0Wywqd/image.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
-<section class="page"><img src="https://i.ibb.co/9mCtjBvr/1.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
-<section class="page"><img src="https://i.ibb.co/zWP0rHm6/2.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
-<section class="page"><img src="https://i.ibb.co/845mWNcy/2.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
+<!-- 슬라이드 페이지 -->
+<section class="page active"><img src="https://i.ibb.co/d4hT96Kj/414.gif" alt="책 표지"></section>
+<section class="page"><img src="https://i.ibb.co/8DbB7p6z/717.gif" alt="책 표지"></section>
+<section class="page"><img src="https://i.ibb.co/Vf0Ffpm/1.gif" alt="책 표지"></section>
+<section class="page"><img src="https://i.ibb.co/Mk0Wywqd/image.gif" alt="책 표지"></section>
+<section class="page"><img src="https://i.ibb.co/9mCtjBvr/1.gif" alt="책 표지"></section>
+<section class="page"><img src="https://i.ibb.co/zWP0rHm6/2.gif" alt="책 표지"></section>
+<section class="page"><img src="https://i.ibb.co/845mWNcy/2.gif" alt="책 표지"></section>
 
-<!-- ===== 실시간 업데이트 ===== -->
-<section class="page"><div class="panel signature">실시간 업데이트 2026.01.09 & 06:16</div></section>
+<!-- 하단 패널 -->
+<section class="page"><div class="panel">실시간 업데이트 2026.01.09 & 06:16</div></section>
 
 <script>
-// ===== 페이지 전환 =====
 const pages = document.querySelectorAll('.page');
-let current = 0, isAnimating = false;
-function showPage(i){
-    if(isAnimating) return;
-    isAnimating=true;
-    pages.forEach(p=>p.classList.remove('active'));
-    pages[i].classList.add('active');
-    setTimeout(()=>isAnimating=false,900);
-}
-function nextPage(){if(current<pages.length-1) current++; showPage(current);}
-function prevPage(){if(current>0) current--; showPage(current);}
-window.addEventListener('wheel', e => { e.deltaY>0? nextPage():prevPage(); },{passive:true});
-window.addEventListener('keydown', e=>{ if(e.key==='ArrowDown'||e.key==='PageDown') nextPage(); if(e.key==='ArrowUp'||e.key==='PageUp') prevPage(); });
+let current = 0;
 
-// ===== 터치 스크롤 방지 =====
-let startY=0;
-window.addEventListener('touchstart', e=>{ startY=e.touches[0].clientY; }, {passive:true});
-window.addEventListener('touchmove', e=>{ e.preventDefault(); },{passive:false});
-window.addEventListener('touchend', e=>{
-    const diff = startY - e.changedTouches[0].clientY;
-    if(Math.abs(diff)<50) return;
-    diff>0? nextPage():prevPage();
+// 페이지 전환 함수
+function showPage(i){
+  pages[current].classList.remove('active');
+  current = i;
+  pages[current].classList.add('active');
+}
+
+// 마우스 휠 수동 전환
+window.addEventListener('wheel', e=>{
+  if(e.deltaY > 0) showPage((current+1) % pages.length);
+  else showPage((current-1+pages.length-1) % pages.length);
+}, {passive:true});
+
+// 키보드 전환
+window.addEventListener('keydown', e=>{
+  if(e.key==='ArrowDown'||e.key==='PageDown') showPage((current+1)%pages.length);
+  if(e.key==='ArrowUp'||e.key==='PageUp') showPage((current-1+pages.length-1)%pages.length);
 });
 
-// ===== 자동 페이지 전환 =====
-let autoSlideInterval = 5000; // 5초마다 자동 전환
-let autoSlideTimer;
-function startAutoSlide() {
-  autoSlideTimer = setInterval(nextPage, autoSlideInterval);
-}
-function resetAutoSlide() {
-  clearInterval(autoSlideTimer);
-  startAutoSlide();
-}
-startAutoSlide();
-['wheel','keydown','touchstart','touchend'].forEach(evt => window.addEventListener(evt, resetAutoSlide, {passive:true}));
+// 터치 스와이프 전환
+let startY=0;
+window.addEventListener('touchstart', e=> startY=e.touches[0].clientY, {passive:true});
+window.addEventListener('touchend', e=>{
+  const diff = startY - e.changedTouches[0].clientY;
+  if(Math.abs(diff)>50) diff>0 ? showPage((current+1)%pages.length) : showPage((current-1+pages.length-1)%pages.length);
+});
+
+// 자동 슬라이드 (7초 간격)
+setInterval(()=>showPage((current+1)%pages.length), 7000);
 </script>
 
 </body>
