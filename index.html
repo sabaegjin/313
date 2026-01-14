@@ -105,7 +105,6 @@ p, .team-info h3, .team-info p { font-size:1.09rem; color:#dcdcdc; white-space:n
 </section>
 <section class="page"><img src="https://i.ibb.co/8DbB7p6z/717.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
 <section class="page"><img src="https://i.ibb.co/Vf0Ffpm/1.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
-<section class="page"><img src="https://i.ibb.co/Mk0Wywqd/image.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
 <section class="page"><img src="https://i.ibb.co/9mCtjBvr/1.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
 <section class="page"><img src="https://i.ibb.co/zWP0rHm6/2.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
 <section class="page"><img src="https://i.ibb.co/845mWNcy/2.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
@@ -339,29 +338,13 @@ function handleSwipe(){
 regionBtns.forEach(b => { if(b.dataset.region===activeRegion) b.classList.add('active'); });
 renderCard();
 
-let autoSlideInterval = 5000; // 5초마다 자동 전환
-let autoSlideTimer;
-
-function startAutoSlide() {
-  autoSlideTimer = setInterval(() => {
-    if (!pages[current].classList.contains('team-page')) { // 팀 페이지는 자동 제외
-      nextPage();
-    }
-  }, autoSlideInterval);
-}
+l
 
 function resetAutoSlide() {
   clearInterval(autoSlideTimer);
   startAutoSlide();
 }
 
-// 초기 자동 슬라이드 시작
-startAutoSlide();
-
-// 사용자 상호작용 시 타이머 초기화
-['wheel','keydown','touchstart','touchend'].forEach(evt => {
-  window.addEventListener(evt, resetAutoSlide, {passive:true});
-});
 
 </script>
 
