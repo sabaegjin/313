@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>巳 白 眞</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-gradient: linear-gradient(135deg, #0b0b0e, #1a1a24);
+    --panel: rgba(17,17,21,0.85);
+    --text: #e5e5e5;
+    --muted: #b5b5b5;
+    --accent: #c9a44d;
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+html, body { height:100%; overflow:hidden; font-family: 'Playfair Display', serif; color: var(--text); background: var(--bg-gradient); }
+
+/* ===== 페이지 공통 ===== */
+.page {
+    position:absolute;
+    top:0; left:0;
+    width:100vw; height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0;
+    transform:translateY(50px) scale(0.98);
+    transition: opacity 0.9s, transform 0.9s;
+    z-index:0;
+}
+.page:not(.cover) { padding:60px 20px; }
+.page.active { opacity:1; transform:translateY(0) scale(1); z-index:1; }
+
+/* ===== 책 표지 ===== */
+.cover img, .cover picture { width:100vw; height:100vh; display:block; }
+
+/* ===== 패널 ===== */
+.panel {
+    width:100%;
+    max-width:1000px;
+    background: var(--panel);
+    border-radius:20px;
+    padding:40px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+}
+h2 { font-family: 'Montserrat', sans-serif; font-weight:600; font-size:1.9rem; color: var(--accent); margin-bottom:32px; }
+p, .team-info h3, .team-info p { font-size:1.09rem; color:#dcdcdc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.signature { text-align:right; color: var(--muted); }
+
+/* ===== 지역 탭 ===== */
+.region-tabs { display:flex; justify-content:center; flex-wrap:wrap; margin:20px 0; }
+.region-tabs button {
+    font-family:'Lato', sans-serif; font-weight:700;
+    background:#111115; border:1px solid #232323; margin:5px; padding:8px 18px;
+    color:#e5e5e5; cursor:pointer; border-radius:8px;
+    transition:0.3s;
+}
+.region-tabs button.active { background: var(--accent); color:#111; }
+.region-tabs button:hover { box-shadow:0 0 12px rgba(201,164,77,0.7); transform: translateY(-2px); }
+
+/* ===== 팀 카드 슬라이드 ===== */
+.team-list {
+    position:relative; height:200px;
+    display:flex; justify-content:center; align-items:center;
+    overflow:hidden;
+}
+.team-card-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.team-card-wrapper .team-card {
+    position: absolute;
+    min-width:300px;
+    display:flex; align-items:center; gap:16px;
+    background: rgba(17,17,21,0.9);
+    border-radius:20px; padding:32px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.5);
+    transform: translateX(100%);
+}
+.team-card-inner { display:flex; align-items:center; gap:16px; }
+.team-photo { width:120px; height:120px; object-fit: cover; border-radius:50%; flex-shrink:0; }
+.team-info { flex:1; }
+.team-info h3, .team-info p { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.team-info a {
+    font-family:'Lato', sans-serif; font-weight:700;
+    display:inline-block; margin-top:8px; padding:6px 12px;
+    background: var(--accent); border-radius:6px; color:#111; text-decoration:none;
+    transition:0.3s;
+}
+.team-info a:hover { opacity:0.85; transform:translateY(-2px); }
+
+</style>
+</head>
+<body>
+
+<!-- ===== 책 표지 ===== -->
+<section class="page active cover">
+<picture>
+<source media="(max-width: 777px)" srcset="https://i.ibb.co/d4hT96Kj/414.gif">
+<img src="https://i.ibb.co/d4hT96Kj/414.gif" alt="책 표지">
+</picture>
+</section>
+<section class="page"><img src="https://i.ibb.co/8DbB7p6z/717.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
+<section class="page"><img src="https://i.ibb.co/Vf0Ffpm/1.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
+<section class="page"><img src="https://i.ibb.co/9mCtjBvr/1.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
+<section class="page"><img src="https://i.ibb.co/zWP0rHm6/2.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
+<section class="page"><img src="https://i.ibb.co/845mWNcy/2.gif" alt="책 표지" style="width:100vw; height:100vh;"></section>
+
+<section class="page"><div class="panel signature">실시간 업데이트 2026.01.09 & 06:16</div></section>
+
+<!-- ===== 팀 페이지 ===== -->
+<section class="page team-page">
+<div class="panel">
+<h2>313 Korea Team</h2>
+<div class="region-tabs">
+<button data-region="동작">동작</button>
+<button data-region="일산">일산</button>
+<button data-region="남양">남양</button>
+<button data-region="도봉">도봉</button>
+<button data-region="마포">마포</button>
+<button data-region="노원">노원</button>
+<button data-region="용산">용산</button>
+<button data-region="오산">오산</button>
+<button data-region="충북">충북</button>
+<button data-region="강원">강원</button>
+<button data-region="울산">울산</button>
+<button data-region="전북">전북</button>
+<button data-region="폴란">폴란</button>
+</div>
+
+<div class="team-list">
+    <div class="team-card-wrapper"></div>
+</div>
+
+</div>
+</section>
+
+<script>
+// ===== 페이지 전환 =====
+const pages = document.querySelectorAll('.page');
+let current = 0, isAnimating = false;
+function showPage(i){
+    if(isAnimating) return;
+    isAnimating=true;
+    pages.forEach(p=>p.classList.remove('active'));
+    pages[i].classList.add('active');
+    setTimeout(()=>isAnimating=false,900);
+}
+function nextPage(){if(current<pages.length-1) current++; showPage(current);}
+function prevPage(){if(current>0) current--; showPage(current);}
+window.addEventListener('wheel', e => { 
+    const cur = pages[current];
+    if(cur.classList.contains('team-page') && cur.scrollHeight > cur.clientHeight) return;
+    e.deltaY>0? nextPage():prevPage();
+},{passive:true});
+window.addEventListener('keydown', e=>{ if(e.key==='ArrowDown'||e.key==='PageDown') nextPage(); if(e.key==='ArrowUp'||e.key==='PageUp') prevPage(); });
+
+// ===== 터치 스크롤 방지 =====
+let startY=0;
+window.addEventListener('touchstart', e=>{ startY=e.touches[0].clientY; }, {passive:true});
+window.addEventListener('touchmove', e=>{
+    if(pages[current].classList.contains('team-page')) return;
+    e.preventDefault();
+},{passive:false});
+window.addEventListener('touchend', e=>{
+    const diff = startY - e.changedTouches[0].clientY;
+    if(Math.abs(diff)<50) return;
+    diff>0? nextPage():prevPage();
+});
+
+// ===== 팀 카드 최적화 =====
+const regionBtns = document.querySelectorAll('.region-tabs button');
+const wrapper = document.querySelector('.team-card-wrapper');
+
+const teamData = [
+    {region:'일산', name:'김만진', title:'일산 支會長', photo:'https://i.ibb.co/PvzG5LxN/image.png', phone:'+821050295691'},
+    {region:'남양', name:'백승호', title:'남양 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+821092321130'},
+    {region:'동작', name:'최지환', title:'동작 支會長', photo:'https://i.ibb.co/fzxJmq1F/image.jpg', phone:'+821027653740'},
+    {region:'도봉', name:'방정건', title:'도봉 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+821048786952'},
+    {region:'마포', name:'김하영', title:'마포 支會長', photo:'https://i.ibb.co/0jZqFNRp/image.png', phone:'+821053629598'},
+    {region:'노원', name:'신지호', title:'노원 支會長', photo:'https://i.ibb.co/MxM5V89c/image.png', phone:'+821022489529'},
+    {region:'용산', name:'강도희', title:'용산 支會長', photo:'https://i.ibb.co/DfLhVHXv/image.png', phone:'+821023056850'},
+    {region:'오산', name:'김은하', title:'오산 支會長', photo:'https://i.ibb.co/Txbk7y6d/image.png', phone:'+821077283912'},
+    {region:'충북', name:'백창업', title:'충북 支會長', photo:'https://i.ibb.co/WpM7LjPR/image.png', phone:'+821080565424'},
+    {region:'충북', name:'김승엽', title:'충북 支部長', photo:'https://i.ibb.co/Kcd82XTD/image.png', phone:'+821052152491'},
+    {region:'강원', name:'장유성', title:'강원 支會長', photo:'https://i.ibb.co/Dgt4SsRF/Kakao-Talk-20260101-195801158.jpg', phone:'+821020494280'},
+    {region:'울산', name:'박경륜', title:'울산 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+821071682907'},
+    {region:'전북', name:'김윤희', title:'전북 支會長', photo:'https://i.ibb.co/vCk31cDC/image.png', phone:'+821075505883'},
+    {region:'폴란', name:'권형빈', title:'폴란 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+48725192493'},
+];
+
+let activeRegion = '동작';
+let cardIndex = 0;
+let isSliding = false;
+
+function createCardDOM(data){
+    const card = document.createElement('div');
+    card.className = 'team-card';
+    card.innerHTML = `
+        <div class="team-card-inner">
+            <img src="${data.photo}" alt="${data.name}" class="team-photo" loading="lazy">
+            <div class="team-info">
+                <h3>${data.name}</h3>
+                <p>${data.title}</p>
+                <a href="tel:${data.phone}">상담</a>
+            </div>
+        </div>
+    `;
+    return card;
+}
+
+function renderCard(nextIndex = cardIndex, direction = 1){
+
+isSliding = false;
+
+    const filtered = teamData.filter(t => t.region === activeRegion);
+    if(filtered.length===0){ wrapper.innerHTML=''; return; }
+    isSliding = true;
+
+    const newCard = createCardDOM(filtered[nextIndex]);
+    newCard.style.transition = 'none';
+    newCard.style.transform = `translateX(${direction*100}%)`;
+    wrapper.appendChild(newCard);
+
+    const oldCard = wrapper.querySelector('.team-card:not(:last-child)');
+
+    requestAnimationFrame(()=>{
+        newCard.style.transition='transform 0.6s ease-out';
+        newCard.style.transform='translateX(0)';
+        if(oldCard){
+            oldCard.style.transition='transform 0.6s ease-out';
+            oldCard.style.transform=`translateX(${-direction*100}%)`;
+            oldCard.addEventListener('transitionend', ()=>{ oldCard.remove(); isSliding=false; }, {once:true});
+        } else {
+            setTimeout(()=>{ isSliding=false; }, 600);
+        }
+    });
+}
+
+// 지역 버튼 클릭
+regionBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        regionBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeRegion = btn.dataset.region;
+        cardIndex = 0;
+        renderCard();
+    });
+});
+
+// 키보드 좌/우
+document.addEventListener('keydown', e=>{
+    const filtered = teamData.filter(t=>t.region===activeRegion);
+    if(filtered.length===0) return;
+    if(e.key==='ArrowRight'){ cardIndex=(cardIndex+1)%filtered.length; renderCard(cardIndex,1); }
+    if(e.key==='ArrowLeft'){ cardIndex=(cardIndex-1+filtered.length)%filtered.length; renderCard(cardIndex,-1); }
+});
+
+// 터치 좌/우
+let touchStartX=0, touchEndX=0;
+document.addEventListener('touchstart', e=>{ touchStartX=e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', e=>{ touchEndX=e.changedTouches[0].clientX; handleSwipe(); });
+function handleSwipe(){
+    const filtered = teamData.filter(t=>t.region===activeRegion);
+    if(filtered.length===0) return;
+    const dist = touchStartX - touchEndX;
+    if(Math.abs(dist)<50) return;
+    if(dist>0){ cardIndex=(cardIndex+1)%filtered.length; renderCard(cardIndex,1); }
+    else{ cardIndex=(cardIndex-1+filtered.length)%filtered.length; renderCard(cardIndex,-1); }
+}
+
+// 초기 표시
+regionBtns.forEach(b => { if(b.dataset.region===activeRegion) b.classList.add('active'); });
+renderCard();
+
+</script>
+</body>
+</html>
