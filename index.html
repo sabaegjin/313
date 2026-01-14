@@ -60,7 +60,7 @@ p, .team-info h3, .team-info p { font-size:1.09rem; color:#dcdcdc; white-space:n
 .region-tabs button.active { background: var(--accent); color:#111; }
 .region-tabs button:hover { box-shadow:0 0 12px rgba(201,164,77,0.7); transform: translateY(-2px); }
 
-/* ===== 팀 카드 슬라이드 최적화 ===== */
+/* ===== 팀 카드 슬라이드 ===== */
 .team-list {
     position:relative; height:200px;
     display:flex; justify-content:center; align-items:center;
@@ -73,12 +73,12 @@ p, .team-info h3, .team-info p { font-size:1.09rem; color:#dcdcdc; white-space:n
 }
 .team-card-wrapper .team-card {
     position: absolute;
-    will-change: transform;
     min-width:300px;
     display:flex; align-items:center; gap:16px;
     background: rgba(17,17,21,0.9);
     border-radius:20px; padding:32px;
     box-shadow:0 8px 24px rgba(0,0,0,0.5);
+    transform: translateX(100%);
 }
 .team-card-inner { display:flex; align-items:center; gap:16px; }
 .team-photo { width:120px; height:120px; object-fit: cover; border-radius:50%; flex-shrink:0; }
@@ -135,110 +135,7 @@ p, .team-info h3, .team-info p { font-size:1.09rem; color:#dcdcdc; white-space:n
     <div class="team-card-wrapper"></div>
 </div>
 
-<!-- 팀 카드 템플릿 (JS에서 clone) -->
-<div style="display:none;">
-   
-    <div class="team-card" data-region="일산">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/PvzG5LxN/image.png" alt="김만진" class="team-photo">
-            <div class="team-info"><h3>김만진</h3><p>일산 支會長</p><a href="tel:+821050295691">상담</a></div>
-        </div>
-    </div>
-   <!-- 팀 카드 템플릿 (display:none, JS에서 clone 사용) -->
-<div style="display:none;">
-    <div class="team-card" data-region="남양">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/xSMbphDf/image.png" alt="백승호" class="team-photo">
-            <div class="team-info"><h3>백승호</h3><p>남양 支會長</p><a href="tel:+821092321130">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="동작">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/fzxJmq1F/image.jpg" alt="최지환" class="team-photo">
-            <div class="team-info"><h3>최지환</h3><p>동작 支會長</p><a href="tel:+821027653740">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="도봉">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/xSMbphDf/image.png" alt="방정건" class="team-photo">
-            <div class="team-info"><h3>방정건</h3><p>도봉 支會長</p><a href="tel:+821048786952">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="마포">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/0jZqFNRp/image.png" alt="김하영" class="team-photo">
-            <div class="team-info"><h3>김하영</h3><p>마포 支會長</p><a href="tel:+821053629598">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="노원">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/MxM5V89c/image.png" alt="신지호" class="team-photo">
-            <div class="team-info"><h3>신지호</h3><p>노원 支會長</p><a href="tel:+821022489529">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="용산">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/DfLhVHXv/image.png" alt="강도희" class="team-photo">
-            <div class="team-info"><h3>강도희</h3><p>용산 支會長</p><a href="tel:+821023056850">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="오산">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/Txbk7y6d/image.png" alt="김은하" class="team-photo">
-            <div class="team-info"><h3>김은하</h3><p>오산 支會長</p><a href="tel:+821077283912">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="충북">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/WpM7LjPR/image.png" alt="백창업" class="team-photo">
-            <div class="team-info"><h3>백창업</h3><p>충북 支會長</p><a href="tel:+821080565424">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="충북">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/Kcd82XTD/image.png" alt="김승엽" class="team-photo">
-            <div class="team-info"><h3>김승엽</h3><p>충북 支部長</p><a href="tel:+821052152491">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="강원">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/Dgt4SsRF/Kakao-Talk-20260101-195801158.jpg" alt="장유성" class="team-photo">
-            <div class="team-info"><h3>장유성</h3><p>강원 支會長</p><a href="tel:+821020494280">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="울산">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/xSMbphDf/image.png" alt="박경륜" class="team-photo">
-            <div class="team-info"><h3>박경륜</h3><p>울산 支會長</p><a href="tel:+821071682907">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="전북">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/vCk31cDC/image.png" alt="김윤희" class="team-photo">
-            <div class="team-info"><h3>김윤희</h3><p>전북 支會長</p><a href="tel:+821075505883">상담</a></div>
-        </div>
-    </div>
-
-    <div class="team-card" data-region="폴란">
-        <div class="team-card-inner">
-            <img src="https://i.ibb.co/xSMbphDf/image.png" alt="권형빈" class="team-photo">
-            <div class="team-info"><h3>권형빈</h3><p>폴란 支會長</p><a href="tel:+48725192493">상담</a></div>
-        </div>
-    </div>
 </div>
-
-
 </section>
 
 <script>
@@ -274,38 +171,77 @@ window.addEventListener('touchend', e=>{
     diff>0? nextPage():prevPage();
 });
 
+// ===== 팀 카드 최적화 =====
 const regionBtns = document.querySelectorAll('.region-tabs button');
-const allCards = document.querySelectorAll('.team-card'); // 템플릿용
 const wrapper = document.querySelector('.team-card-wrapper');
+
+const teamData = [
+    {region:'일산', name:'김만진', title:'일산 支會長', photo:'https://i.ibb.co/PvzG5LxN/image.png', phone:'+821050295691'},
+    {region:'남양', name:'백승호', title:'남양 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+821092321130'},
+    {region:'동작', name:'최지환', title:'동작 支會長', photo:'https://i.ibb.co/fzxJmq1F/image.jpg', phone:'+821027653740'},
+    {region:'도봉', name:'방정건', title:'도봉 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+821048786952'},
+    {region:'마포', name:'김하영', title:'마포 支會長', photo:'https://i.ibb.co/0jZqFNRp/image.png', phone:'+821053629598'},
+    {region:'노원', name:'신지호', title:'노원 支會長', photo:'https://i.ibb.co/MxM5V89c/image.png', phone:'+821022489529'},
+    {region:'용산', name:'강도희', title:'용산 支會長', photo:'https://i.ibb.co/DfLhVHXv/image.png', phone:'+821023056850'},
+    {region:'오산', name:'김은하', title:'오산 支會長', photo:'https://i.ibb.co/Txbk7y6d/image.png', phone:'+821077283912'},
+    {region:'충북', name:'백창업', title:'충북 支會長', photo:'https://i.ibb.co/WpM7LjPR/image.png', phone:'+821080565424'},
+    {region:'충북', name:'김승엽', title:'충북 支部長', photo:'https://i.ibb.co/Kcd82XTD/image.png', phone:'+821052152491'},
+    {region:'강원', name:'장유성', title:'강원 支會長', photo:'https://i.ibb.co/Dgt4SsRF/Kakao-Talk-20260101-195801158.jpg', phone:'+821020494280'},
+    {region:'울산', name:'박경륜', title:'울산 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+821071682907'},
+    {region:'전북', name:'김윤희', title:'전북 支會長', photo:'https://i.ibb.co/vCk31cDC/image.png', phone:'+821075505883'},
+    {region:'폴란', name:'권형빈', title:'폴란 支會長', photo:'https://i.ibb.co/xSMbphDf/image.png', phone:'+48725192493'},
+];
+
 let activeRegion = '동작';
 let cardIndex = 0;
+let isSliding = false;
 
-function renderCard(nextIndex = cardIndex, direction = 1) {
-    const filtered = [...allCards].filter(c => c.dataset.region === activeRegion);
-    if(filtered.length === 0) { wrapper.innerHTML = ''; return; }
+function createCardDOM(data){
+    const card = document.createElement('div');
+    card.className = 'team-card';
+    card.innerHTML = `
+        <div class="team-card-inner">
+            <img src="${data.photo}" alt="${data.name}" class="team-photo" loading="lazy">
+            <div class="team-info">
+                <h3>${data.name}</h3>
+                <p>${data.title}</p>
+                <a href="tel:${data.phone}">상담</a>
+            </div>
+        </div>
+    `;
+    return card;
+}
 
-    const newCard = filtered[nextIndex].cloneNode(true);
+function renderCard(nextIndex = cardIndex, direction = 1){
+    if(isSliding) return;
+    const filtered = teamData.filter(t => t.region === activeRegion);
+    if(filtered.length===0){ wrapper.innerHTML=''; return; }
+    isSliding = true;
+
+    const newCard = createCardDOM(filtered[nextIndex]);
     newCard.style.transition = 'none';
     newCard.style.transform = `translateX(${direction*100}%)`;
     wrapper.appendChild(newCard);
 
     const oldCard = wrapper.querySelector('.team-card:not(:last-child)');
-    requestAnimationFrame(() => {
-        newCard.style.transition = 'transform 0.6s ease-out';
-        newCard.style.transform = 'translateX(0)';
 
-        if(oldCard) {
-            oldCard.style.transition = 'transform 0.6s ease-out';
-            oldCard.style.transform = `translateX(${-direction*100}%)`;
-            oldCard.addEventListener('transitionend', () => oldCard.remove(), {once:true});
+    requestAnimationFrame(()=>{
+        newCard.style.transition='transform 0.6s ease-out';
+        newCard.style.transform='translateX(0)';
+        if(oldCard){
+            oldCard.style.transition='transform 0.6s ease-out';
+            oldCard.style.transform=`translateX(${-direction*100}%)`;
+            oldCard.addEventListener('transitionend', ()=>{ oldCard.remove(); isSliding=false; }, {once:true});
+        } else {
+            setTimeout(()=>{ isSliding=false; }, 600);
         }
     });
 }
 
 // 지역 버튼 클릭
-regionBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        regionBtns.forEach(b => b.classList.remove('active'));
+regionBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        regionBtns.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         activeRegion = btn.dataset.region;
         cardIndex = 0;
@@ -314,9 +250,9 @@ regionBtns.forEach(btn => {
 });
 
 // 키보드 좌/우
-document.addEventListener('keydown', e => {
-    const filtered = [...allCards].filter(c => c.dataset.region === activeRegion);
-    if(filtered.length === 0) return;
+document.addEventListener('keydown', e=>{
+    const filtered = teamData.filter(t=>t.region===activeRegion);
+    if(filtered.length===0) return;
     if(e.key==='ArrowRight'){ cardIndex=(cardIndex+1)%filtered.length; renderCard(cardIndex,1); }
     if(e.key==='ArrowLeft'){ cardIndex=(cardIndex-1+filtered.length)%filtered.length; renderCard(cardIndex,-1); }
 });
@@ -326,7 +262,7 @@ let touchStartX=0, touchEndX=0;
 document.addEventListener('touchstart', e=>{ touchStartX=e.touches[0].clientX; }, {passive:true});
 document.addEventListener('touchend', e=>{ touchEndX=e.changedTouches[0].clientX; handleSwipe(); });
 function handleSwipe(){
-    const filtered = [...allCards].filter(c => c.dataset.region === activeRegion);
+    const filtered = teamData.filter(t=>t.region===activeRegion);
     if(filtered.length===0) return;
     const dist = touchStartX - touchEndX;
     if(Math.abs(dist)<50) return;
@@ -338,15 +274,6 @@ function handleSwipe(){
 regionBtns.forEach(b => { if(b.dataset.region===activeRegion) b.classList.add('active'); });
 renderCard();
 
-l
-
-function resetAutoSlide() {
-  clearInterval(autoSlideTimer);
-  startAutoSlide();
-}
-
-
 </script>
-
 </body>
 </html>
