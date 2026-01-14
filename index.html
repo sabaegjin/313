@@ -42,11 +42,6 @@ html, body {
 <section class="page active"><img src="https://i.ibb.co/d4hT96Kj/414.gif" alt="책 표지"></section>
 <section class="page"><img src="https://i.ibb.co/8DbB7p6z/717.gif" alt="책 표지"></section>
 <section class="page"><img src="https://i.ibb.co/Vf0Ffpm/1.gif" alt="책 표지"></section>
-<section class="page"><img src="https://i.ibb.co/Mk0Wywqd/image.gif" alt="책 표지"></section>
-<section class="page"><img src="https://i.ibb.co/9mCtjBvr/1.gif" alt="책 표지"></section>
-<section class="page"><img src="https://i.ibb.co/zWP0rHm6/2.gif" alt="책 표지"></section>
-<section class="page"><img src="https://i.ibb.co/845mWNcy/2.gif" alt="책 표지"></section>
-
 <!-- 하단 패널 -->
 <section class="page"><div class="panel">실시간 업데이트 2026.01.09 & 06:16</div></section>
 
@@ -81,8 +76,8 @@ window.addEventListener('touchend', e=>{
   if(Math.abs(diff)>50) diff>0 ? showPage((current+1)%pages.length) : showPage((current-1+pages.length-1)%pages.length);
 });
 
-// 자동 슬라이드 (7초 간격)
-setInterval(()=>showPage((current+1)%pages.length), 7000);
+// 자동 슬라이드 (5초 간격)
+setInterval(()=>showPage((current+1)%pages.length), 5000);
 </script>
 
 </body>
