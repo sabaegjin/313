@@ -213,7 +213,9 @@ function createCardDOM(data){
 }
 
 function renderCard(nextIndex = cardIndex, direction = 1){
-    if(isSliding) return;
+
+isSliding = false;
+
     const filtered = teamData.filter(t => t.region === activeRegion);
     if(filtered.length===0){ wrapper.innerHTML=''; return; }
     isSliding = true;
