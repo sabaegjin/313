@@ -26,6 +26,11 @@
       justify-content: center;
       background: radial-gradient(circle at top, #1a1a1a, #000);
       position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    header:hover {
+      transform: scale(1.02);
     }
     header h1 {
       font-family: 'Playfair Display', serif;
@@ -45,9 +50,12 @@
     }
     section.gallery {
       padding: 8rem 5vw;
+      display: none; /* 처음엔 안보이게 */
+      gap: 3rem;
+    }
+    .gallery.active {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
     }
     .card {
       position: relative;
@@ -145,26 +153,18 @@
 </head>
 <body>
 
-<header>
-  <h1>WELDESIGN</h1>
+<header id="mainHeader">
+  <h1>WELDESIGN EVENTS</h1>
 </header>
 
-<section class="gallery">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" />
-    <div class="label">IMMERSIVE SPACE</div>
+<section id="eventsContainer">
+  <div class="gallery" data-event="event1">
+    <div class="card"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" /><div class="label">Event 1 - IMMERSIVE SPACE</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" /><div class="label">Event 1 - MODERN BOOTH</div></div>
   </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" />
-    <div class="label">MODERN BOOTH</div>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1529429617124-95b109e86bb8" />
-    <div class="label">BRAND EXPERIENCE</div>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1598300056047-644f2de5c03f" />
-    <div class="label">LUXURY DESIGN</div>
+  <div class="gallery" data-event="event2">
+    <div class="card"><img src="https://images.unsplash.com/photo-1529429617124-95b109e86bb8" /><div class="label">Event 2 - BRAND EXPERIENCE</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1598300056047-644f2de5c03f" /><div class="label">Event 2 - LUXURY DESIGN</div></div>
   </div>
 </section>
 
@@ -184,6 +184,15 @@
   document.body.addEventListener('mousemove', e => {
     document.body.style.setProperty('--mouse-x', e.clientX + 'px');
     document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+  });
+
+  // 각 행사 클릭 시 해당 갤러리 표시
+  const header = document.getElementById('mainHeader');
+  const galleries = document.querySelectorAll('#eventsContainer .gallery');
+
+  header.addEventListener('click', () => {
+    galleries.forEach(g => g.classList.toggle('active'));
+    header.scrollIntoView({behavior: 'smooth'});
   });
 </script>
 
