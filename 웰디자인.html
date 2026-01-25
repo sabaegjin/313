@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WelDesign Exhibition Booth</title>
+<title>Well Design Booth</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -63,8 +63,9 @@ header:hover h1 { transform: scale(1.05); text-shadow: 0 0 25px rgba(201,162,77,
 header::after {
   content:'';
   position:absolute; inset:0;
-  background:url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  background:url('https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg') center/cover no-repeat;
   opacity:0.1;
+  filter: blur(5px) brightness(0.5);
   z-index:0;
 }
 
@@ -112,10 +113,11 @@ section.gallery {
   background: rgba(0,0,0,0.4);
   padding:0.3rem 0.6rem;
   border-radius:5px;
+  text-shadow: 0 0 8px rgba(201,162,77,0.8);
 }
 .card:hover .label { opacity:1; transform: translateY(0); }
 
-/* 컨택 */
+/* 상담 섹션 */
 section.contact {
   padding:4rem 2rem;
   background:#111;
@@ -124,26 +126,51 @@ section.contact {
 section.contact h2 {
   font-family: 'Playfair Display', serif;
   font-size:2.5rem;
-  margin-bottom:1.5rem;
+  margin-bottom:2rem;
   color: var(--accent);
-  text-shadow: 0 0 10px rgba(201,162,77,0.6);
+  text-shadow: 0 0 15px rgba(201,162,77,0.6);
 }
-.contact-btn {
-  display:inline-block;
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  gap:2rem;
+  flex-wrap: wrap;
+}
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  border-radius:20px;
+  cursor: pointer;
+  width:300px;
+  height:200px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.contact-card img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+.contact-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+.contact-card .contact-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
   background: var(--accent);
-  color:#000;
-  padding:1rem 2rem;
-  border-radius:50px;
-  font-weight:600;
-  font-size:1.2rem;
-  text-decoration:none;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(201,162,77,0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+  transition: transform 0.5s ease;
 }
-.contact-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(201,162,77,0.7);
-  color:#fff;
+.contact-card:hover .contact-label {
+  transform: translateY(-5px);
 }
 
 /* 반응형 */
@@ -153,30 +180,38 @@ section.contact h2 {
   section.gallery { padding:3rem 2vw; gap:1.5rem; }
   .card .label { font-size:0.9rem; bottom:0.5rem; left:0.5rem; }
   section.contact h2 { font-size:2rem; }
+  .contact-card { width:90%; height:180px; }
 }
 @media(max-width:480px) {
   header h1 { font-size:2.2rem; }
   .card { height:150px; }
   section.gallery { gap:1rem; padding:2rem 2vw; }
   .card .label { font-size:0.8rem; }
+  .contact-card { width:100%; height:160px; }
+  .contact-card .contact-label { font-size:0.9rem; }
 }
 </style>
 </head>
 <body>
 
 <header id="mainHeader">
-  <h1>WELDESIGN EVENTS</h1>
+  <h1>Well Design</h1>
 </header>
 
 <section class="gallery">
-  <div class="card"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" /><div class="label">IMMERSIVE SPACE</div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" /><div class="label">MODERN BOOTH</div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1529429617124-95b109e86bb8" /><div class="label">BRAND EXPERIENCE</div></div>
+  <div class="card"><img src="https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg" /><div class="label">IMMERSIVE SPACE</div></div>
+  <div class="card"><img src="https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg" /><div class="label">MODERN BOOTH</div></div>
+  <div class="card"><img src="https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg" /><div class="label">BRAND EXPERIENCE</div></div>
 </section>
 
 <section class="contact">
-  <h2>상담 문의</h2>
-  <a href="tel:01050295691" class="contact-btn">📞 010-5029-5691</a>
+  <h2>Call Button</h2>
+  <div class="contact-cards">
+    <a href="tel:01050295691" class="contact-card">
+      <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="상담 이미지">
+     
+    </a>
+  </div>
 </section>
 
 <script>
