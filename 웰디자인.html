@@ -1,155 +1,168 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WelDesign Exhibition Booth</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0b0b;
-      --fg: #f5f5f5;
-      --accent: #c9a24d;
-      --hover-light: rgba(201, 162, 77, 0.2);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Pretendard', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      overflow-x: hidden;
-    }
-    header {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-      position: relative;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    header:hover {
-      transform: scale(1.02);
-    }
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      opacity: 0.15;
-      z-index: 0;
-    }
-    section.gallery {
-      padding: 8rem 5vw;
-      display: none; /* 처음엔 안보이게 */
-      gap: 3rem;
-    }
-    .gallery.active {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    .card {
-      position: relative;
-      overflow: hidden;
-      height: 450px;
-      cursor: pointer;
-      border-radius: 15px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-      transition: transform 0.5s ease;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-    }
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s ease, filter 1s ease;
-      display: block;
-    }
-    .card:hover img {
-      transform: scale(1.12);
-      filter: brightness(1.1);
-    }
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8));
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      border-radius: 15px;
-    }
-    .card:hover::after {
-      opacity: 1;
-    }
-    .card .label {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-    .card:hover .label {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    section.contact {
-      padding: 5rem 5vw;
-      background: #111;
-      text-align: center;
-    }
-    section.contact h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      color: var(--accent);
-    }
-    section.contact p {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    section.contact a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    section.contact a:hover {
-      color: #fff;
-    }
-    footer {
-      padding: 5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--hover-light), transparent 80%);
-      transition: background 0.1s;
-      z-index: 0;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WelDesign Exhibition Booth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0b0b;
+  --fg: #f5f5f5;
+  --accent: #c9a24d;
+  --hover-light: rgba(201,162,77,0.15);
+  --card-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* 기본 스타일 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Pretendard', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 마우스 라이트 효과 */
+body::before {
+  content:'';
+  position:fixed; top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--hover-light), transparent 70%);
+  transition: background 0.1s;
+  z-index:0;
+}
+
+/* 헤더 */
+header {
+  height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  text-align:center;
+  cursor:pointer;
+  overflow:hidden;
+  position:relative;
+  transition: transform 0.3s ease;
+}
+header:hover { transform: scale(1.02); }
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size:5rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color: var(--fg);
+  background: linear-gradient(90deg, #c9a24d, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position:relative;
+  z-index:1;
+  text-shadow: 0 0 15px rgba(201,162,77,0.4);
+  transition: transform 0.6s ease, text-shadow 0.6s ease;
+}
+header:hover h1 { transform: scale(1.05); text-shadow: 0 0 25px rgba(201,162,77,0.7); }
+header::after {
+  content:'';
+  position:absolute; inset:0;
+  background:url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  opacity:0.1;
+  z-index:0;
+}
+
+/* 갤러리 */
+section.gallery {
+  padding:5rem 5vw;
+  display:none;
+  gap:2rem;
+  transition: opacity 0.8s ease;
+}
+.gallery.active { 
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  opacity:1;
+}
+
+/* 카드 */
+.card {
+  position:relative;
+  overflow:hidden;
+  height:300px;
+  cursor:pointer;
+  border-radius:20px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
+.card img {
+  width:100%; height:100%;
+  object-fit:cover;
+  transition: transform 1s ease, filter 1s ease;
+  display:block;
+}
+.card:hover img { transform: scale(1.15); filter: brightness(1.1) blur(1px); }
+.card::after {
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+  opacity:0;
+  transition: opacity 0.6s ease;
+  border-radius:20px;
+}
+.card:hover::after { opacity:1; }
+.card .label {
+  position:absolute;
+  bottom:1rem; left:1rem;
+  font-size:1rem; font-weight:600;
+  letter-spacing:0.05em;
+  opacity:0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  background: rgba(0,0,0,0.4);
+  padding:0.3rem 0.6rem;
+  border-radius:5px;
+}
+.card:hover .label { opacity:1; transform: translateY(0); }
+
+/* 컨택 */
+section.contact {
+  padding:4rem 2rem;
+  background:#111;
+  text-align:center;
+}
+section.contact h2 {
+  font-family: 'Playfair Display', serif;
+  font-size:2.5rem;
+  margin-bottom:1.5rem;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(201,162,77,0.6);
+}
+section.contact a {
+  color: var(--accent);
+  text-decoration:none;
+  font-weight:600;
+  transition: color 0.3s;
+}
+section.contact a:hover { color:#fff; }
+
+/* 푸터 */
+footer { padding:3rem 2rem; text-align:center; font-size:0.8rem; color:#888; }
+
+/* 반응형 */
+@media(max-width:768px) {
+  header h1 { font-size:3rem; }
+  .card { height:200px; }
+  section.gallery { padding:3rem 2vw; gap:1.5rem; }
+  .card .label { font-size:0.9rem; bottom:0.5rem; left:0.5rem; }
+  section.contact h2 { font-size:2rem; }
+}
+@media(max-width:480px) {
+  header h1 { font-size:2.2rem; }
+  .card { height:150px; }
+  section.gallery { gap:1rem; padding:2rem 2vw; }
+  .card .label { font-size:0.8rem; }
+}
+</style>
 </head>
 <body>
 
@@ -169,10 +182,11 @@
 </section>
 
 <section class="contact">
+  
   <h2>상담 문의</h2>
-  <p>담당자 연락처: <a href="tel:01050295691">010-5029-5691</a></p>
-  <p>이메일: <a href="mailto:contact@weldesign.com">contact@weldesign.com</a></p>
-  <p>빠른 상담을 원하시면 위 번호로 전화 주세요.</p>
+  <p> 연락처 : <a href="tel:01050295691">010-5029-5691</a></p>
+ 
+
 </section>
 
 <footer>
@@ -180,20 +194,18 @@
 </footer>
 
 <script>
-  // 마우스 위치 따라 조명
-  document.body.addEventListener('mousemove', e => {
-    document.body.style.setProperty('--mouse-x', e.clientX + 'px');
-    document.body.style.setProperty('--mouse-y', e.clientY + 'px');
-  });
+document.body.addEventListener('mousemove', e => {
+  document.body.style.setProperty('--mouse-x', e.clientX+'px');
+  document.body.style.setProperty('--mouse-y', e.clientY+'px');
+});
 
-  // 각 행사 클릭 시 해당 갤러리 표시
-  const header = document.getElementById('mainHeader');
-  const galleries = document.querySelectorAll('#eventsContainer .gallery');
+const header = document.getElementById('mainHeader');
+const galleries = document.querySelectorAll('#eventsContainer .gallery');
 
-  header.addEventListener('click', () => {
-    galleries.forEach(g => g.classList.toggle('active'));
-    header.scrollIntoView({behavior: 'smooth'});
-  });
+header.addEventListener('click', () => {
+  galleries.forEach(g => g.classList.toggle('active'));
+  header.scrollIntoView({behavior:'smooth'});
+});
 </script>
 
 </body>
