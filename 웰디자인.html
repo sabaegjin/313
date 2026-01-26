@@ -3,223 +3,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Well Design Booth</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+<title>313</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0b0b0b;
-  --fg: #f5f5f5;
-  --accent: #c9a24d;
-  --hover-light: rgba(201,162,77,0.15);
-  --card-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  --bg:#0b0b0b;
+  --fg:#f5f5f5;
+  --accent:#c9a24d;
+  --card-shadow:0 15px 30px rgba(0,0,0,0.4);
+  --transition:0.4s ease-in-out;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Pretendard',sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.4;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+a{text-decoration:none;color:inherit;}
+
+/* --- 슬라이드 --- */
+.slider{position:relative;width:100%;height:100vh;overflow:hidden;}
+.slide{position:absolute;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease-in-out;}
+.slide.active{opacity:1;}
+.slide-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+
+/* --- 헤더 --- */
+header{
+  position:fixed;top:0;width:100%;padding:1rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  z-index:10;transition:all 0.5s;
+}
+header.scrolled{
+  background:rgba(0,0,0,0.9);
+  box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+nav{display:flex;align-items:center;}
+nav a{margin-left:1.5rem;font-weight:500;transition:color var(--transition);}
+nav a:hover{color:var(--accent);}
+
+/* --- 섹션 기본 간격 --- */
+section{
+  padding:0rem;
+  margin:0 auto 1rem auto;
 }
 
-/* 기본 스타일 */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Pretendard', sans-serif;
-  background: var(--bg);
-  color: var(--fg);
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* 마우스 라이트 효과 */
-body::before {
-  content:'';
-  position:fixed; top:0; left:0;
-  width:100%; height:100%;
-  pointer-events:none;
-  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--hover-light), transparent 70%);
-  transition: background 0.1s;
-  z-index:0;
-}
-
-/* 헤더 */
-header {
-  height:100vh;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  background: radial-gradient(circle at top, #1a1a1a, #000);
-  text-align:center;
-  cursor:pointer;
-  overflow:hidden;
-  position:relative;
-}
-header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size:5rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color: var(--fg);
-  background: linear-gradient(90deg, #c9a24d, #fff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position:relative;
-  z-index:1;
-  text-shadow: 0 0 15px rgba(201,162,77,0.4);
-  transition: transform 0.6s ease, text-shadow 0.6s ease;
-}
-header:hover h1 { transform: scale(1.05); text-shadow: 0 0 25px rgba(201,162,77,0.7); }
-header::after {
-  content:'';
-  position:absolute; inset:0;
-  background:url('https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg') center/cover no-repeat;
-  opacity:0.1;
-  filter: blur(5px) brightness(0.5);
-  z-index:0;
-}
-
-/* 갤러리 */
-section.gallery {
-  padding:5rem 5vw;
-  display:grid;
-  gap:2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-}
-.card {
-  position:relative;
-  overflow:hidden;
-  height:300px;
-  cursor:pointer;
-  border-radius:20px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-.card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
-.card img {
-  width:100%; height:100%;
-  object-fit:cover;
-  transition: transform 1s ease, filter 1s ease;
-  display:block;
-}
-.card:hover img { transform: scale(1.15); filter: brightness(1.1) blur(1px); }
-.card::after {
-  content:"";
-  position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
-  opacity:0;
-  transition: opacity 0.6s ease;
-  border-radius:20px;
-}
-.card:hover::after { opacity:1; }
-.card .label {
-  position:absolute;
-  bottom:1rem; left:1rem;
-  font-size:1rem; font-weight:600;
-  letter-spacing:0.05em;
-  opacity:0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-  background: rgba(0,0,0,0.4);
-  padding:0.3rem 0.6rem;
-  border-radius:5px;
-  text-shadow: 0 0 8px rgba(201,162,77,0.8);
-}
-.card:hover .label { opacity:1; transform: translateY(0); }
-
-/* 상담 섹션 */
-section.contact {
-  padding:4rem 2rem;
+/* --- 카드 --- */
+.card{
   background:#111;
-  text-align:center;
+  padding:0rem;
+  margin:0.6rem 0;
+  border-radius:1rem;
+  box-shadow:var(--card-shadow);
+  transition:all var(--transition);
 }
-section.contact h2 {
-  font-family: 'Playfair Display', serif;
-  font-size:2.5rem;
-  margin-bottom:2rem;
-  color: var(--accent);
-  text-shadow: 0 0 15px rgba(201,162,77,0.6);
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
-.contact-cards {
-  display: flex;
-  justify-content: center;
-  gap:2rem;
-  flex-wrap: wrap;
+.card h2{
+  font-family:'Playfair Display',serif;
+  color:var(--accent);
+  margin-bottom:0.8rem;
 }
-.contact-card {
-  position: relative;
-  overflow: hidden;
-  border-radius:20px;
-  cursor: pointer;
-  width:300px;
-  height:200px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+.card p{color:#ccc;}
+
+/* --- 포트폴리오 기본 --- */
+.portfolio{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1em;
 }
-.contact-card img {
+.portfolio img{
   width:100%;
-  height:100%;
-  object-fit:cover;
-  transition: transform 0.8s ease, filter 0.8s ease;
+  border-radius:1rem;
+  cursor:pointer;
+  transition:transform var(--transition);
 }
-.contact-card:hover img {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-.contact-card .contact-label {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #000;
-  background: var(--accent);
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  text-shadow: 0 0 8px rgba(0,0,0,0.6);
-  transition: transform 0.5s ease;
-}
-.contact-card:hover .contact-label {
-  transform: translateY(-5px);
+.portfolio img:hover{
+  transform:scale(1.05);
+  box-shadow:0 8px 25px rgba(0,0,0,0.5);
 }
 
-/* 반응형 */
-@media(max-width:768px) {
-  header h1 { font-size:3rem; }
-  .card { height:200px; }
-  section.gallery { padding:3rem 2vw; gap:1.5rem; }
-  .card .label { font-size:0.9rem; bottom:0.5rem; left:0.5rem; }
-  section.contact h2 { font-size:2rem; }
-  .contact-card { width:90%; height:180px; }
+/* --- #menu2 가로 슬라이드 & 이미지 2배 --- */
+#menu2 {
+  padding:0;
+  margin:0;
 }
-@media(max-width:480px) {
-  header h1 { font-size:2.2rem; }
-  .card { height:150px; }
-  section.gallery { gap:1rem; padding:2rem 2vw; }
-  .card .label { font-size:0.8rem; }
-  .contact-card { width:100%; height:160px; }
-  .contact-card .contact-label { font-size:0.9rem; }
+#menu2 .portfolio {
+  display:flex;
+  overflow-x:auto;
+  gap:1rem;
+  padding:0 1rem;
+  scroll-behavior:smooth;
+}
+#menu2 .portfolio img {
+  flex:0 0 auto;
+  width:700px;   /* 데스크탑 2배 */
+  height:400px;
+  border-radius:1rem;
+  cursor:default;
+  object-fit:cover;
+}
+#menu2 .portfolio img:hover {
+  transform:scale(1.05);
+  box-shadow:0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* --- 파라랙스 --- */
+.parallax{
+  background-attachment:fixed;
+  background-size:cover;
+  background-position:center;
+  height:30vh;
+  margin:1rem 0;
+  border-radius:1rem;
+}
+
+/* --- 반응형 --- */
+@media(max-width:777px){
+  header{padding:0.8rem 1rem;flex-direction:column;align-items:flex-start;}
+  nav{margin-top:0.3rem;}
+  .slide-text h1{font-size:2.2rem;}
+  .slide-text p{font-size:1rem;}
+  #galleryContainer{height:50%;padding:0.5rem;gap:0.5rem;}
+  #galleryContainer img{height:100%;border-radius:0.8rem;}
+
+  /* 모바일에서 #menu2 이미지 화면 폭에 맞춤 */
+  #menu2 .portfolio img{
+    width:90vw;   /* 화면 가로의 90% */
+    height:auto;  /* 비율 유지 */
+    flex:0 1 auto; /* 화면 좁아지면 줄어듦 */
+  }
+}
+
+footer{
+  padding:1rem;
+  text-align:center;
+  background:#0b0b0b;
+  color:#666;
+  font-size:0.9rem;
 }
 </style>
 </head>
 <body>
 
-<header id="mainHeader">
-  <h1>Well Design</h1>
+<!-- 슬라이드쇼 -->
+<div class="slider">
+  <div class="slide active" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');">
+    <div class="slide-overlay"></div>
+  </div>
+  <div class="slide" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');">
+    <div class="slide-overlay"></div>
+  </div>
+</div>
+
+<!-- 헤더 -->
+<header id="header">
+  <nav>
+    <a href="#menu1">3</a>
+    <a href="#menu2">1</a>
+    <a href="#menu3">3</a>
+  </nav>
 </header>
 
-<section class="gallery">
-  <div class="card"><img src="https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg" /><div class="label">IMMERSIVE SPACE</div></div>
-  <div class="card"><img src="https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg" /><div class="label">MODERN BOOTH</div></div>
-  <div class="card"><img src="https://i.ibb.co/LhqfVwXW/Kakao-Talk-20260125-204813005-15.jpg" /><div class="label">BRAND EXPERIENCE</div></div>
-</section>
+<!-- 팝업 모달 -->
+<div id="welcomeModal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:9999;display:none;">
+  <div style="background:#111;color:#fff;padding:1.5rem;border-radius:1rem;max-width:450px;text-align:center;position:relative;">
+    <img id="modalSlide" src="https://i.ibb.co/Fbm6fjv7/1.gif" style="width:100%;border-radius:1rem;" />
+    <button id="closeModal" style="margin-top:1rem;padding:0.5rem 1rem;border:none;border-radius:5px;background:#c9a24d;color:#111;font-weight:bold;cursor:pointer;">Close</button>
+  </div>
+</div>
 
-<section class="contact">
-  <h2>Call Button</h2>
-  <div class="contact-cards">
-    <a href="tel:01050295691" class="contact-card">
-      <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="상담 이미지">
-     
-    </a>
+<!-- 갤러리 모달 -->
+<div id="galleryModal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:10000;display:none;overflow:hidden;">
+  <div id="galleryContainer" style="display:flex;overflow-x:auto;scroll-behavior:smooth;height:80%;width:95%;gap:1rem;cursor:grab;align-items:center;justify-content:flex-start;padding:1rem;"></div>
+</div>
+
+<!-- 파라랙스 -->
+<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
+
+<!-- 포트폴리오 #menu1 -->
+<section id="menu1">
+  <div class="portfolio">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 1">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 2">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 3">
   </div>
 </section>
 
+<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
+
+<!-- 포트폴리오 #menu2 (가로 슬라이드, 데스크탑 2배, 모바일 자동) -->
+<section id="menu2">
+  <div class="portfolio">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 1">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 2">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 3">
+  </div>
+</section>
+
+<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
+
+<!-- 포트폴리오 #menu3 -->
+<section id="menu3">
+  <div class="portfolio">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 1">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 2">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="Portfolio 3">
+  </div>
+</section>
+
+<footer>&copy; 1992 Pro 313. All Rights Reserved.</footer>
+
 <script>
-document.body.addEventListener('mousemove', e => {
-  document.body.style.setProperty('--mouse-x', e.clientX+'px');
-  document.body.style.setProperty('--mouse-y', e.clientY+'px');
+// --- 슬라이드쇼 ---
+let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+setInterval(()=>{
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+},5000);
+
+// --- 스크롤 시 헤더 ---
+window.addEventListener('scroll',()=>{
+  document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// --- 부드러운 메뉴 스크롤 ---
+document.querySelectorAll('nav a').forEach(link=>{
+  link.addEventListener('click',function(e){
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if(target){
+      window.scrollTo({top:target.offsetTop-20,behavior:'smooth'});
+    }
+  });
+});
+
+// --- 팝업 모달 슬라이드 ---
+window.addEventListener('load', () => {
+  if(!localStorage.getItem('visited')){
+    const modal = document.getElementById('welcomeModal');
+    modal.style.display = 'flex';
+    localStorage.setItem('visited', 'true');
+
+    const slidesArr = [
+      'https://i.ibb.co/Fbm6fjv7/1.gif',
+      'https://i.ibb.co/Fbm6fjv7/1.gif'
+    ];
+    let slideIndex = 0;
+    const modalSlide = document.getElementById('modalSlide');
+    const intervalId = setInterval(() => {
+      slideIndex = (slideIndex + 1) % slidesArr.length;
+      modalSlide.src = slidesArr[slideIndex];
+    }, 4000);
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      modal.style.display = 'none';
+      clearInterval(intervalId);
+    });
+  }
+});
+
+// --- 갤러리 모달 (단, #menu2 제외) ---
+const galleryModal = document.getElementById('galleryModal');
+const galleryContainer = document.getElementById('galleryContainer');
+document.querySelectorAll('.portfolio img').forEach(img=>{
+  if(!img.closest('#menu2')){
+    img.addEventListener('click',()=>{
+      const parentPortfolio = img.closest('.portfolio');
+      const imgs = parentPortfolio.querySelectorAll('img');
+      galleryContainer.innerHTML = '';
+      imgs.forEach(i=>{
+        const newImg = document.createElement('img');
+        newImg.src = i.src;
+        newImg.style.height='100%';
+        newImg.style.flex='0 0 auto';
+        newImg.style.maxHeight='80%';
+        newImg.style.maxWidth='90%';
+        newImg.style.objectFit='contain';
+        newImg.style.borderRadius='1rem';
+        newImg.style.cursor='pointer';
+        newImg.addEventListener('click',()=>{galleryModal.style.display='none';});
+        galleryContainer.appendChild(newImg);
+      });
+      galleryModal.style.display='flex';
+    });
+  }
 });
 </script>
-
 </body>
 </html>
