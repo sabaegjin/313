@@ -181,18 +181,17 @@ section{
   max-width:450px;
   width:100%;
   color:#fff;
-  box-shadow:0 10px 30px rgba(0,255,213,0.2);
+  border: 2px solid #fff; /* 흰색 테두리 */
   text-align:center;
   position: relative;
   overflow: hidden;
   animation: glow 2.5s infinite alternate;
-  border: 2px solid #fff; /* 흰색 테두리 */
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 10px rgba(0,255,213,0.2),0 0 20px rgba(0,255,213,0.1);}
-  50% { box-shadow:0 0 20px rgba(0,255,213,0.4),0 0 30px rgba(0,255,213,0.2);}
-  100% { box-shadow:0 0 10px rgba(0,255,213,0.2),0 0 20px rgba(0,255,213,0.1);}
+  0% { box-shadow: 0 0 10px rgba(0,255,213,0.2); }
+  50% { box-shadow: 0 0 20px rgba(0,255,213,0.4); }
+  100% { box-shadow: 0 0 10px rgba(0,255,213,0.2); }
 }
 
 .consult-card h2{font-size:2rem;margin-bottom:0.5rem;}
@@ -256,9 +255,9 @@ section{
 
 /* Floating Call 버튼 */
 @keyframes float-glow {
-  0% { transform: translateY(0); box-shadow:0 0 10px rgba(0,255,213,0.2),0 0 20px rgba(0,255,213,0.1), inset 0 0 5px rgba(0,255,213,0.1);}
-  50% { transform: translateY(-10px); box-shadow:0 0 20px rgba(0,255,213,0.4),0 0 30px rgba(0,255,213,0.2), inset 0 0 8px rgba(0,255,213,0.2);}
-  100% { transform: translateY(0); box-shadow:0 0 10px rgba(0,255,213,0.2),0 0 20px rgba(0,255,213,0.1), inset 0 0 5px rgba(0,255,213,0.1);}
+  0% { transform: translateY(0); box-shadow:0 0 10px rgba(0,255,213,0.2); }
+  50% { transform: translateY(-10px); box-shadow:0 0 20px rgba(0,255,213,0.4);}
+  100% { transform: translateY(0); box-shadow:0 0 10px rgba(0,255,213,0.2);}
 }
 
 .floating-call {
@@ -275,7 +274,7 @@ section{
   transition: transform 0.2s, box-shadow 0.3s;
 }
 .floating-call img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.floating-call:hover{transform:scale(1.2);animation-play-state:paused;box-shadow:0 0 25px rgba(0,255,213,0.6),0 0 35px rgba(0,255,213,0.4), inset 0 0 10px rgba(0,255,213,0.3);}
+.floating-call:hover{transform:scale(1.2);animation-play-state:paused;box-shadow:0 0 25px rgba(0,255,213,0.6),0 0 35px rgba(0,255,213,0.4);}
 
 /* 모달 팝업 */
 .modal-overlay {position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:99999;backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity 0.5s;}
@@ -298,7 +297,7 @@ section{
 .modal-close{position:absolute;top:10px;right:10px;background:var(--accent);border:none;color:#000;width:30px;height:30px;border-radius:50%;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 5px 15px rgba(0,255,213,0.3);transition:0.3s;}
 .modal-close:hover{transform:scale(1.2);box-shadow:0 10px 25px rgba(0,255,213,0.5);}
 @media(max-width:777px){.modal-content{width:80vw;}}
-@media(min-width:778px){.modal-content{width:900px; max-width:80%;}}
+@media(min-width:778px){.modal-content{width:900px; max-width:80%;}} 
 
 </style>
 </head>
@@ -321,10 +320,8 @@ section{
   </nav>
 </header>
 
-<!-- 파라랙스1 -->
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
-<!-- 메뉴1 -->
 <section id="menu1">
   <div class="portfolio">
     <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg">
@@ -333,10 +330,8 @@ section{
   </div>
 </section>
 
-<!-- 파라랙스2 -->
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
-<!-- 메뉴2 -->
 <section id="menu2">
   <div class="portfolio">
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
@@ -345,10 +340,8 @@ section{
   </div>
 </section>
 
-<!-- 파라랙스3 -->
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
-<!-- 메뉴3 -->
 <section id="menu3">
   <div class="portfolio">
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
@@ -357,7 +350,6 @@ section{
   </div>
 </section>
 
-<!-- 상담폼 -->
 <section class="consult-section">
   <div class="consult-card">
     <h2>상담 신청</h2>
@@ -375,10 +367,8 @@ section{
   </div>
 </section>
 
-<!-- Floating Call 버튼 -->
 <a href="tel:01094275691" class="floating-call"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></a>
 
-<!-- 팝업 -->
 <div class="modal-overlay" id="welcomeModal">
   <div class="modal-content">
     <button class="modal-close" id="closeModal">&times;</button>
