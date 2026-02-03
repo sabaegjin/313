@@ -11,14 +11,14 @@
 <meta property="og:image" content="https://i.ibb.co/Fbm6fjv7/1.gif">
 <meta property="og:type" content="website">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#0b0b0b;
   --fg:#f5f5f5;
   --accent:#c9a24d;
-  --transition:0.4s ease-in-out;
+  --transition:0.3s ease;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -43,48 +43,30 @@ header{
   display:flex;justify-content:flex-end;
   z-index:10;transition:0.4s;
 }
-header.scrolled{
-  background:rgba(0,0,0,0.9);
-}
+header.scrolled{background:rgba(0,0,0,0.9);}
 
-/* ===== 메뉴 전체 높이 통일 ===== */
-section{
-  min-height:350px;
-  margin:1rem auto;
-  padding:0;
-}
+/* ===== 섹션 ===== */
+section{margin:1rem 0;}
 
-/* ===== 포트폴리오 공통 ===== */
+/* ===== 포트폴리오 전부 가로 슬라이드 ===== */
 .portfolio{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  display:flex;
+  overflow-x:auto;
   gap:1rem;
-  grid-auto-rows:250px;   /* 높이 통일 핵심 */
   padding:0 1rem;
+  scroll-behavior:smooth;
 }
 .portfolio img{
-  width:100%;
-  height:100%;
-  object-fit:cover;       /* 비율 깨짐 방지 */
+  flex:0 0 auto;
+  width:700px;
+  height:400px;
+  object-fit:cover;
   border-radius:1rem;
   cursor:pointer;
-  transition:0.3s;
+  transition:var(--transition);
 }
 .portfolio img:hover{
   transform:scale(1.05);
-}
-
-/* ===== menu2 가로 슬라이드 ===== */
-#menu2 .portfolio{
-  display:flex;
-  overflow-x:auto;
-  grid-auto-rows:unset;   /* 예외 */
-}
-#menu2 .portfolio img{
-  width:700px;
-  height:400px;
-  flex:0 0 auto;
-  cursor:default;
 }
 
 /* ===== 파라랙스 ===== */
@@ -99,17 +81,12 @@ section{
 
 /* ===== 모바일 ===== */
 @media(max-width:777px){
-  section{min-height:250px;}
-
-  .portfolio{
-    grid-auto-rows:180px;
-  }
-
-  #menu2 .portfolio img{
+  .portfolio img{
     width:90vw;
     height:auto;
   }
 }
+
 footer{
   text-align:center;
   padding:1rem;
@@ -120,8 +97,12 @@ footer{
 
 <body>
 
+<!-- 슬라이드 -->
 <div class="slider">
   <div class="slide active" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');">
+    <div class="slide-overlay"></div>
+  </div>
+  <div class="slide" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');">
     <div class="slide-overlay"></div>
   </div>
 </div>
@@ -130,6 +111,7 @@ footer{
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
+<!-- MENU 1 -->
 <section id="menu1">
   <div class="portfolio">
     <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg">
@@ -140,6 +122,7 @@ footer{
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
+<!-- MENU 2 -->
 <section id="menu2">
   <div class="portfolio">
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
@@ -150,6 +133,7 @@ footer{
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
+<!-- MENU 3 -->
 <section id="menu3">
   <div class="portfolio">
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
@@ -161,6 +145,7 @@ footer{
 <footer>© 1992 Pro 313</footer>
 
 <script>
+/* 슬라이드 */
 let slides=document.querySelectorAll('.slide');
 let currentSlide=0;
 setInterval(()=>{
@@ -169,6 +154,7 @@ setInterval(()=>{
   slides[currentSlide].classList.add('active');
 },5000);
 
+/* 헤더 스크롤 */
 window.addEventListener('scroll',()=>{
   document.getElementById('header')
   .classList.toggle('scrolled',window.scrollY>50);
