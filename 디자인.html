@@ -340,7 +340,7 @@ section{
   }
 }
 
-/* ===== Floating Call Button 고급 스타일 ===== */
+/* ===== Floating Call 버튼 고급형 ===== */
 @keyframes float-glow {
   0% {
     transform: translateY(0);
@@ -372,20 +372,23 @@ section{
   position: fixed;
   right: 20px;
   bottom: 40px;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background: #000;
-  color: #00ffd5;
-  font-size: 30px;
   border-radius: 50%;
   border: 2px solid rgba(0,255,213,0.3);
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
   z-index: 9999;
   animation: float-glow 2.5s infinite alternate;
   transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.floating-call img {
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%;
 }
 
 .floating-call:hover {
@@ -399,9 +402,12 @@ section{
 
 @media(max-width:777px){
   .floating-call{
-    width:50px;
-    height:50px;
-    font-size:24px;
+    width:60px;
+    height:60px;
+  }
+  .floating-call img{
+    width:40px;
+    height:40px;
   }
 }
 </style>
@@ -495,7 +501,9 @@ section{
 </section>
 
 <!-- ===== Floating Call Button ===== -->
-<a href="tel:01094275691" class="floating-call" title="전화걸기">📞</a>
+<a href="tel:01094275691" class="floating-call" title="전화걸기">
+  <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="전화">
+</a>
 
 <script>
 // 슬라이드 자동 전환 + 줌인
