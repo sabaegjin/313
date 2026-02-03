@@ -27,37 +27,47 @@ body{
 }
 
 /* ===== 슬라이드 ===== */
-.slider{position:relative;width:100%;height:100vh;overflow:hidden;}
+.slider{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
 .slide{
-  position:absolute;width:100%;height:100%;
-  background-size:cover;background-position:center;
-  opacity:0;transition:opacity 1s;
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease-in-out;
 }
 .slide.active{opacity:1;}
-.slide-overlay{
-  position:absolute;width:100%;height:100%;
-  background:rgba(0,0,0,0.5);
-}
 
 /* ===== 헤더 ===== */
 header{
-  position:fixed;top:0;width:100%;
+  position:fixed;
+  top:0;
+  width:100%;
   padding:1rem 2rem;
-  display:flex;justify-content:flex-end;
-  z-index:10;transition:0.4s;
+  display:flex;
+  justify-content:flex-end;
+  z-index:10;
+  transition:0.4s;
 }
 header.scrolled{background:rgba(0,0,0,0.9);}
 
 /* ===== 섹션 ===== */
 section{margin:1rem 0;}
 
-/* ===== 포트폴리오 (전부 가로 슬라이드) ===== */
+/* ===== 포트폴리오 ===== */
 .portfolio{
   display:flex;
   overflow-x:auto;
   gap:1rem;
   padding:0 1rem;
   scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
 }
 .portfolio img{
   flex:0 0 auto;
@@ -67,10 +77,11 @@ section{margin:1rem 0;}
   border-radius:1rem;
   cursor:pointer;
   transition:0.3s;
+  scroll-snap-align:center;
 }
 .portfolio img:hover{transform:scale(1.05);}
 
-/* ===== 파라랙스 (진짜 fixed) ===== */
+/* ===== 파라랙스 ===== */
 .parallax{
   background-attachment:fixed;
   background-size:cover;
@@ -87,8 +98,9 @@ section{margin:1rem 0;}
     height:220px;
   }
   .parallax{
-    height:25vh;   /* 높이만 줄임 */
+    height:25vh;
     margin:0.5rem 0;
+    background-attachment:scroll; /* 모바일 버그 방지 */
   }
 }
 
@@ -104,13 +116,13 @@ footer{
 
 <!-- 슬라이드 -->
 <div class="slider">
-  <div class="slide active" style="image:url('https://i.ibb.co/jPRrwxQL/629.gif');">
-  </div>
-  <div class="slide" style="image:url('https://i.ibb.co/jPRrwxQL/629.gif');">
-  </div>
+  <div class="slide active" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></div>
+  <div class="slide" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></div>
 </div>
 
-<header id="header"></header>
+<header id="header">
+  <div style="font-weight:600;">313</div>
+</header>
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
 
@@ -147,6 +159,7 @@ footer{
 <script>
 let slides=document.querySelectorAll('.slide');
 let currentSlide=0;
+
 setInterval(()=>{
   slides[currentSlide].classList.remove('active');
   currentSlide=(currentSlide+1)%slides.length;
