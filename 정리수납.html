@@ -71,34 +71,25 @@ section{margin:1rem 0;}
 }
 .portfolio img:hover{transform:scale(1.05);}
 
-/* ===== 파라랙스 ===== */
+/* ===== 파라랙스 (진짜 fixed) ===== */
 .parallax{
+  background-attachment:fixed;
   background-size:cover;
   background-position:center;
   height:30vh;
   margin:1rem;
   border-radius:1rem;
-  position:relative;
-  overflow:hidden;
 }
 
-/* PC 진짜 파라랙스 */
-@media(min-width:778px){
-  .parallax{
-    background-attachment:fixed;
-  }
-}
-
-/* 모바일 */
+/* ===== 모바일 ===== */
 @media(max-width:777px){
   .portfolio img{
     width:90vw;
     height:220px;
   }
   .parallax{
-    height:25vh;
+    height:25vh;   /* 높이만 줄임 */
     margin:0.5rem 0;
-    background-attachment:scroll;
   }
 }
 
@@ -126,7 +117,6 @@ footer{
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
-<!-- MENU 1 -->
 <section id="menu1">
   <div class="portfolio">
     <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg">
@@ -137,7 +127,6 @@ footer{
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
-<!-- MENU 2 -->
 <section id="menu2">
   <div class="portfolio">
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
@@ -148,7 +137,6 @@ footer{
 
 <section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
-<!-- MENU 3 -->
 <section id="menu3">
   <div class="portfolio">
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
@@ -160,7 +148,6 @@ footer{
 <footer>© 1992 Pro 313</footer>
 
 <script>
-/* 슬라이드 */
 let slides=document.querySelectorAll('.slide');
 let currentSlide=0;
 setInterval(()=>{
@@ -169,23 +156,10 @@ setInterval(()=>{
   slides[currentSlide].classList.add('active');
 },5000);
 
-/* 헤더 스크롤 */
 window.addEventListener('scroll',()=>{
   document.getElementById('header')
   .classList.toggle('scrolled',window.scrollY>50);
 });
-
-/* 모바일 가짜 파라랙스 */
-function mobileParallax(){
-  if(window.innerWidth > 777) return;
-  const els=document.querySelectorAll('.parallax');
-  const y=window.scrollY;
-  els.forEach(el=>{
-    el.style.backgroundPositionY = -(y * 0.3) + "px";
-  });
-}
-window.addEventListener('scroll', mobileParallax);
-window.addEventListener('load', mobileParallax);
 </script>
 
 </body>
