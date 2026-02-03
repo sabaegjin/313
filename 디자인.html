@@ -339,6 +339,30 @@ section{
     display:none;
   }
 }
+
+/* ===== Floating Call Button ===== */
+.floating-call {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  width: 60px;
+  height: 60px;
+  background: var(--accent);
+  color: #000;
+  font-size: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0,255,213,0.4);
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+.floating-call:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,255,213,0.6);
+}
 </style>
 </head>
 
@@ -429,7 +453,8 @@ section{
   </div>
 </section>
 
-<footer>© 1992 Pro 313</footer>
+<!-- ===== Floating Call Button ===== -->
+<a href="tel:01094275691" class="floating-call" title="전화걸기">📞</a>
 
 <script>
 // 슬라이드 자동 전환 + 줌인
