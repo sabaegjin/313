@@ -22,95 +22,197 @@ body{
   scroll-behavior:smooth;
 }
 
-/* 기본 레이아웃, 슬라이드, 헤더, 섹션 등은 생략 (위에 기존 코드와 동일) */
-
-/* ===== Floating Call 버튼 고급형 ===== */
-@keyframes float-glow {
-  0% {
-    transform: translateY(0);
-    box-shadow: 
-      0 0 10px rgba(0,255,213,0.2),
-      0 0 20px rgba(0,255,213,0.1),
-      inset 0 0 5px rgba(0,255,213,0.1);
-    border-color: rgba(0,255,213,0.2);
-  }
-  50% {
-    transform: translateY(-10px);
-    box-shadow: 
-      0 0 20px rgba(0,255,213,0.4),
-      0 0 30px rgba(0,255,213,0.2),
-      inset 0 0 8px rgba(0,255,213,0.2);
-    border-color: rgba(0,255,213,0.4);
-  }
-  100% {
-    transform: translateY(0);
-    box-shadow: 
-      0 0 10px rgba(0,255,213,0.2),
-      0 0 20px rgba(0,255,213,0.1),
-      inset 0 0 5px rgba(0,255,213,0.1);
-    border-color: rgba(0,255,213,0.2);
-  }
+/* ===== 슬라이드 기본 ===== */
+.slider{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1s, transform 20s linear;
+}
+.slide.active{
+  opacity:1;
+  transform: scale(1.05);
 }
 
-.floating-call {
+/* ===== 헤더 ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:10;
+  transition:0.4s;
+  backdrop-filter:blur(0px);
+}
+header.scrolled{
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
+}
+
+/* ===== 모달 팝업 ===== */
+.modal-overlay {
   position: fixed;
-  right: 20px;
-  bottom: 40px;
-  width: 100px;           /* 버튼 크기 확대 */
-  height: 100px;
-  background: transparent; /* 배경 투명 */
-  border-radius: 50%;
-  border: 2px solid rgba(0,255,213,0.3);
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.7); /* 흐린 배경 */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: float-glow 2.5s infinite alternate;
-  transition: transform 0.2s, box-shadow 0.3s;
-  overflow: hidden;
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+.modal-overlay.active {
+  opacity:1;
+  pointer-events: all;
 }
 
-.floating-call img {
-  width: 100%;   /* GIF 버튼 안 가득 채우기 */
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+.modal-content {
+  position: relative;
+  width: 300px;
+  max-width: 90vw;
+  background: rgba(0,0,0,0.95);
+  border: 2px solid rgba(0,255,213,0.3);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: glow 2.5s infinite alternate;
+  box-shadow: 0 10px 30px rgba(0,255,213,0.3);
 }
 
-.floating-call:hover {
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0,255,213,0.2), 0 0 20px rgba(0,255,213,0.1);
+    border-color: rgba(0,255,213,0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0,255,213,0.4), 0 0 30px rgba(0,255,213,0.2);
+    border-color: rgba(0,255,213,0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0,255,213,0.2), 0 0 20px rgba(0,255,213,0.1);
+    border-color: rgba(0,255,213,0.2);
+  }
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 1rem;
+  display: block;
+}
+
+/* 닫기 버튼 */
+.modal-close {
+  position: absolute;
+  top:10px;
+  right:10px;
+  background: var(--accent);
+  border:none;
+  color:#000;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow: 0 5px 15px rgba(0,255,213,0.3);
+  transition: 0.3s;
+}
+.modal-close:hover{
   transform: scale(1.2);
-  animation-play-state: paused;
-  box-shadow: 
-    0 0 25px rgba(0,255,213,0.6),
-    0 0 35px rgba(0,255,213,0.4),
-    inset 0 0 10px rgba(0,255,213,0.3);
+  box-shadow: 0 10px 25px rgba(0,255,213,0.5);
 }
 
 /* 모바일 대응 */
 @media(max-width:777px){
-  .floating-call{
-    width:80px;
-    height:80px;
-  }
-  .floating-call img{
-    width:100%;
-    height:100%;
+  .modal-content{
+    width: 80vw;
   }
 }
 </style>
 </head>
-
 <body>
 
-<!-- 기존 슬라이드, 헤더, 섹션 등은 그대로 -->
+<!-- 슬라이드 -->
+<div class="slider">
+  <div class="slide active" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></div>
+  <div class="slide" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></div>
+</div>
 
-<!-- ===== Floating Call Button ===== -->
-<a href="tel:01094275691" class="floating-call" title="전화걸기">
-  <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="전화">
-</a>
+<header id="header">
+  <div class="menu-toggle" id="menuToggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <nav class="top-menu" id="topMenu">
+    <a href="#menu1">3</a>
+    <a href="#menu2">1</a>
+    <a href="#menu3">3</a>
+  </nav>
+</header>
+
+<!-- ===== 모달 팝업 ===== -->
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">&times;</button>
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="팝업 이미지">
+  </div>
+</div>
 
 <script>
-// 기존 슬라이드, 헤더 스크롤, 메뉴 토글, 상담폼 JS 그대로
+// 슬라이드 자동 전환
+let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+setInterval(()=>{
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+},5000);
+
+// 헤더 스크롤
+window.addEventListener('scroll',()=>{
+  document.getElementById('header')
+  .classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// 메뉴 토글
+const menuToggle = document.getElementById('menuToggle');
+const topMenu = document.getElementById('topMenu');
+menuToggle.addEventListener('click', ()=>{
+  topMenu.classList.toggle('open');
+});
+
+// 모달 팝업 자동 등장
+window.addEventListener('load', ()=>{
+  const modal = document.getElementById('welcomeModal');
+  modal.classList.add('active');
+});
+
+// 모달 닫기 버튼
+document.getElementById('closeModal').addEventListener('click', ()=>{
+  const modal = document.getElementById('welcomeModal');
+  modal.classList.remove('active');
+});
 </script>
 
 </body>
