@@ -17,8 +17,6 @@
 :root{
   --bg:#0b0b0b;
   --fg:#f5f5f5;
-  --accent:#c9a24d;
-  --transition:0.3s ease;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -28,13 +26,19 @@ body{
   overflow-x:hidden;
   scroll-behavior:smooth;
 }
-a{text-decoration:none;color:inherit;}
 
 /* ===== 슬라이드 ===== */
 .slider{position:relative;width:100%;height:100vh;overflow:hidden;}
-.slide{position:absolute;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity 1s;}
+.slide{
+  position:absolute;width:100%;height:100%;
+  background-size:cover;background-position:center;
+  opacity:0;transition:opacity 1s;
+}
 .slide.active{opacity:1;}
-.slide-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+.slide-overlay{
+  position:absolute;width:100%;height:100%;
+  background:rgba(0,0,0,0.5);
+}
 
 /* ===== 헤더 ===== */
 header{
@@ -48,7 +52,7 @@ header.scrolled{background:rgba(0,0,0,0.9);}
 /* ===== 섹션 ===== */
 section{margin:1rem 0;}
 
-/* ===== 포트폴리오 전부 가로 슬라이드 ===== */
+/* ===== 포트폴리오 (전부 가로 슬라이드) ===== */
 .portfolio{
   display:flex;
   overflow-x:auto;
@@ -63,11 +67,9 @@ section{margin:1rem 0;}
   object-fit:cover;
   border-radius:1rem;
   cursor:pointer;
-  transition:var(--transition);
+  transition:0.3s;
 }
-.portfolio img:hover{
-  transform:scale(1.05);
-}
+.portfolio img:hover{transform:scale(1.05);}
 
 /* ===== 파라랙스 ===== */
 .parallax{
@@ -81,10 +83,19 @@ section{margin:1rem 0;}
 
 /* ===== 모바일 ===== */
 @media(max-width:777px){
+
   .portfolio img{
     width:90vw;
-    height:auto;
+    height:220px;       /* 핵심 */
+    object-fit:cover;
   }
+
+  .parallax{
+    background-attachment:scroll; /* fixed 제거 */
+    height:20vh;
+    margin:0.5rem 0;
+  }
+
 }
 
 footer{
