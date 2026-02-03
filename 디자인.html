@@ -10,12 +10,13 @@
 <meta property="og:image" content="https://i.ibb.co/Fbm6fjv7/1.gif">
 <meta property="og:type" content="website">
 
-<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#0b0b0b;
   --fg:#f5f5f5;
+  --accent:#00ffd5;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -23,7 +24,7 @@ body{
   background:var(--bg);
   color:var(--fg);
   overflow-x:hidden;
-  scroll-behavior:smooth; /* 기본 부드러운 스크롤 */
+  scroll-behavior:smooth;
 }
 
 /* ===== 슬라이드 ===== */
@@ -57,35 +58,80 @@ header{
   width:100%;
   padding:1rem 2rem;
   display:flex;
-  justify-content:flex-start; /* 왼쪽 정렬 */
+  justify-content:space-between;
   align-items:center;
   z-index:10;
   transition:0.4s;
+  backdrop-filter:blur(0px);
 }
 header.scrolled{
-  background:rgba(0,0,0,0.85);
-  backdrop-filter:blur(6px);
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
 }
 
-/* ===== 헤더 메뉴 스타일 ===== */
-.top-menu a{
-  color:#ffffff;          /* 글씨색 */
-  text-decoration:none;   /* 밑줄 제거 */
-  margin-right:1.5rem;    /* 메뉴 간격 */
-  font-size:1.1rem;       /* 글씨 크기 */
-  font-weight:600;        /* 두께 */
-  letter-spacing:2px;     /* 자간 */
+/* ===== 헤더 메뉴 ===== */
+nav.top-menu{
+  display:flex;
+  gap:2rem;
+}
+nav.top-menu a{
+  color:#fff;
+  font-weight:600;
+  font-size:1.1rem;
+  letter-spacing:1.5px;
+  text-decoration:none;
+  position:relative;
+  transition:0.3s;
+}
+nav.top-menu a::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:-4px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:0.3s;
+}
+nav.top-menu a:hover::after{
+  width:100%;
+}
+nav.top-menu a:hover{
+  color:var(--accent);
+}
+
+/* ===== 모바일 메뉴 버튼 ===== */
+.menu-toggle{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:4px;
+}
+.menu-toggle div{
+  width:25px;
+  height:3px;
+  background:#fff;
   transition:0.3s;
 }
 
-.top-menu a:hover{
-  color:#00ffd5;          /* 마우스 올리면 색 */
+/* ===== 메뉴 열기 상태 ===== */
+nav.top-menu.open{
+  display:flex;
+  flex-direction:column;
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
+  background:rgba(0,0,0,0.9);
+  padding:1rem 2rem;
+  gap:1.5rem;
 }
 
 /* ===== 섹션 ===== */
-section{margin:1rem 0;}
+section{
+  margin:1rem 0;
+}
 
-/* ===== 포트폴리오 (전부 가로 슬라이드) ===== */
+/* ===== 포트폴리오 ===== */
 .portfolio{
   display:flex;
   overflow-x:auto;
@@ -102,9 +148,12 @@ section{margin:1rem 0;}
   cursor:pointer;
   transition:0.3s;
 }
-.portfolio img:hover{transform:scale(1.05);}
+.portfolio img:hover{
+  transform:scale(1.05) rotate(-0.5deg);
+  box-shadow:0 10px 20px rgba(0,255,213,0.3);
+}
 
-/* ===== 파라랙스 (진짜 fixed) ===== */
+/* ===== 파라랙스 ===== */
 .parallax{
   background-attachment:fixed;
   background-size:cover;
@@ -112,6 +161,7 @@ section{margin:1rem 0;}
   height:30vh;
   margin:1rem;
   border-radius:1rem;
+  transition:0.5s;
 }
 
 /* ===== 모바일 ===== */
@@ -123,6 +173,12 @@ section{margin:1rem 0;}
   .parallax{
     height:25vh;
     margin:0.5rem 0;
+  }
+  .menu-toggle{
+    display:flex;
+  }
+  nav.top-menu{
+    display:none;
   }
 }
 
@@ -147,7 +203,12 @@ footer{
 </div>
 
 <header id="header">
-  <nav class="top-menu">
+  <div class="menu-toggle" id="menuToggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <nav class="top-menu" id="topMenu">
     <a href="#menu1">3</a>
     <a href="#menu2">1</a>
     <a href="#menu3">3</a>
@@ -196,13 +257,13 @@ setInterval(()=>{
   slides[currentSlide].classList.add('active');
 },5000);
 
-// 헤더 스크롤 시 배경 적용
+// 헤더 스크롤 시 배경 블러 적용
 window.addEventListener('scroll',()=>{
   document.getElementById('header')
   .classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// 메뉴 클릭 부드럽게 이동 (헤더 높이만큼 오프셋 적용)
+// 메뉴 클릭 부드럽게 이동 (헤더 오프셋 적용)
 const header = document.getElementById('header');
 const headerHeight = header.offsetHeight;
 
@@ -217,8 +278,21 @@ document.querySelectorAll('.top-menu a').forEach(link => {
         top: targetPosition,
         behavior: 'smooth'
       });
+
+      // 모바일 메뉴 닫기
+      const topMenu = document.getElementById('topMenu');
+      if(topMenu.classList.contains('open')){
+        topMenu.classList.remove('open');
+      }
     }
   });
+});
+
+// 모바일 메뉴 토글
+const menuToggle = document.getElementById('menuToggle');
+const topMenu = document.getElementById('topMenu');
+menuToggle.addEventListener('click', ()=>{
+  topMenu.classList.toggle('open');
 });
 </script>
 
