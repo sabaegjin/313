@@ -4,22 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>313</title>
-<meta name="description" content="정리수납 입니다">
+<meta name="description" content="정리수납">
+
+<!-- OG 미리보기 태그 -->
 <meta property="og:title" content="고려">
 <meta property="og:description" content="정리수납">
-<meta property="og:image" content="https://i.ibb.co/jPRrwxQL/629.gif">
+<meta property="og:image" content="https://i.ibb.co/N6pRMZnb/image.png">
 <meta property="og:type" content="website">
 
-<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#000000;   /* 배경 변수 복구 */
-  --fg:#ffffff;   /* 글자 변수 복구 */
+  --bg:#0b0b0b;
+  --fg:#f5f5f5;
+  --accent:#00ffd5;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
   font-family:'Pretendard',sans-serif;
   background:var(--bg);
@@ -32,24 +33,21 @@ body{
 .slider{
   position:relative;
   width:100%;
-  min-height:100vh; /* 모바일 안정 */
+  height:100vh;
   overflow:hidden;
-  background:#000; /* 안전장치 */
 }
-
 .slide{
   position:absolute;
   width:100%;
   height:100%;
   background-size:cover;
   background-position:center;
-  background-repeat:no-repeat;
   opacity:0;
-  transition:opacity 1.2s ease-in-out;
+  transition:opacity 1s;
 }
-
 .slide.active{
   opacity:1;
+  transform: scale(1);
 }
 
 /* ===== 헤더 ===== */
@@ -59,16 +57,78 @@ header{
   width:100%;
   padding:1rem 2rem;
   display:flex;
-  justify-content:flex-end;
+  justify-content:space-between;
+  align-items:center;
   z-index:10;
   transition:0.4s;
+  backdrop-filter:blur(0px);
 }
 header.scrolled{
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
+}
+
+/* ===== 헤더 메뉴 ===== */
+nav.top-menu{
+  display:flex;
+  gap:2rem;
+}
+nav.top-menu a{
+  color:#fff;
+  font-weight:600;
+  font-size:1.1rem;
+  letter-spacing:1.5px;
+  text-decoration:none;
+  position:relative;
+  transition:0.3s;
+}
+nav.top-menu a::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:-4px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:0.3s;
+}
+nav.top-menu a:hover::after{
+  width:100%;
+}
+nav.top-menu a:hover{
+  color:var(--accent);
+}
+
+/* ===== 모바일 메뉴 버튼 ===== */
+.menu-toggle{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:4px;
+}
+.menu-toggle div{
+  width:25px;
+  height:3px;
+  background:#fff;
+  transition:0.3s;
+}
+
+/* ===== 메뉴 열기 상태 ===== */
+nav.top-menu.open{
+  display:flex;
+  flex-direction:column;
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
   background:rgba(0,0,0,0.9);
+  padding:1rem 2rem;
+  gap:1.5rem;
 }
 
 /* ===== 섹션 ===== */
-section{margin:1rem 0;}
+section{
+  margin:1rem 0;
+}
 
 /* ===== 포트폴리오 ===== */
 .portfolio{
@@ -77,7 +137,6 @@ section{margin:1rem 0;}
   gap:1rem;
   padding:0 1rem;
   scroll-behavior:smooth;
-  scroll-snap-type:x mandatory;
 }
 .portfolio img{
   flex:0 0 auto;
@@ -87,10 +146,10 @@ section{margin:1rem 0;}
   border-radius:1rem;
   cursor:pointer;
   transition:0.3s;
-  scroll-snap-align:center;
 }
 .portfolio img:hover{
-  transform:scale(1.05);
+  transform:scale(1.05) rotate(-0.5deg);
+  box-shadow:0 10px 20px rgba(0,255,213,0.3);
 }
 
 /* ===== 파라랙스 ===== */
@@ -101,91 +160,267 @@ section{margin:1rem 0;}
   height:30vh;
   margin:1rem;
   border-radius:1rem;
+  transition:0.5s;
 }
 
-/* ===== 모바일 ===== */
-@media(max-width:777px){
-  .portfolio img{
-    width:90vw;
-    height:220px;
-  }
-  .parallax{
-    height:25vh;
-    margin:0.5rem 0;
-    background-attachment:scroll;
-  }
+/* ===== 상담폼 ===== */
+.consult-section{
+  background: linear-gradient(180deg, #0b0b0b, #1a1a1a);
+  padding:3rem 1rem;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  margin-top:-2rem;
 }
 
-footer{
+.consult-card{
+  background: rgba(20,20,20,0.95);
+  backdrop-filter: blur(10px);
+  border-radius:1.5rem;
+  padding:3rem 2rem;
+  max-width:450px;
+  width:100%;
+  color:#fff;
+  border: 2px solid #fff; /* 흰색 테두리 */
   text-align:center;
-  padding:1rem;
-  color:#666;
+  position: relative;
+  overflow: hidden;
+  animation: glow 2.5s infinite alternate;
 }
+
+@keyframes glow {
+  0% { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+  50% { box-shadow: 0 0 25px rgba(255,255,255,0.5); }
+  100% { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+}
+
+.consult-card h2{font-size:2rem;margin-bottom:0.5rem;}
+.consult-card p{color:#ccc;font-size:0.95rem;margin-bottom:2rem;}
+
+.form-group{position:relative;margin-bottom:1.8rem;}
+.form-group input{
+  width:100%;
+  padding:0.8rem 0.5rem;
+  background:transparent;
+  border:none;
+  border-bottom:2px solid #555;
+  color:#fff;
+  font-size:1rem;
+  transition:0.3s;
+}
+.form-group input:focus{outline:none;border-bottom-color: var(--accent);}
+.form-group label{
+  position:absolute;top:0.8rem;left:0.5rem;color:#777;font-size:0.95rem;
+  pointer-events:none;transition:0.3s;
+}
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label{
+  top:-0.6rem; font-size:0.8rem; color:var(--accent);
+}
+
+/* 체크박스 */
+.checkbox-group{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;text-align:left;font-size:0.9rem;color:#ccc;}
+.checkbox-group label{position:relative;padding-left:25px;cursor:pointer;user-select:none;}
+.checkbox-group input{position:absolute;opacity:0;cursor:pointer;height:0;width:0;}
+.checkbox-group .checkmark{position:absolute;left:0;top:0;height:18px;width:18px;background:#333;border-radius:4px;transition:0.3s;}
+.checkbox-group input:checked ~ .checkmark{background: var(--accent);}
+
+/* 버튼 */
+.consult-card button{
+  width:100%;
+  padding:0.8rem;
+  border:none;
+  border-radius:0.8rem;
+  background: var(--accent);
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,255,213,0.3);
+}
+.consult-card button:hover{
+  transform: scale(1.05);
+  box-shadow:0 10px 25px rgba(0,255,213,0.5);
+}
+.success-message{display:none;color:#0f0;margin-top:1rem;font-size:0.95rem;}
+
+/* 모바일 */
+@media(max-width:777px){
+  .portfolio img{width:90vw;height:220px;}
+  .parallax{height:25vh;margin:0.5rem 0;}
+  .menu-toggle{display:flex;}
+  nav.top-menu{display:none;}
+}
+
+/* Floating Call 버튼 */
+@keyframes float-glow {
+  0% { transform: translateY(0); box-shadow:0 0 10px rgba(255,255,255,0.3); }
+  50% { transform: translateY(-10px); box-shadow:0 0 20px rgba(255,255,255,0.5); }
+  100% { transform: translateY(0); box-shadow:0 0 10px rgba(255,255,255,0.3); }
+}
+
+.floating-call {
+  position: fixed;
+  right: 20px; bottom: 40px;
+  width: 55px; height: 55px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #fff; /* 흰색 테두리 */
+  display: flex; justify-content:center; align-items:center;
+  z-index: 9999;
+  animation: float-glow 2.5s infinite alternate;
+  overflow:hidden;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+.floating-call img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.floating-call:hover{transform:scale(1.2);animation-play-state:paused;box-shadow:0 0 25px rgba(255,255,255,0.6);}
+
+/* 모달 팝업 */
+.modal-overlay {position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:99999;backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity 0.5s;}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal-content{
+  position:relative;
+  width:300px;
+  max-width:90vw;
+  background:transparent;
+  border: 2px solid #fff; /* 흰색 테두리 */
+  border-radius:1.5rem;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  animation:glow 2.5s infinite alternate;
+  box-shadow:0 10px 30px rgba(255,255,255,0.3);
+}
+.modal-content img{width:100%;height:100%;object-fit:cover;border-radius:1.5rem;}
+.modal-close{position:absolute;top:10px;right:10px;background:var(--accent);border:none;color:#000;width:30px;height:30px;border-radius:50%;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 5px 15px rgba(0,255,213,0.3);transition:0.3s;}
+.modal-close:hover{transform:scale(1.2);box-shadow:0 10px 25px rgba(0,255,213,0.5);}
+@media(max-width:777px){.modal-content{width:80vw;}}
+@media(min-width:778px){.modal-content{width:900px; max-width:80%;}} 
+
 </style>
 </head>
-
 <body>
+
+<h1 style="display:none;">사백진</h1>
 
 <!-- 슬라이드 -->
 <div class="slider">
-  <div class="slide active" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></div>
-  <div class="slide" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></div>
+  <div class="slide active" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></div>
+  <div class="slide" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></div>
 </div>
 
 <header id="header">
-  <nav class="top-menu">
-    <a href="#menu1">menu 1</a>
-    <a href="#menu2">menu 2</a>
-    <a href="#menu3">menu 3</a>
+  <div class="menu-toggle" id="menuToggle"><div></div><div></div><div></div></div>
+  <nav class="top-menu" id="topMenu">
+    <a href="#menu1">3</a>
+    <a href="#menu2">1</a>
+    <a href="#menu3">3</a>
   </nav>
 </header>
 
-<section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
 <section id="menu1">
   <div class="portfolio">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg">
+    <img src="https://i.ibb.co/4wp2w2rf/Kakao-Talk-20260125-204813005-13.jpg">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
   </div>
 </section>
 
-<section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
 <section id="menu2">
   <div class="portfolio">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
   </div>
 </section>
 
-<section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
 
 <section id="menu3">
   <div class="portfolio">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
-    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
   </div>
 </section>
 
-<footer>© 1992 Pro 313</footer>
+<section class="consult-section">
+  <div class="consult-card">
+    <h2>상담 신청</h2>
+    <p>아래 정보를 입력하고 상담을 신청해주세요.</p>
+    <form id="consultForm">
+      <div class="form-group"><input type="text" name="name" id="name" required placeholder=" "><label for="name">이름</label></div>
+      <div class="form-group"><input type="tel" name="phone" id="phone" required placeholder=" "><label for="phone">휴대폰 번호</label></div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" required>개인정보 제공 동의<span class="checkmark"></span></label>
+        <label><input type="checkbox">마케팅 정보 수신 동의<span class="checkmark"></span></label>
+      </div>
+      <button type="submit">상담 신청</button>
+      <p class="success-message">신청이 완료되었습니다!</p>
+    </form>
+  </div>
+</section>
+
+<a href="tel:01094275691" class="floating-call"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></a>
+
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">&times;</button>
+    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="팝업 이미지">
+  </div>
+</div>
 
 <script>
+// 슬라이드 자동 전환
 let slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
-
 setInterval(()=>{
   slides[currentSlide].classList.remove('active');
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add('active');
 },5000);
 
+// 헤더 스크롤
 window.addEventListener('scroll',()=>{
-  document.getElementById('header')
-    .classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
 });
+
+// 메뉴 토글
+const menuToggle=document.getElementById('menuToggle');
+const topMenu=document.getElementById('topMenu');
+menuToggle.addEventListener('click', ()=>{topMenu.classList.toggle('open');});
+
+// 메뉴 클릭 부드러운 이동
+document.querySelectorAll('.top-menu a').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    const target=document.querySelector(link.getAttribute('href'));
+    const headerHeight=document.getElementById('header').offsetHeight;
+    window.scrollTo({top: target.offsetTop - headerHeight, behavior:'smooth'});
+    if(topMenu.classList.contains('open')) topMenu.classList.remove('open');
+  });
+});
+
+// 상담폼
+document.getElementById('consultForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const msg=document.querySelector('.success-message'); msg.style.display='block';
+  setTimeout(()=>{
+    msg.style.display='none';
+    e.target.reset();
+  },4000);
+});
+
+// 팝업 자동 등장
+window.addEventListener('load', ()=>{document.getElementById('welcomeModal').classList.add('active');});
+// 팝업 닫기
+document.getElementById('closeModal').addEventListener('click', ()=>{document.getElementById('welcomeModal').classList.remove('active');});
 </script>
 
 </body>
