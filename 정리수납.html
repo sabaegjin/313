@@ -73,29 +73,33 @@ section{margin:1rem 0;}
 
 /* ===== 파라랙스 ===== */
 .parallax{
-  background-attachment:fixed;
   background-size:cover;
   background-position:center;
   height:30vh;
   margin:1rem;
   border-radius:1rem;
+  position:relative;
+  overflow:hidden;
 }
 
-/* ===== 모바일 ===== */
-@media(max-width:777px){
+/* PC 진짜 파라랙스 */
+@media(min-width:778px){
+  .parallax{
+    background-attachment:fixed;
+  }
+}
 
+/* 모바일 */
+@media(max-width:777px){
   .portfolio img{
     width:90vw;
-    height:220px;       /* 핵심 */
-    object-fit:cover;
+    height:220px;
   }
-
   .parallax{
-    background-attachment:scroll; /* fixed 제거 */
-    height:20vh;
+    height:25vh;
     margin:0.5rem 0;
+    background-attachment:scroll;
   }
-
 }
 
 footer{
@@ -170,6 +174,18 @@ window.addEventListener('scroll',()=>{
   document.getElementById('header')
   .classList.toggle('scrolled',window.scrollY>50);
 });
+
+/* 모바일 가짜 파라랙스 */
+function mobileParallax(){
+  if(window.innerWidth > 777) return;
+  const els=document.querySelectorAll('.parallax');
+  const y=window.scrollY;
+  els.forEach(el=>{
+    el.style.backgroundPositionY = -(y * 0.3) + "px";
+  });
+}
+window.addEventListener('scroll', mobileParallax);
+window.addEventListener('load', mobileParallax);
 </script>
 
 </body>
