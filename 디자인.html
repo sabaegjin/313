@@ -12,7 +12,7 @@
   <meta property="og:description" content="웰디자인">
 <meta property="og:image" content="https://i.ibb.co/N6pRMZnb/image.png">
 <meta property="og:type" content="website">
-  
+
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -264,7 +264,7 @@ section{
 .floating-call {
   position: fixed;
   right: 20px; bottom: 40px;
-  width: 79px; height: 79px;
+  width: 100px; height: 100px;
   background: transparent;
   border-radius: 50%;
   border: 2px solid rgba(0,255,213,0.3);
@@ -277,14 +277,55 @@ section{
 .floating-call img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .floating-call:hover{transform:scale(1.2);animation-play-state:paused;box-shadow:0 0 25px rgba(0,255,213,0.6),0 0 35px rgba(0,255,213,0.4), inset 0 0 10px rgba(0,255,213,0.3);}
 
-/* 모달 팝업 */
+/* 팝업 */
 .modal-overlay {position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:99999;backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity 0.5s;}
 .modal-overlay.active{opacity:1;pointer-events:all;}
 .modal-content{position:relative;width:300px;max-width:90vw;background:transparent;border:2px solid rgba(0,255,213,0.3);border-radius:1.5rem;padding:0;display:flex;justify-content:center;align-items:center;animation:glow 2.5s infinite alternate;box-shadow:0 10px 30px rgba(0,255,213,0.3);}
 .modal-content img{width:100%;height:100%;object-fit:cover;border-radius:1.5rem;}
 .modal-close{position:absolute;top:10px;right:10px;background:var(--accent);border:none;color:#000;width:30px;height:30px;border-radius:50%;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 5px 15px rgba(0,255,213,0.3);transition:0.3s;}
-.modal-close:hover{transform:scale(1.2);box-shadow:0 10px 25px rgba(0,255,213,0.5);}
+.modal-close:hover{transform:scale(1.2);}
 @media(max-width:777px){.modal-content{width:80vw;}}
+
+/* ===== 갤러리 모달 ===== */
+.gallery-modal {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.95);
+  display:flex; justify-content:center; align-items:center;
+  z-index:10000; opacity:0; pointer-events:none;
+  transition: opacity 0.5s;
+}
+.gallery-modal.active {opacity:1; pointer-events:all;}
+.gallery-content {
+  position:relative;
+  width:80vw; max-width:800px;
+  border-radius:1.5rem;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(0,255,213,0.5);
+}
+.gallery-slide-container {
+  display:flex; transition: transform 0.5s ease;
+  width:400%;
+}
+.gallery-slide {flex:0 0 100%;}
+.gallery-slide img {width:100%; height:450px; object-fit:cover; display:block; border-radius:1.5rem;}
+.gallery-prev, .gallery-next {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background: rgba(0,255,213,0.5); border:none; color:#000; font-size:2rem;
+  width:50px; height:50px; border-radius:50%; cursor:pointer;
+  display:flex; justify-content:center; align-items:center;
+  box-shadow:0 5px 15px rgba(0,255,213,0.3);
+  transition:0.3s;
+}
+.gallery-prev:hover, .gallery-next:hover {transform: translateY(-50%) scale(1.2);}
+.gallery-prev {left:10px;} .gallery-next {right:10px;}
+.gallery-close {
+  position:absolute; top:10px; right:10px; background: var(--accent); color:#000;
+  border:none; width:40px; height:40px; border-radius:50%;
+  font-size:1.5rem; font-weight:bold; cursor:pointer;
+  display:flex; justify-content:center; align-items:center;
+  box-shadow:0 5px 15px rgba(0,255,213,0.3); transition:0.3s;
+}
+.gallery-close:hover {transform: scale(1.2);}
 </style>
 </head>
 <body>
@@ -310,9 +351,8 @@ section{
 <!-- 메뉴1 -->
 <section id="menu1">
   <div class="portfolio">
-    <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg">
-    <img src="https://i.ibb.co/4wp2w2rf/Kakao-Talk-20260125-204813005-13.jpg">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <!-- 대표사진 1개 -->
+    <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg" class="portfolio-representative">
   </div>
 </section>
 
@@ -369,50 +409,98 @@ section{
   </div>
 </div>
 
+<!-- 갤러리 모달 -->
+<div class="gallery-modal" id="galleryModal">
+  <div class="gallery-content">
+    <button class="gallery-close" id="closeGallery">&times;</button>
+    <div class="gallery-slide-container">
+      <div class="gallery-slide"><img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg"></div>
+      <div class="gallery-slide"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></div>
+      <div class="gallery-slide"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></div>
+      <div class="gallery-slide"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></div>
+    </div>
+    <button class="gallery-prev">&#10094;</button>
+    <button class="gallery-next">&#10095;</button>
+  </div>
+</div>
+
 <script>
-// 슬라이드 자동 전환
-let slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
+// 슬라이드 자동
+let slides = document.querySelectorAll('.slide'), currentSlide=0;
 setInterval(()=>{
   slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
+  currentSlide=(currentSlide+1)%slides.length;
   slides[currentSlide].classList.add('active');
 },5000);
 
 // 헤더 스크롤
-window.addEventListener('scroll',()=>{
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-});
+window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
 
-// 메뉴 토글
-const menuToggle=document.getElementById('menuToggle');
-const topMenu=document.getElementById('topMenu');
-menuToggle.addEventListener('click', ()=>{topMenu.classList.toggle('open');});
-
-// 메뉴 클릭 부드러운 이동
+// 메뉴 이동 부드럽게
+const header = document.getElementById('header');
+const headerHeight = header.offsetHeight;
 document.querySelectorAll('.top-menu a').forEach(link=>{
-  link.addEventListener('click', e=>{
+  link.addEventListener('click',e=>{
     e.preventDefault();
-    const target=document.querySelector(link.getAttribute('href'));
-    const headerHeight=document.getElementById('header').offsetHeight;
-    window.scrollTo({top: target.offsetTop - headerHeight, behavior:'smooth'});
-    if(topMenu.classList.contains('open')) topMenu.classList.remove('open');
+    const targetId = link.getAttribute('href');
+    const target = document.querySelector(targetId);
+    if(target){
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      window.scrollTo({top:targetPosition, behavior:'smooth'});
+      const topMenu=document.getElementById('topMenu');
+      if(topMenu.classList.contains('open')) topMenu.classList.remove('open');
+    }
   });
 });
+
+// 모바일 메뉴 토글
+const menuToggle=document.getElementById('menuToggle');
+const topMenu=document.getElementById('topMenu');
+menuToggle.addEventListener('click',()=>topMenu.classList.toggle('open'));
 
 // 상담폼
 document.getElementById('consultForm').addEventListener('submit', e=>{
   e.preventDefault();
-  const msg=document.querySelector('.success-message'); msg.style.display='block';
+  const msg=document.querySelector('.success-message');
+  msg.style.display='block';
   setTimeout(()=>{msg.style.display='none';},4000);
   e.target.reset();
 });
 
-// 팝업 자동 등장
-window.addEventListener('load', ()=>{document.getElementById('welcomeModal').classList.add('active');});
-// 팝업 닫기
-document.getElementById('closeModal').addEventListener('click', ()=>{document.getElementById('welcomeModal').classList.remove('active');});
-</script>
+// 팝업
+const welcomeModal = document.getElementById('welcomeModal');
+const closeModal = document.getElementById('closeModal');
+window.addEventListener('load',()=>welcomeModal.classList.add('active'));
+closeModal.addEventListener('click',()=>welcomeModal.classList.remove('active'));
 
+// 갤러리 슬라이드
+const galleryModal=document.getElementById('galleryModal');
+const galleryClose=document.getElementById('closeGallery');
+const slideContainer=document.querySelector('.gallery-slide-container');
+const slidesGallery=document.querySelectorAll('.gallery-slide');
+let galleryIndex=0;
+
+document.querySelector('.portfolio-representative').addEventListener('click',()=>{
+  galleryModal.classList.add('active');
+  galleryIndex=0;
+  updateGallery();
+});
+
+galleryClose.addEventListener('click',()=>galleryModal.classList.remove('active'));
+
+document.querySelector('.gallery-next').addEventListener('click',()=>{
+  galleryIndex=(galleryIndex+1)%slidesGallery.length;
+  updateGallery();
+});
+document.querySelector('.gallery-prev').addEventListener('click',()=>{
+  galleryIndex=(galleryIndex-1+slidesGallery.length)%slidesGallery.length;
+  updateGallery();
+});
+
+function updateGallery(){
+  slideContainer.style.transform=`translateX(-${galleryIndex*100}%)`;
+}
+</script>
 </body>
 </html>
+
