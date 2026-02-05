@@ -5,203 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>313</title>
 <meta name="description" content="313">
-
 <meta property="og:title" content="313">
 <meta property="og:description" content="웰디자인">
 <meta property="og:image" content="https://i.ibb.co/N6pRMZnb/image.png">
 <meta property="og:type" content="website">
-
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --bg:#0b0b0b;
-  --fg:#f5f5f5;
-  --accent:#00ffd5;
-}
+:root{--bg:#0b0b0b;--fg:#f5f5f5;--accent:#00ffd5;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'Pretendard',sans-serif;
-  background:var(--bg);
-  color:var(--fg);
-  overflow-x:hidden;
-  scroll-behavior:smooth;
-
-  /* 스크롤바 숨기기 */
-  -ms-overflow-style: none;   /* IE, Edge */
-  scrollbar-width: none;      /* Firefox */
-}
-body::-webkit-scrollbar{
-  display:none;               /* Chrome, Safari */
-}
-
-/* 슬라이드 */
-.slider{
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-}
-.slide{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background-size:cover;
-  background-position:center;
-  opacity:0;
-  transition:opacity 1s;
-}
+body{font-family:'Pretendard',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;scroll-behavior:smooth;-ms-overflow-style: none;scrollbar-width: none;}
+body::-webkit-scrollbar{display:none;}
+.slider{position:relative;width:100%;height:100vh;overflow:hidden;}
+.slide{position:absolute;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity 1s;}
 .slide.active{opacity:1;}
-
-/* 헤더 */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:1rem 2rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:10;
-  transition:0.4s;
-}
-header.scrolled{
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(8px);
-}
-
-/* 메뉴 */
-nav.top-menu{
-  display:flex;
-  gap:2rem;
-}
-nav.top-menu a{
-  color:#fff;
-  font-weight:600;
-  font-size:1.1rem;
-  letter-spacing:1.5px;
-  text-decoration:none;
-  position:relative;
-}
-nav.top-menu a::after{
-  content:'';
-  position:absolute;
-  left:0; bottom:-4px;
-  width:0;height:2px;
-  background:var(--accent);
-  transition:0.3s;
-}
+header{position:fixed;top:0;width:100%;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:10;transition:0.4s;}
+header.scrolled{background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);}
+nav.top-menu{display:flex;gap:2rem;}
+nav.top-menu a{color:#fff;font-weight:600;font-size:1.1rem;letter-spacing:1.5px;text-decoration:none;position:relative;}
+nav.top-menu a::after{content:'';position:absolute;left:0; bottom:-4px;width:0;height:2px;background:var(--accent);transition:0.3s;}
 nav.top-menu a:hover::after{width:100%;}
 nav.top-menu a:hover{color:var(--accent);}
-
-/* 모바일 버튼 */
-.menu-toggle{
-  display:none;
-  flex-direction:column;
-  cursor:pointer;
-  gap:4px;
-}
-.menu-toggle div{
-  width:25px;height:3px;background:#fff;
-}
-
-/* 모바일 메뉴 열림 */
-nav.top-menu.open{
-  display:flex;
-  flex-direction:column;
-  position:absolute;
-  top:100%;left:0;
-  width:100%;
-  background:rgba(0,0,0,0.9);
-  padding:1rem 2rem;
-  gap:1.5rem;
-}
-
-/* 섹션 */
+.menu-toggle{display:none;flex-direction:column;cursor:pointer;gap:4px;}
+.menu-toggle div{width:25px;height:3px;background:#fff;}
+nav.top-menu.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(0,0,0,0.9);padding:1rem 2rem;gap:1.5rem;}
 section{margin:1rem 0;}
-
-/* 포트폴리오 */
-.portfolio{
-  display:flex;
-  overflow-x:auto;
-  gap:1rem;
-  padding:0 1rem;
-}
-.portfolio img{
-  flex:0 0 auto;
-  width:700px;height:400px;
-  object-fit:cover;
-  border-radius:1rem;
-  cursor:pointer;
-  transition:0.3s;
-}
-.portfolio img:hover{
-  transform:scale(1.05);
-  box-shadow:0 10px 20px rgba(0,255,213,0.3);
-}
-
-/* 파라랙스 */
-.parallax{
-  background-attachment:fixed;
-  background-size:cover;
-  background-position:center;
-  height:30vh;
-  margin:1rem;
-  border-radius:1rem;
-}
-
-/* 모바일 */
-@media(max-width:777px){
-  .portfolio img{width:90vw;height:220px;}
-  .parallax{height:25vh;margin:0.5rem 0;}
-  .menu-toggle{display:flex;}
-  nav.top-menu{display:none;}
-}
-
-/* 전화 버튼 */
-.floating-call{
-  border-radius:50%;
-  position:fixed;
-  right:20px; bottom:40px;
-  width:69px;height:69px;
-  display:flex;justify-content:center;align-items:center;
-  z-index:9999;
-}
-.floating-call img{
-  width:100%;height:100%;
-  object-fit:cover;border-radius:50%;
-}
-
-/* 모달 */
-.modal-overlay {
-  position: fixed;top:0;left:0;
-  width:100%;height:100%;
-  background: rgba(0,0,0,0.5);
-  display:flex;justify-content:center;align-items:center;
-  z-index:99999;
-  opacity:0;pointer-events:none;
-  transition:0.5s;
-}
+.portfolio{display:flex;overflow-x:auto;gap:1rem;padding:0 1rem;-ms-overflow-style:none;scrollbar-width:none;}
+.portfolio::-webkit-scrollbar{display:none;}
+.portfolio img{flex:0 0 auto;width:700px;height:400px;object-fit:cover;border-radius:1rem;cursor:pointer;transition:0.3s;}
+.portfolio img:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,255,213,0.3);}
+.parallax{background-attachment:fixed;background-size:cover;background-position:center;height:30vh;margin:1rem;border-radius:1rem;}
+@media(max-width:777px){.portfolio img{width:90vw;height:220px;}.parallax{height:25vh;margin:0.5rem 0;background-attachment:scroll;}.menu-toggle{display:flex;}nav.top-menu{display:none;}}
+.floating-call{border-radius:50%;position:fixed;right:20px; bottom:40px;width:69px;height:69px;display:flex;justify-content:center;align-items:center;z-index:9999;}
+.floating-call img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.modal-overlay{position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:99999;opacity:0;pointer-events:none;transition:0.5s;}
 .modal-overlay.active{opacity:1;pointer-events:all;}
-.modal-content{
-  width:313px;
-  max-width:616vw;
-}
-.modal-content img{
-  width:100%;border-radius:1.5rem;
-}
+.modal-content{width:80%;max-width:800px;position:relative;}
+.modal-content img{width:100%;border-radius:1.5rem;display:none;}
+.modal-content img.active{display:block;}
+.modal-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;pointer-events:none;}
+.modal-nav button{background:rgba(0,0,0,0.5);border:none;color:#fff;font-size:2rem;padding:0.5rem 1rem;border-radius:0.5rem;cursor:pointer;pointer-events:all;}
 </style>
 </head>
-
 <body>
-
 <h1 style="display:none;">사백진</h1>
-
 <div class="slider">
   <div class="slide active" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></div>
   <div class="slide" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></div>
 </div>
-
 <header id="header">
   <div class="menu-toggle" id="menuToggle"><div></div><div></div><div></div></div>
   <nav class="top-menu" id="topMenu">
@@ -220,9 +70,7 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg">
   </div>
 </section>
-
 <section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
-
 <section id="menu2">
   <div class="portfolio">
     <img src="https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg">
@@ -230,63 +78,92 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg">
   </div>
 </section>
-
 <section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
-
 <section id="menu3">
   <div class="portfolio">
-     <img src="https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg">
+    <img src="https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg">
     <img src="https://i.ibb.co/chgYsX0g/Kakao-Talk-20260125-204813005-02-1.jpg">
-            <img src="https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg">
-
- 
+    <img src="https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg">
   </div>
 </section>
+
+<div class="modal-overlay" id="portfolioModal">
+  <div class="modal-content" id="modalContent"></div>
+  <div class="modal-nav">
+    <button id="prevBtn">‹</button>
+    <button id="nextBtn">›</button>
+  </div>
+</div>
 
 <a href="tel:01094275691" class="floating-call">
   <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
 </a>
 
-<div class="modal-overlay" id="welcomeModal">
-  <div class="modal-content">
-    <img src="https://i.ibb.co/60mKyDpr/2.gif">
-  </div>
-</div>
-
 <script>
 let slides=document.querySelectorAll('.slide');
 let currentSlide=0;
-setInterval(()=>{
-  slides[currentSlide].classList.remove('active');
-  currentSlide=(currentSlide+1)%slides.length;
-  slides[currentSlide].classList.add('active');
-},5000);
-
-window.addEventListener('scroll',()=>{
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY>50);
-});
-
+setInterval(()=>{slides[currentSlide].classList.remove('active');currentSlide=(currentSlide+1)%slides.length;slides[currentSlide].classList.add('active');},5000);
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled', window.scrollY>50);});
 const menuToggle=document.getElementById('menuToggle');
 const topMenu=document.getElementById('topMenu');
 menuToggle.addEventListener('click',()=>{topMenu.classList.toggle('open');});
+document.querySelectorAll('.top-menu a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();const target=document.querySelector(link.getAttribute('href'));const headerHeight=document.getElementById('header').offsetHeight;window.scrollTo({top:target.offsetTop-headerHeight,behavior:'smooth'});topMenu.classList.remove('open');});});
 
-document.querySelectorAll('.top-menu a').forEach(link=>{
-  link.addEventListener('click',e=>{
-    e.preventDefault();
-    const target=document.querySelector(link.getAttribute('href'));
-    const headerHeight=document.getElementById('header').offsetHeight;
-    window.scrollTo({top:target.offsetTop-headerHeight,behavior:'smooth'});
-    topMenu.classList.remove('open');
+// 포트폴리오 객체 데이터 (기존 링크 그대로 유지)
+const portfolioObjects = [
+  // 메뉴1
+  { main:'https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg', images:['https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg','https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg','https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg'] },
+  { main:'https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg', images:['https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg','https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg','https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg'] },
+  { main:'https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg', images:['https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg','https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg','https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg'] },
+  // 메뉴2
+  { main:'https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg', images:['https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg','https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg','https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg'] },
+  { main:'https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg', images:['https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg','https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg','https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg'] },
+  { main:'https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg', images:['https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg','https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg','https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg'] },
+  // 메뉴3
+  { main:'https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg', images:['https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg','https://i.ibb.co/chgYsX0g/Kakao-Talk-20260125-204813005-02-1.jpg','https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg'] },
+  { main:'https://i.ibb.co/chgYsX0g/Kakao-Talk-20260125-204813005-02-1.jpg', images:['https://i.ibb.co/chgYsX0g/Kakao-Talk-20260125-204813005-02-1.jpg','https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg','https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg'] },
+  { main:'https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg', images:['https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg','https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg','https://i.ibb.co/chgYsX0g/Kakao-Talk-20260125-204813005-02-1.jpg'] },
+];
+
+const portfolioModal = document.getElementById('portfolioModal');
+const modalContent = document.getElementById('modalContent');
+let currentModalImages = [];
+let currentModalIndex = 0;
+
+// 클릭 시 모달 열기
+document.querySelectorAll('.portfolio img').forEach((img,i)=>{
+  img.addEventListener('click',()=>{
+    currentModalImages = portfolioObjects[i].images;
+    currentModalIndex = 0;
+    showModalImage();
+    portfolioModal.classList.add('active');
   });
 });
 
-window.addEventListener('load',()=>{
-  document.getElementById('welcomeModal').classList.add('active');
+function showModalImage(){
+  modalContent.innerHTML = '';
+  const image = document.createElement('img');
+  image.src = currentModalImages[currentModalIndex];
+  image.classList.add('active');
+  modalContent.appendChild(image);
+}
+
+// 이전/다음 버튼
+document.getElementById('prevBtn').addEventListener('click', e=>{
+  e.stopPropagation();
+  currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+  showModalImage();
 });
-document.getElementById('welcomeModal').addEventListener('click',()=>{
-  document.getElementById('welcomeModal').classList.remove('active');
+document.getElementById('nextBtn').addEventListener('click', e=>{
+  e.stopPropagation();
+  currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+  showModalImage();
+});
+
+// 모달 닫기
+portfolioModal.addEventListener('click',()=>{
+  portfolioModal.classList.remove('active');
 });
 </script>
-
 </body>
 </html>
