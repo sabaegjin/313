@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>고려 정리수납</title>
+<title>럭셔리 정리수납</title>
 
 <!-- 구글 폰트 -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
@@ -16,29 +16,43 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <style>
-  body { font-family: 'Nunito', sans-serif; color: #333; scroll-behavior: smooth; background-color: #f7f7f7; }
-  h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.5px; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: #333;
+    scroll-behavior: smooth;
+    background-color: #f9f8f7;
+  }
+  h1,h2,h3,h4,h5 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
   .gold { color: #bfa06b; }
-  .btn-gold { 
-    background: linear-gradient(90deg,#bfa06b,#d4b873); 
-    color:#fff; font-weight:600; 
-    transition: 0.3s; 
-    box-shadow: 0 5px 15px rgba(191,160,107,0.4);
+  
+  /* 버튼 스타일 */
+  .btn-gold {
+    background: linear-gradient(90deg,#bfa06b,#d4b873);
+    color:#fff; font-weight:600;
+    transition: all 0.3s;
+    box-shadow: 0 6px 20px rgba(191,160,107,0.3);
   }
-  .btn-gold:hover { 
-    background: linear-gradient(90deg,#a6874e,#bfa06b); 
-    transform: translateY(-3px) scale(1.02);
+  .btn-gold:hover {
+    background: linear-gradient(90deg,#a6874e,#bfa06b);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(191,160,107,0.4);
   }
-  .shadow-hover { 
-    transition: all 0.5s; 
+
+  /* 카드 그림자 */
+  .shadow-hover {
+    transition: all 0.5s;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
     background-color: #fff;
   }
-  .shadow-hover:hover { 
-    transform: translateY(-5px) scale(1.03); 
-    box-shadow:0 20px 40px rgba(0,0,0,0.2); 
+  .shadow-hover:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow:0 18px 40px rgba(0,0,0,0.15);
   }
   img { border-radius: 1rem; }
 </style>
@@ -46,10 +60,25 @@
 <body class="overflow-x-hidden">
 
 <!-- Navigation -->
-<nav class="fixed top-0 w-full bg-white bg-opacity-80 backdrop-blur-md shadow-md z-50">
+<nav class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur-md shadow-md z-50">
   <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12">
     <div class="text-2xl font-bold gold tracking-wider">럭셔리 정리수납</div>
-    <ul class="flex space-x-6 text-gray-700 font-semibold">
+    <ul class="hidden md:flex space-x-6 text-gray-700 font-semibold">
+      <li><a href="#service" class="hover:text-gold transition">서비스</a></li>
+      <li><a href="#portfolio" class="hover:text-gold transition">포트폴리오</a></li>
+      <li><a href="#testimonial" class="hover:text-gold transition">후기</a></li>
+      <li><a href="#contact" class="hover:text-gold transition">문의</a></li>
+    </ul>
+    <div class="md:hidden">
+      <button id="menu-btn" class="focus:outline-none">
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-95 backdrop-blur-md">
+    <ul class="flex flex-col space-y-4 text-center py-6 text-gray-700 font-semibold">
       <li><a href="#service" class="hover:text-gold transition">서비스</a></li>
       <li><a href="#portfolio" class="hover:text-gold transition">포트폴리오</a></li>
       <li><a href="#testimonial" class="hover:text-gold transition">후기</a></li>
@@ -59,83 +88,94 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://i.ibb.co/nq01XmFR/2.gif');">
+<section class="relative flex items-center justify-center w-full min-h-[60vh] sm:min-h-[70vh] md:h-screen overflow-hidden">
+  <img src="https://i.ibb.co/nq01XmFR/2.gif" 
+       alt="럭셔리 거실" 
+       class="absolute top-1/2 left-1/2 w-full h-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-contain">
+
   <div class="bg-black bg-opacity-40 w-full h-full absolute top-0 left-0"></div>
+
   <div class="relative z-10 text-center text-white px-4 max-w-3xl">
-    <h1 class="text-5xl md:text-7xl font-bold mb-6" data-aos="fade-up">공간이 예술로 정리수납</h1>
-    <p class="text-xl md:text-2xl mb-8" data-aos="fade-up" data-aos-delay="200">세련된 디자인과 맞춤형 솔루션으로 집을 갤러리처럼</p>
-    <a href="#service" class="btn-gold px-10 py-3 rounded-full text-lg font-semibold" data-aos="fade-up" data-aos-delay="400">서비스 보기</a>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6" data-aos="fade-up">공간이 예술로 정리수납</h1>
+    <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8" data-aos="fade-up" data-aos-delay="200">세련된 디자인과 맞춤형 솔루션으로 집을 갤러리처럼</p>
+    <a href="#service" class="btn-gold px-10 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-semibold" data-aos="fade-up" data-aos-delay="400">서비스 보기</a>
   </div>
 </section>
 
 <!-- Service Section -->
-<section id="service" class="py-32 px-4 md:px-20 bg-white">
-  <h2 class="text-4xl font-bold text-center mb-16 gold" data-aos="fade-up">서비스</h2>
-  <div class="grid md:grid-cols-3 gap-12">
+<section id="service" class="py-24 px-4 md:px-20 bg-white">
+  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 gold" data-aos="fade-up">서비스</h2>
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
+    <!-- 거실 -->
     <div class="shadow-hover p-6" data-aos="fade-up">
-      <img src="https://i.ibb.co/nq01XmFR/2.gif" alt="거실 정리" class="mb-6 transition-transform hover:scale-105">
-      <h3 class="text-2xl font-semibold mb-3">거실 정리</h3>
-      <p class="text-gray-600">깔끔하고 효율적인 거실 공간 연출, 세련된 수납 솔루션 제공.</p>
+      <img src="https://i.ibb.co/4F2Q7bL/luxury-livingroom.jpg" alt="거실 정리" class="mb-4 sm:mb-6 transition-transform hover:scale-105 w-full h-48 object-cover">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-2">거실 정리</h3>
+      <p class="text-gray-600 text-sm sm:text-base">깔끔하고 효율적인 거실 공간 연출, 세련된 수납 솔루션 제공.</p>
     </div>
+    <!-- 주방 -->
     <div class="shadow-hover p-6" data-aos="fade-up" data-aos-delay="100">
-      <img src="https://i.ibb.co/nq01XmFR/2.gif" alt="주방 정리" class="mb-6 transition-transform hover:scale-105">
-      <h3 class="text-2xl font-semibold mb-3">주방 정리</h3>
-      <p class="text-gray-600">모던한 주방 구조와 맞춤형 수납, 공간 활용 극대화.</p>
+      <img src="https://i.ibb.co/0jJpF3G/luxury-kitchen.jpg" alt="주방 정리" class="mb-4 sm:mb-6 transition-transform hover:scale-105 w-full h-48 object-cover">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-2">주방 정리</h3>
+      <p class="text-gray-600 text-sm sm:text-base">모던한 주방 구조와 맞춤형 수납, 공간 활용 극대화.</p>
     </div>
+    <!-- 드레스룸 -->
     <div class="shadow-hover p-6" data-aos="fade-up" data-aos-delay="200">
-      <img src="https://i.ibb.co/nq01XmFR/2.gif" alt="드레스룸 정리" class="mb-6 transition-transform hover:scale-105">
-      <h3 class="text-2xl font-semibold mb-3">드레스룸 정리</h3>
-      <p class="text-gray-600">옷과 액세서리까지 완벽하게 정리, 고급스러운 드레스룸 연출.</p>
+      <img src="https://i.ibb.co/2j8wJbY/luxury-dressroom.jpg" alt="드레스룸 정리" class="mb-4 sm:mb-6 transition-transform hover:scale-105 w-full h-48 object-cover">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-2">드레스룸 정리</h3>
+      <p class="text-gray-600 text-sm sm:text-base">옷과 액세서리까지 완벽하게 정리, 고급스러운 드레스룸 연출.</p>
     </div>
   </div>
 </section>
 
 <!-- Portfolio Section -->
-<section id="portfolio" class="py-32 px-4 md:px-20 bg-gray-50">
-  <h2 class="text-4xl font-bold text-center mb-16 gold" data-aos="fade-up">포트폴리오</h2>
-  <div class="grid md:grid-cols-3 gap-8">
-    <img src="https://i.ibb.co/nq01XmFR/2.gif" class="shadow-lg hover:scale-105 transition-transform" data-aos="zoom-in">
-    <img src="https://i.ibb.co/nq01XmFR/2.gif" class="shadow-lg hover:scale-105 transition-transform" data-aos="zoom-in" data-aos-delay="100">
-    <img src="https://i.ibb.co/nq01XmFR/2.gif" class="shadow-lg hover:scale-105 transition-transform" data-aos="zoom-in" data-aos-delay="200">
+<section id="portfolio" class="py-24 px-4 md:px-20 bg-gray-50">
+  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 gold" data-aos="fade-up">포트폴리오</h2>
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+    <img src="https://i.ibb.co/4F2Q7bL/luxury-livingroom.jpg" class="shadow-lg hover:scale-105 transition-transform rounded-xl w-full h-48 object-cover" data-aos="zoom-in">
+    <img src="https://i.ibb.co/0jJpF3G/luxury-kitchen.jpg" class="shadow-lg hover:scale-105 transition-transform rounded-xl w-full h-48 object-cover" data-aos="zoom-in" data-aos-delay="100">
+    <img src="https://i.ibb.co/2j8wJbY/luxury-dressroom.jpg" class="shadow-lg hover:scale-105 transition-transform rounded-xl w-full h-48 object-cover" data-aos="zoom-in" data-aos-delay="200">
   </div>
 </section>
 
 <!-- Testimonial Section -->
-<section id="testimonial" class="py-32 px-4 md:px-20 bg-white">
-  <h2 class="text-4xl font-bold text-center mb-16 gold" data-aos="fade-up">고객 후기</h2>
-  <div class="max-w-4xl mx-auto text-center space-y-10">
-    <div class="shadow-hover p-8" data-aos="fade-up">
-      <p class="text-gray-700 italic mb-4">"덕분에 우리 집이 잡지 속 집처럼 변했어요. 섬세한 배려와 고급스러운 정리수납 서비스 최고!"</p>
-      <span class="block font-semibold text-gray-800">– 김현주 고객</span>
+<section id="testimonial" class="py-24 px-4 md:px-20 bg-white">
+  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 gold" data-aos="fade-up">고객 후기</h2>
+  <div class="max-w-4xl mx-auto text-center space-y-8 sm:space-y-10">
+    <div class="shadow-hover p-6 sm:p-8" data-aos="fade-up">
+      <p class="text-gray-700 italic mb-2 sm:mb-4 text-sm sm:text-base">"덕분에 우리 집이 잡지 속 집처럼 변했어요. 섬세한 배려와 고급스러운 정리수납 서비스 최고!"</p>
+      <span class="block font-semibold text-gray-800 text-sm sm:text-base">– 김현주 고객</span>
     </div>
-    <div class="shadow-hover p-8" data-aos="fade-up" data-aos-delay="100">
-      <p class="text-gray-700 italic mb-4">"공간 활용과 디자인 모두 완벽합니다. 친구들에게도 강력 추천!"</p>
-      <span class="block font-semibold text-gray-800">– 이민호 고객</span>
+    <div class="shadow-hover p-6 sm:p-8" data-aos="fade-up" data-aos-delay="100">
+      <p class="text-gray-700 italic mb-2 sm:mb-4 text-sm sm:text-base">"공간 활용과 디자인 모두 완벽합니다. 친구들에게도 강력 추천!"</p>
+      <span class="block font-semibold text-gray-800 text-sm sm:text-base">– 이민호 고객</span>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="py-32 px-4 md:px-20 bg-gray-50">
-  <h2 class="text-4xl font-bold text-center mb-16 gold" data-aos="fade-up">문의하기</h2>
-  <div class="max-w-2xl mx-auto">
-    <form class="space-y-6 p-10 rounded-2xl shadow-lg bg-white" data-aos="fade-up">
-      <input type="text" placeholder="이름" class="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold">
-      <input type="email" placeholder="이메일" class="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold">
-      <textarea placeholder="문의 내용" class="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold" rows="5"></textarea>
-      <button type="submit" class="btn-gold px-6 py-3 rounded-full text-lg font-semibold w-full">보내기</button>
+<!-- Contact Section (얇고 세련된 디자인) -->
+<section id="contact" class="py-16 px-4 md:px-20 bg-gray-50">
+  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gold" data-aos="fade-up">문의하기</h2>
+  <div class="max-w-xl mx-auto">
+    <form class="space-y-4 sm:space-y-6 p-6 sm:p-8 rounded-2xl shadow-md bg-white" data-aos="fade-up">
+      <input type="text" placeholder="이름" class="w-full p-3 sm:p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-sm sm:text-base transition">
+      <input type="email" placeholder="이메일" class="w-full p-3 sm:p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-sm sm:text-base transition">
+      <textarea placeholder="문의 내용" class="w-full p-3 sm:p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-sm sm:text-base transition" rows="4"></textarea>
+      <button type="submit" class="w-full py-3 sm:py-4 rounded-full bg-gradient-to-r from-[#bfa06b] to-[#d4b873] text-white font-semibold text-base sm:text-lg shadow-md hover:scale-105 hover:shadow-lg transition-transform duration-300">보내기</button>
     </form>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="py-12 bg-white text-center text-gray-600">
-  <p>&copy; 2026 <span class="gold font-semibold">럭셔리 정리수납</span>. All Rights Reserved.</p>
+<footer class="py-8 sm:py-12 bg-white text-center text-gray-600">
+  <p class="text-sm sm:text-base">&copy; 2026 <span class="gold font-semibold">고려 정리수납</span>. All Rights Reserved.</p>
 </footer>
 
-<!-- AOS & Scroll -->
+<!-- Scripts -->
 <script>
-  AOS.init({ duration:1000, once:true });
+  // AOS 초기화
+  AOS.init({ duration:1000, once:false, mirror:false });
+
+  // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -143,6 +183,28 @@
       target.scrollIntoView({ behavior:'smooth', block:'start' });
     });
   });
+
+  // Mobile Menu Toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // IntersectionObserver로 스크롤 애니메이션 초기화
+  const animatedEls = document.querySelectorAll('[data-aos]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      if(entry.isIntersecting){
+        el.classList.add('aos-animate'); // 보이면 실행
+      } else {
+        el.classList.remove('aos-animate'); // 안보이면 초기화
+      }
+    });
+  }, { threshold: 0.1 });
+  animatedEls.forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
