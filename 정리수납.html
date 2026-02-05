@@ -287,11 +287,8 @@ section{
   box-shadow:0 10px 30px rgba(255,255,255,0.3);
 }
 .modal-content img{width:100%;height:100%;object-fit:cover;border-radius:1.5rem;}
-.modal-close{position:absolute;top:10px;right:10px;background:var(--accent);border:none;color:#000;width:30px;height:30px;border-radius:50%;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 5px 15px rgba(0,255,213,0.3);transition:0.3s;}
-.modal-close:hover{transform:scale(1.2);box-shadow:0 10px 25px rgba(0,255,213,0.5);}
 @media(max-width:777px){.modal-content{width:80vw;}}
-@media(min-width:778px){.modal-content{width:900px; max-width:80%;}} 
-
+@media(min-width:778px){.modal-content{width:900px; max-width:80%;}}
 </style>
 </head>
 <body>
@@ -362,9 +359,9 @@ section{
 
 <a href="tel:01094275691" class="floating-call animated-border"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></a>
 
+<!-- 팝업 (X버튼 제거됨) -->
 <div class="modal-overlay" id="welcomeModal">
   <div class="modal-content animated-border">
-    <button class="modal-close" id="closeModal">&times;</button>
     <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="팝업 이미지">
   </div>
 </div>
@@ -412,8 +409,11 @@ document.getElementById('consultForm').addEventListener('submit', e=>{
 
 // 팝업 자동 등장
 window.addEventListener('load', ()=>{document.getElementById('welcomeModal').classList.add('active');});
-// 팝업 닫기
-document.getElementById('closeModal').addEventListener('click', ()=>{document.getElementById('welcomeModal').classList.remove('active');});
+
+// 팝업 아무데나 클릭하면 닫힘
+document.getElementById('welcomeModal').addEventListener('click', ()=>{
+  document.getElementById('welcomeModal').classList.remove('active');
+});
 </script>
 
 </body>
