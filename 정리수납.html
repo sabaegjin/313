@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
+
   <!-- 구글 폰트 -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,27 +32,42 @@
     }
     .gold { color: #bfa06b; }
 
-    /* 카드 섀도우 + hover */
     .shadow-hover {
-      transition: all 0.5s;
+      transition: all 0.5s ease;
       border-radius: 1rem;
       overflow: hidden;
       box-shadow:0 6px 18px rgba(0,0,0,0.08);
       background-color: #fff;
     }
     .shadow-hover:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow:0 12px 30px rgba(0,0,0,0.15);
+      transform: translateY(-5px) scale(1.03);
+      box-shadow:0 14px 40px rgba(0,0,0,0.18);
+      border: 2px solid #bfa06b;
     }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+    }
+
+    /* 후기, 카드 텍스트 모두 기울기 제거 및 통일 */
+    .text-normal {
+      font-family: 'Nunito', sans-serif !important;
+      font-style: normal !important;
+      font-weight: 500;
+      color: #4a4a4a;
+    }
+
     .swiper-pagination { display: none !important; }
   </style>
 </head>
 <body class="overflow-x-hidden m-0 p-0">
 
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur-md shadow-md z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center py-2 px-4 md:px-12">
-      <div class="text-2xl font-bold gold tracking-wider">럭셔리 정리수납</div>
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-3 px-4 md:px-12">
+    
       <ul class="hidden md:flex space-x-6 text-gray-700 font-semibold">
         <li><a href="#service" class="hover:text-gold transition">서비스</a></li>
         <li><a href="#testimonial" class="hover:text-gold transition">후기</a></li>
@@ -65,8 +81,8 @@
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-95 backdrop-blur-md">
-      <ul class="flex flex-col space-y-2 text-center py-2 text-gray-700 font-semibold">
+    <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-md transition-all duration-300">
+      <ul class="flex flex-col space-y-2 text-center py-3 text-gray-700 font-semibold">
         <li><a href="#service" class="hover:text-gold transition">서비스</a></li>
         <li><a href="#testimonial" class="hover:text-gold transition">후기</a></li>
         <li><a href="#contact" class="hover:text-gold transition">문의</a></li>
@@ -75,40 +91,42 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="w-full flex justify-center bg-gray-100 mt-4" data-aos="fade-up" data-aos-duration="1200">
-    <img src="https://i.ibb.co/nq01XmFR/2.gif" alt="럭셔리 거실" class="w-full max-w-[1600px] h-auto object-cover">
+  <section class="w-full relative mt-16 md:mt-20 flex justify-center">
+    <img src="https://i.ibb.co/nq01XmFR/2.gif" alt="럭셔리 거실" class="w-full max-w-[1600px] h-auto object-cover rounded-xl shadow-lg">
+    <div class="hero-overlay rounded-xl"></div>
   </section>
 
   <!-- 중간 이미지 -->
-  <section class="w-full flex justify-center my-6" data-aos="zoom-in" data-aos-duration="1200">
+  <section class="w-full flex justify-center my-8" data-aos="zoom-in" data-aos-duration="1200">
     <img src="https://i.ibb.co/wZwPZFvX/Kakao-Talk-20260205-183325710.png" alt="럭셔리 공간" class="w-full max-w-[1200px] h-auto object-contain">
   </section>
 
   <!-- Service Section -->
-  <section id="service" class="py-10 bg-white">
+  <section id="service" class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8" data-aos="fade-up" data-aos-duration="1200">서비스 안내</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up" data-aos-duration="1200">서비스 안내</h2>
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
           <!-- 카드 1 -->
           <div class="swiper-slide shadow-hover p-1" data-aos="fade-up" data-aos-delay="100">
+  <a href="https://313.kr/정리수납/거실">
             <img src="https://i.ibb.co/7N8hRbmZ/Kakao-Talk-20260204-213425348.jpg" class="w-full aspect-[4/3] object-cover rounded-xl mb-2" alt="거실">
-            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center">거실</h3>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center text-normal">거실</h3>
           </div>
           <!-- 카드 2 -->
           <div class="swiper-slide shadow-hover p-1" data-aos="fade-up" data-aos-delay="200">
             <img src="https://i.ibb.co/np3ZftB/Kakao-Talk-20260204-212856866-01.jpg" class="w-full aspect-[4/3] object-cover rounded-xl mb-2" alt="주방">
-            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center">주방</h3>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center text-normal">주방</h3>
           </div>
           <!-- 카드 3 -->
           <div class="swiper-slide shadow-hover p-1" data-aos="fade-up" data-aos-delay="300">
             <img src="https://i.ibb.co/x4fL3rP/Kakao-Talk-20260204-212856866-02.jpg" class="w-full aspect-[4/3] object-cover rounded-xl mb-2" alt="냉장고">
-            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center">냉장고</h3>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center text-normal">냉장고</h3>
           </div>
           <!-- 카드 4 -->
           <div class="swiper-slide shadow-hover p-1" data-aos="fade-up" data-aos-delay="400">
             <img src="https://i.ibb.co/hRv4WvZq/Kakao-Talk-20260204-213019445.jpg" class="w-full aspect-[4/3] object-cover rounded-xl mb-2" alt="드레스룸">
-            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center">드레스룸</h3>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-1 text-center text-normal">드레스룸</h3>
           </div>
         </div>
       </div>
@@ -116,22 +134,22 @@
   </section>
 
   <!-- Testimonial Section -->
-  <section id="testimonial" class="py-10 bg-gray-50">
+  <section id="testimonial" class="py-12 bg-gray-50">
     <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8" data-aos="fade-up" data-aos-duration="1200">고객 후기</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up" data-aos-duration="1200">고객 후기</h2>
       <div class="swiper testimonialSwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide flex justify-center" data-aos="fade-right" data-aos-delay="100">
-            <p class="text-center text-gray-700 italic text-sm sm:text-base max-w-2xl">"우리 집이 잡지 속 집처럼 변했어요. 섬세한 배려와 고급스러운 서비스 최고!"</p>
+            <p class="text-center text-sm sm:text-base max-w-2xl text-normal">"우리 집이 잡지 속 집처럼 변했어요. 섬세한 배려와 고급스러운 서비스 최고!"</p>
           </div>
           <div class="swiper-slide flex justify-center" data-aos="fade-right" data-aos-delay="200">
-            <p class="text-center text-gray-700 italic text-sm sm:text-base max-w-2xl">"공간 활용과 디자인 모두 완벽합니다. 강력 추천!"</p>
+            <p class="text-center text-sm sm:text-base max-w-2xl text-normal">"공간 활용과 디자인 모두 완벽합니다. 강력 추천!"</p>
           </div>
           <div class="swiper-slide flex justify-center" data-aos="fade-right" data-aos-delay="300">
-            <p class="text-center text-gray-700 italic text-sm sm:text-base max-w-2xl">"정리수납 하나만으로 집 전체가 달라졌어요. 서비스가 너무 고급스럽습니다."</p>
+            <p class="text-center text-sm sm:text-base max-w-2xl text-normal">"정리수납 하나만으로 집 전체가 달라졌어요. 서비스가 너무 고급스럽습니다."</p>
           </div>
           <div class="swiper-slide flex justify-center" data-aos="fade-right" data-aos-delay="400">
-            <p class="text-center text-gray-700 italic text-sm sm:text-base max-w-2xl">"깔끔하고 세련된 정리수납으로 집이 한층 고급스러워졌어요."</p>
+            <p class="text-center text-sm sm:text-base max-w-2xl text-normal">"깔끔하고 세련된 정리수납으로 집이 한층 고급스러워졌어요."</p>
           </div>
         </div>
       </div>
@@ -139,14 +157,14 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-10 bg-white">
+  <section id="contact" class="py-12 bg-white">
     <div class="max-w-xl mx-auto p-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8" data-aos="fade-up" data-aos-duration="1200">문의하기</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up" data-aos-duration="1200">문의하기</h2>
       <form class="space-y-4 rounded-2xl shadow-md bg-gray-50 p-6" data-aos="fade-up" data-aos-duration="1200">
-        <input type="text" placeholder="이름" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-base transition">
-        <input type="email" placeholder="이메일" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-base transition">
-        <textarea placeholder="문의 내용" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-base transition" rows="5"></textarea>
-        <button type="submit" class="w-full py-3 rounded-full bg-gradient-to-r from-[#bfa06b] to-[#d4b873] text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-transform duration-300" data-aos="zoom-in" data-aos-delay="300">보내기</button>
+        <input type="text" placeholder="이름" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-base text-normal transition">
+        <input type="email" placeholder="이메일" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-base text-normal transition">
+        <textarea placeholder="문의 내용" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold text-base text-normal transition" rows="5"></textarea>
+        <button type="submit" class="w-full py-3 rounded-full bg-gradient-to-r from-[#bfa06b] to-[#d4b873] text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-transform duration-400">보내기</button>
       </form>
     </div>
   </section>
@@ -159,20 +177,8 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script>
-    // AOS 초기화 (마우스 올려도 원래 상태로 돌아가도록)
     AOS.init({ duration:1000, once:false, easing:'ease-in-out' });
 
-    // Hover 시 애니메이션 원상태로
-    document.querySelectorAll('[data-aos]').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        el.classList.remove('aos-animate');
-      });
-      el.addEventListener('mouseleave', () => {
-        el.classList.add('aos-animate');
-      });
-    });
-
-    // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -181,7 +187,6 @@
       });
     });
 
-    // Mobile Menu Toggle
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
@@ -189,15 +194,18 @@
       document.body.classList.toggle('overflow-hidden');
     });
 
-    // 서비스 슬라이드
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 1.2,
       spaceBetween: 20,
       loop: true,
-      breakpoints: { 640: { slidesPerView: 1.5 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+      autoHeight: true,
+      breakpoints: {
+        640: { slidesPerView: 1.5 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
     });
 
-    // 후기 자동 슬라이드
     var testimonialSwiper = new Swiper(".testimonialSwiper", {
       slidesPerView: 1,
       loop: true,
@@ -205,6 +213,5 @@
       centeredSlides: true
     });
   </script>
-
 </body>
 </html>
