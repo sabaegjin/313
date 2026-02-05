@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>럭셔리 전시 갤러리 슬라이드</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #111;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* 갤러리 썸네일 */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 30px;
+    justify-content: center;
+  }
+
+  .gallery-item {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: fadeUp 0.8s forwards;
+    transition: transform 0.7s, filter 0.7s, box-shadow 0.7s;
+  }
+
+  @keyframes fadeUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.7s, filter 0.7s, box-shadow 0.7s;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.15) contrast(1.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  .gallery-item:hover::after { opacity: 1; }
+
+  /* 라이트박스 슬라이드 */
+  .lightbox {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.5s;
+    z-index: 1000;
+  }
+
+  .lightbox.active {
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    transition: transform 0.5s;
+  }
+
+  .close, .prev, .next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 3rem;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1010;
+  }
+
+  .close { top: 20px; right: 20px; transform: none; font-size: 2.5rem;}
+  .prev { left: 20px; }
+  .next { right: 20px; }
+
+  @media(max-width:768px){
+    .gallery-item { width: 45%; height: 45vw; }
+  }
+  @media(max-width:480px){
+    .gallery-item { width: 90%; height: 90vw; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="gallery">
+  <div class="gallery-item" style="animation-delay:0s;">
+    <img src="https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00MDUtYzA3YWEtbW9ja3VwLmpwZw.jpg" alt="거실">
+  </div>
+  <div class="gallery-item" style="animation-delay:0.1s;">
+    <img src="https://cdn3.pixelcut.app/pixa_cms/media/997e277a-05a3-48d9-9eef-a24f6b1df2a5_hero_image_64571338.webp" alt="작품2">
+  </div>
+  <div class="gallery-item" style="animation-delay:0.2s;">
+    <img src="https://media.posterstore.com/site_images/68340a6633b19649a6b2f00c_summer%20vibe.jpg?auto=compress%2Cformat&fit=max&w=3840" alt="작품3">
+  </div>
+  <div class="gallery-item" style="animation-delay:0.3s;">
+    <img src="https://saltedjam.com/cdn/shop/files/il_fullxfull.6294771317_406s_44bf347f-04b7-444c-95a5-20e0394b684e_700x700.jpg?v=1749504024" alt="작품4">
+  </div>
+  <div class="gallery-item" style="animation-delay:0.4s;">
+    <img src="https://www.thespruce.com/thmb/NgyKAegQFX9F-beJdDuFkeWZLM8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gallery-wall-decor-designs-4129057-hero-e6156f68882640aeb3d62b43c80fd626.jpg" alt="작품5">
+  </div>
+    <div class="gallery-item" style="animation-delay:0.4s;">
+    <img src="https://www.thespruce.com/thmb/NgyKAegQFX9F-beJdDuFkeWZLM8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gallery-wall-decor-designs-4129057-hero-e6156f68882640aeb3d62b43c80fd626.jpg" alt="작품6">
+  </div>
+</div>
+
+<!-- 라이트박스 -->
+<div class="lightbox" id="lightbox">
+  <span class="close" id="close">&times;</span>
+  <span class="prev" id="prev">&#10094;</span>
+  <span class="next" id="next">&#10095;</span>
+  <img src="" alt="슬라이드 이미지" id="lightbox-img">
+</div>
+
+<script>
+const galleryItems = document.querySelectorAll('.gallery-item img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.getElementById('close');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+
+let currentIndex = 0;
+
+galleryItems.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    currentIndex = index;
+    openLightbox();
+  });
+});
+
+function openLightbox(){
+  lightbox.classList.add('active');
+  lightboxImg.src = galleryItems[currentIndex].src;
+}
+
+function closeLightbox(){
+  lightbox.classList.remove('active');
+}
+
+function showPrev(){
+  currentIndex = (currentIndex -1 + galleryItems.length) % galleryItems.length;
+  lightboxImg.src = galleryItems[currentIndex].src;
+}
+
+function showNext(){
+  currentIndex = (currentIndex +1) % galleryItems.length;
+  lightboxImg.src = galleryItems[currentIndex].src;
+}
+
+closeBtn.addEventListener('click', closeLightbox);
+prevBtn.addEventListener('click', showPrev);
+nextBtn.addEventListener('click', showNext);
+
+// 키보드 제어
+document.addEventListener('keydown', e => {
+  if(!lightbox.classList.contains('active')) return;
+  if(e.key==='ArrowLeft') showPrev();
+  if(e.key==='ArrowRight') showNext();
+  if(e.key==='Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
 
