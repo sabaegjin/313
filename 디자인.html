@@ -33,8 +33,13 @@ section{margin:1rem 0;}
 .portfolio::-webkit-scrollbar{display:none;}
 .portfolio img{flex:0 0 auto;width:700px;height:400px;object-fit:cover;border-radius:1rem;cursor:pointer;transition:0.3s;}
 .portfolio img:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,255,213,0.3);}
-.parallax{background-size:cover;background-position:center;height:30vh;margin:1rem;border-radius:1rem;}
-@media(max-width:777px){.portfolio img{width:90vw;height:220px;}.parallax{height:25vh;margin:0.5rem 0;}.menu-toggle{display:flex;}nav.top-menu{display:none;}}
+.parallax{background-size:cover;background-position:center;height:30vh;margin:1rem;border-radius:1rem; background-attachment:fixed;}
+@media(max-width:777px){
+  .portfolio img{width:90vw;height:220px;}
+  .parallax{height:25vh;margin:0.5rem 0; background-attachment:scroll;}
+  .menu-toggle{display:flex;}
+  nav.top-menu{display:none;}
+}
 .floating-call{border-radius:50%;position:fixed;right:20px; bottom:40px;width:69px;height:69px;display:flex;justify-content:center;align-items:center;z-index:9999;}
 .floating-call img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .modal-overlay{position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:99999;opacity:0;pointer-events:none;transition:0.5s;}
@@ -50,9 +55,13 @@ section{margin:1rem 0;}
 </head>
 <body>
 <h1 style="display:none;">사백진</h1>
+
+<!-- 슬라이더 -->
 <div class="slider">
   <div class="slide active" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></div>
 </div>
+
+<!-- 헤더 -->
 <header id="header">
   <div class="menu-toggle" id="menuToggle"><div></div><div></div><div></div></div>
   <nav class="top-menu" id="topMenu">
@@ -62,11 +71,14 @@ section{margin:1rem 0;}
   </nav>
 </header>
 
+<!-- 웰컴 팝업 -->
 <div id="welcomePopup">
   <img src="https://i.ibb.co/60mKyDpr/2.gif" alt="Welcome">
 </div>
 
+<!-- 파랄랙스 & 포트폴리오 섹션 -->
 <section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
+
 <section id="menu1">
   <div class="portfolio">
     <img src="https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg">
@@ -74,7 +86,9 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg">
   </div>
 </section>
+
 <section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
+
 <section id="menu2">
   <div class="portfolio">
     <img src="https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg">
@@ -82,7 +96,9 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg">
   </div>
 </section>
+
 <section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
+
 <section id="menu3">
   <div class="portfolio">
     <img src="https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg">
@@ -91,6 +107,7 @@ section{margin:1rem 0;}
   </div>
 </section>
 
+<!-- 모달 -->
 <div class="modal-overlay" id="portfolioModal">
   <div class="modal-content" id="modalContent"></div>
   <div class="modal-nav">
@@ -99,11 +116,13 @@ section{margin:1rem 0;}
   </div>
 </div>
 
+<!-- 전화 버튼 -->
 <a href="tel:01094275691" class="floating-call">
   <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
 </a>
 
 <script>
+// 슬라이더
 let slides=document.querySelectorAll('.slide');
 let currentSlide=0;
 setInterval(()=>{
@@ -112,10 +131,12 @@ setInterval(()=>{
   slides[currentSlide].classList.add('active');
 },5000);
 
+// 헤더 스크롤 효과
 window.addEventListener('scroll',()=>{
   document.getElementById('header').classList.toggle('scrolled', window.scrollY>50);
 });
 
+// 모바일 메뉴
 const menuToggle=document.getElementById('menuToggle');
 const topMenu=document.getElementById('topMenu');
 menuToggle.addEventListener('click',()=>{topMenu.classList.toggle('open');});
@@ -129,8 +150,20 @@ document.querySelectorAll('.top-menu a').forEach(link=>{
   });
 });
 
+// 포트폴리오 객체
 const portfolioObjects = [
-  { main:'https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg', images:['https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg','https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg','https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg'] },
+  { 
+    main: 'https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg',
+    images: [
+      'https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg',
+      'https://i.ibb.co/mFy29F5y/Kakao-Talk-20260125-204813005-12.jpg',
+      'https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg',
+      'https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg',
+      'https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg',
+      'https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg',
+      'https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg'
+    ]
+  },
   { main:'https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg', images:['https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg','https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg','https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg'] },
   { main:'https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg', images:['https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg','https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg','https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg'] },
   { main:'https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg', images:['https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg','https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg','https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg'] },
@@ -146,6 +179,7 @@ const modalContent = document.getElementById('modalContent');
 let currentModalImages = [];
 let currentModalIndex = 0;
 
+// 모달 열기
 document.querySelectorAll('.portfolio img').forEach((img,i)=>{
   img.addEventListener('click',()=>{
     currentModalImages = portfolioObjects[i].images;
@@ -155,6 +189,7 @@ document.querySelectorAll('.portfolio img').forEach((img,i)=>{
   });
 });
 
+// 이미지 표시
 function showModalImage(){
   modalContent.innerHTML = '';
   const image = document.createElement('img');
@@ -163,6 +198,7 @@ function showModalImage(){
   modalContent.appendChild(image);
 }
 
+// 모달 내 이동
 document.getElementById('prevBtn').addEventListener('click', e=>{
   e.stopPropagation();
   currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
@@ -177,6 +213,7 @@ portfolioModal.addEventListener('click',()=>{
   portfolioModal.classList.remove('active');
 });
 
+// 파랄랙스 스크롤
 const parallaxSections = document.querySelectorAll('.parallax');
 window.addEventListener('scroll', () => {
   parallaxSections.forEach(section => {
@@ -186,6 +223,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
+// 웰컴 팝업 닫기
 const welcomePopup = document.getElementById('welcomePopup');
 welcomePopup.addEventListener('click', () => {
   welcomePopup.style.display = 'none';
