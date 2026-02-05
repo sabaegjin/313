@@ -6,7 +6,6 @@
 <title>313</title>
 <meta name="description" content="313">
 
-<!-- OG 미리보기 태그 -->
 <meta property="og:title" content="313">
 <meta property="og:description" content="웰디자인">
 <meta property="og:image" content="https://i.ibb.co/N6pRMZnb/image.png">
@@ -29,7 +28,7 @@ body{
   scroll-behavior:smooth;
 }
 
-/* ===== 슬라이드 ===== */
+/* 슬라이드 */
 .slider{
   position:relative;
   width:100%;
@@ -45,12 +44,9 @@ body{
   opacity:0;
   transition:opacity 1s;
 }
-.slide.active{
-  opacity:1;
-  transform: scale(1);
-}
+.slide.active{opacity:1;}
 
-/* ===== 헤더 ===== */
+/* 헤더 */
 header{
   position:fixed;
   top:0;
@@ -61,14 +57,13 @@ header{
   align-items:center;
   z-index:10;
   transition:0.4s;
-  backdrop-filter:blur(0px);
 }
 header.scrolled{
   background:rgba(0,0,0,0.7);
   backdrop-filter:blur(8px);
 }
 
-/* ===== 헤더 메뉴 ===== */
+/* 메뉴 */
 nav.top-menu{
   display:flex;
   gap:2rem;
@@ -80,25 +75,19 @@ nav.top-menu a{
   letter-spacing:1.5px;
   text-decoration:none;
   position:relative;
-  transition:0.3s;
 }
 nav.top-menu a::after{
   content:'';
   position:absolute;
   left:0; bottom:-4px;
-  width:0;
-  height:2px;
+  width:0;height:2px;
   background:var(--accent);
   transition:0.3s;
 }
-nav.top-menu a:hover::after{
-  width:100%;
-}
-nav.top-menu a:hover{
-  color:var(--accent);
-}
+nav.top-menu a:hover::after{width:100%;}
+nav.top-menu a:hover{color:var(--accent);}
 
-/* ===== 모바일 메뉴 버튼 ===== */
+/* 모바일 버튼 */
 .menu-toggle{
   display:none;
   flex-direction:column;
@@ -106,53 +95,45 @@ nav.top-menu a:hover{
   gap:4px;
 }
 .menu-toggle div{
-  width:25px;
-  height:3px;
-  background:#fff;
-  transition:0.3s;
+  width:25px;height:3px;background:#fff;
 }
 
-/* ===== 메뉴 열기 상태 ===== */
+/* 모바일 메뉴 열림 */
 nav.top-menu.open{
   display:flex;
   flex-direction:column;
   position:absolute;
-  top:100%;
-  left:0;
+  top:100%;left:0;
   width:100%;
   background:rgba(0,0,0,0.9);
   padding:1rem 2rem;
   gap:1.5rem;
 }
 
-/* ===== 섹션 ===== */
-section{
-  margin:1rem 0;
-}
+/* 섹션 */
+section{margin:1rem 0;}
 
-/* ===== 포트폴리오 ===== */
+/* 포트폴리오 */
 .portfolio{
   display:flex;
   overflow-x:auto;
   gap:1rem;
   padding:0 1rem;
-  scroll-behavior:smooth;
 }
 .portfolio img{
   flex:0 0 auto;
-  width:700px;
-  height:400px;
+  width:700px;height:400px;
   object-fit:cover;
   border-radius:1rem;
   cursor:pointer;
   transition:0.3s;
 }
 .portfolio img:hover{
-  transform:scale(1.05) rotate(-0.5deg);
+  transform:scale(1.05);
   box-shadow:0 10px 20px rgba(0,255,213,0.3);
 }
 
-/* ===== 파라랙스 ===== */
+/* 파라랙스 */
 .parallax{
   background-attachment:fixed;
   background-size:cover;
@@ -160,90 +141,19 @@ section{
   height:30vh;
   margin:1rem;
   border-radius:1rem;
-  transition:0.5s;
 }
 
-/* ===== 상담폼 ===== */
-.consult-section{
-  background: linear-gradient(180deg, #0b0b0b, #1a1a1a);
-  padding:3rem 1rem;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  margin-top:-2rem;
-}
-
-.consult-card{
-  background: rgba(20,20,20,0.95);
-  backdrop-filter: blur(10px);
-  border-radius:1.5rem;
-  padding:3rem 2rem;
-  max-width:450px;
-  width:100%;
-  color:#fff;
-  border: 2px solid #fff; /* 흰색 테두리 */
-  text-align:center;
-  position: relative;
-  overflow: hidden;
+/* 애니메이션 테두리 */
+.animated-border {
+  border-radius: 1.5rem;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
   animation: glow 2.5s infinite alternate;
 }
-
 @keyframes glow {
-  0% { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
-  50% { box-shadow: 0 0 25px rgba(255,255,255,0.5); }
-  100% { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+  0%{box-shadow:0 0 10px rgba(255,255,255,0.3);}
+  50%{box-shadow:0 0 25px rgba(0,255,213,0.6);}
+  100%{box-shadow:0 0 10px rgba(255,255,255,0.3);}
 }
-
-.consult-card h2{font-size:2rem;margin-bottom:0.5rem;}
-.consult-card p{color:#ccc;font-size:0.95rem;margin-bottom:2rem;}
-
-.form-group{position:relative;margin-bottom:1.8rem;}
-.form-group input{
-  width:100%;
-  padding:0.8rem 0.5rem;
-  background:transparent;
-  border:none;
-  border-bottom:2px solid #555;
-  color:#fff;
-  font-size:1rem;
-  transition:0.3s;
-}
-.form-group input:focus{outline:none;border-bottom-color: var(--accent);}
-.form-group label{
-  position:absolute;top:0.8rem;left:0.5rem;color:#777;font-size:0.95rem;
-  pointer-events:none;transition:0.3s;
-}
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label{
-  top:-0.6rem; font-size:0.8rem; color:var(--accent);
-}
-
-/* 체크박스 */
-.checkbox-group{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;text-align:left;font-size:0.9rem;color:#ccc;}
-.checkbox-group label{position:relative;padding-left:25px;cursor:pointer;user-select:none;}
-.checkbox-group input{position:absolute;opacity:0;cursor:pointer;height:0;width:0;}
-.checkbox-group .checkmark{position:absolute;left:0;top:0;height:18px;width:18px;background:#333;border-radius:4px;transition:0.3s;}
-.checkbox-group input:checked ~ .checkmark{background: var(--accent);}
-
-/* 버튼 */
-.consult-card button{
-  width:100%;
-  padding:0.8rem;
-  border:none;
-  border-radius:0.8rem;
-  background: var(--accent);
-  color:#000;
-  font-weight:700;
-  cursor:pointer;
-  font-size:1rem;
-  transition:0.3s;
-  box-shadow:0 5px 15px rgba(0,255,213,0.3);
-}
-.consult-card button:hover{
-  transform: scale(1.05);
-  box-shadow:0 10px 25px rgba(0,255,213,0.5);
-}
-.success-message{display:none;color:#0f0;margin-top:1rem;font-size:0.95rem;}
 
 /* 모바일 */
 @media(max-width:777px){
@@ -253,62 +163,48 @@ section{
   nav.top-menu{display:none;}
 }
 
-/* Floating Call 버튼 */
-@keyframes float-glow {
-  0% { transform: translateY(0); box-shadow:0 0 10px rgba(255,255,255,0.3); }
-  50% { transform: translateY(-10px); box-shadow:0 0 20px rgba(255,255,255,0.5); }
-  100% { transform: translateY(0); box-shadow:0 0 10px rgba(255,255,255,0.3); }
+/* 전화 버튼 */
+.floating-call{
+  border-radius:50%;
+  position:fixed;
+  right:20px; bottom:40px;
+  width:69px;height:69px;
+  display:flex;justify-content:center;align-items:center;
+  z-index:9999;
+}
+.floating-call img{
+  width:100%;height:100%;
+  object-fit:cover;border-radius:50%;
 }
 
-.floating-call {
-  position: fixed;
-  right: 20px; bottom: 40px;
-  width: 55px; height: 55px;
-  background: transparent;
-  border-radius: 50%;
-  border: 2px solid #fff; /* 흰색 테두리 */
-  display: flex; justify-content:center; align-items:center;
-  z-index: 9999;
-  animation: float-glow 2.5s infinite alternate;
-  overflow:hidden;
-  transition: transform 0.2s, box-shadow 0.3s;
+/* 모달 */
+.modal-overlay {
+  position: fixed;top:0;left:0;
+  width:100%;height:100%;
+  background: rgba(0,0,0,0.5);
+  display:flex;justify-content:center;align-items:center;
+  z-index:99999;
+  opacity:0;pointer-events:none;
+  transition:0.5s;
 }
-.floating-call img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.floating-call:hover{transform:scale(1.2);animation-play-state:paused;box-shadow:0 0 25px rgba(255,255,255,0.6);}
-
-/* 모달 팝업 */
-.modal-overlay {position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:99999;backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity 0.5s;}
 .modal-overlay.active{opacity:1;pointer-events:all;}
 .modal-content{
-  position:relative;
   width:300px;
   max-width:90vw;
-  background:transparent;
-  border: 2px solid #fff; /* 흰색 테두리 */
-  border-radius:1.5rem;
-  padding:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  animation:glow 2.5s infinite alternate;
-  box-shadow:0 10px 30px rgba(255,255,255,0.3);
 }
-.modal-content img{width:100%;height:100%;object-fit:cover;border-radius:1.5rem;}
-.modal-close{position:absolute;top:10px;right:10px;background:var(--accent);border:none;color:#000;width:30px;height:30px;border-radius:50%;font-weight:bold;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 5px 15px rgba(0,255,213,0.3);transition:0.3s;}
-.modal-close:hover{transform:scale(1.2);box-shadow:0 10px 25px rgba(0,255,213,0.5);}
-@media(max-width:777px){.modal-content{width:80vw;}}
-@media(min-width:778px){.modal-content{width:900px; max-width:80%;}} 
-
+.modal-content img{
+  width:100%;border-radius:1.5rem;
+}
 </style>
 </head>
+
 <body>
 
 <h1 style="display:none;">사백진</h1>
 
-<!-- 슬라이드 -->
 <div class="slider">
-  <div class="slide active" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></div>
-  <div class="slide" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></div>
+  <div class="slide active" style="background-image:url('https://i.ibb.co/nq01XmFR/2.gif');"></div>
+  <div class="slide" style="background-image:url('https://i.ibb.co/nq01XmFR/2.gif');"></div>
 </div>
 
 <header id="header">
@@ -320,107 +216,84 @@ section{
   </nav>
 </header>
 
-<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
 
 <section id="menu1">
   <div class="portfolio">
-    <img src="https://i.ibb.co/GfBcbv0W/Kakao-Talk-20260201-201456947-02.jpg">
-    <img src="https://i.ibb.co/4wp2w2rf/Kakao-Talk-20260125-204813005-13.jpg">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
   </div>
 </section>
 
-<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
 
 <section id="menu2">
   <div class="portfolio">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
   </div>
 </section>
 
-<section class="parallax" style="background-image:url('https://i.ibb.co/5gWCcFt7/2.gif');"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/jPRrwxQL/629.gif');"></section>
 
 <section id="menu3">
   <div class="portfolio">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
+    <img src="https://i.ibb.co/jPRrwxQL/629.gif">
   </div>
 </section>
 
-<section class="consult-section">
-  <div class="consult-card">
-    <h2>상담 신청</h2>
-    <p>아래 정보를 입력하고 상담을 신청해주세요.</p>
-    <form id="consultForm">
-      <div class="form-group"><input type="text" name="name" id="name" required placeholder=" "><label for="name">이름</label></div>
-      <div class="form-group"><input type="tel" name="phone" id="phone" required placeholder=" "><label for="phone">휴대폰 번호</label></div>
-      <div class="checkbox-group">
-        <label><input type="checkbox" required>개인정보 제공 동의<span class="checkmark"></span></label>
-        <label><input type="checkbox">마케팅 정보 수신 동의<span class="checkmark"></span></label>
-      </div>
-      <button type="submit">상담 신청</button>
-      <p class="success-message">신청이 완료되었습니다!</p>
-    </form>
-  </div>
-</section>
-
-<a href="tel:01094275691" class="floating-call"><img src="https://i.ibb.co/Fbm6fjv7/1.gif"></a>
+<a href="tel:01094275691" class="floating-call animated-border">
+  <img src="https://i.ibb.co/Fbm6fjv7/1.gif">
+</a>
 
 <div class="modal-overlay" id="welcomeModal">
-  <div class="modal-content">
-    <button class="modal-close" id="closeModal">&times;</button>
-    <img src="https://i.ibb.co/Fbm6fjv7/1.gif" alt="팝업 이미지">
+  <div class="modal-content animated-border">
+    <img src="https://i.ibb.co/nq01XmFR/2.gif">
   </div>
 </div>
 
 <script>
-// 슬라이드 자동 전환
-let slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
+// 슬라이드
+let slides=document.querySelectorAll('.slide');
+let currentSlide=0;
 setInterval(()=>{
   slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
+  currentSlide=(currentSlide+1)%slides.length;
   slides[currentSlide].classList.add('active');
 },5000);
 
 // 헤더 스크롤
 window.addEventListener('scroll',()=>{
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY>50);
 });
 
 // 메뉴 토글
 const menuToggle=document.getElementById('menuToggle');
 const topMenu=document.getElementById('topMenu');
-menuToggle.addEventListener('click', ()=>{topMenu.classList.toggle('open');});
+menuToggle.addEventListener('click',()=>{topMenu.classList.toggle('open');});
 
-// 메뉴 클릭 부드러운 이동
+// 메뉴 이동
 document.querySelectorAll('.top-menu a').forEach(link=>{
-  link.addEventListener('click', e=>{
+  link.addEventListener('click',e=>{
     e.preventDefault();
     const target=document.querySelector(link.getAttribute('href'));
     const headerHeight=document.getElementById('header').offsetHeight;
-    window.scrollTo({top: target.offsetTop - headerHeight, behavior:'smooth'});
-    if(topMenu.classList.contains('open')) topMenu.classList.remove('open');
+    window.scrollTo({top:target.offsetTop-headerHeight,behavior:'smooth'});
+    topMenu.classList.remove('open');
   });
 });
 
-// 상담폼
-document.getElementById('consultForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  const msg=document.querySelector('.success-message'); msg.style.display='block';
-  setTimeout(()=>{
-    msg.style.display='none';
-    e.target.reset();
-  },4000);
+// 팝업
+window.addEventListener('load',()=>{
+  document.getElementById('welcomeModal').classList.add('active');
 });
-
-// 팝업 자동 등장
-window.addEventListener('load', ()=>{document.getElementById('welcomeModal').classList.add('active');});
-// 팝업 닫기
-document.getElementById('closeModal').addEventListener('click', ()=>{document.getElementById('welcomeModal').classList.remove('active');});
+document.getElementById('welcomeModal').addEventListener('click',()=>{
+  document.getElementById('welcomeModal').classList.remove('active');
+});
 </script>
 
 </body>
