@@ -9,7 +9,6 @@
     margin: 0;
     background-color: #111;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow-x: hidden;
   }
 
   /* 갤러리 썸네일 */
@@ -23,8 +22,8 @@
 
   .gallery-item {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 250px;   /* 썸네일 가로 크기 */
+    height: 250px;  /* 썸네일 세로 크기 */
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
@@ -35,10 +34,7 @@
   }
 
   @keyframes fadeUp {
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    to { transform: translateY(0); opacity: 1; }
   }
 
   .gallery-item img {
@@ -112,11 +108,21 @@
   .prev { left: 20px; }
   .next { right: 20px; }
 
+  /* 모바일 반응형: 2열 */
   @media(max-width:768px){
-    .gallery-item { width: 45%; height: 45vw; }
+    .gallery-item {
+      width: calc(50% - 15px); /* 2개씩 나란히 */
+      height: auto;
+      aspect-ratio: 1/1;       /* 정사각형 유지 */
+    }
   }
+
   @media(max-width:480px){
-    .gallery-item { width: 90%; height: 90vw; }
+    .gallery-item {
+      width: calc(50% - 10px); /* 2개씩 나란히 */
+      height: auto;
+      aspect-ratio: 1/1;
+    }
   }
 
 </style>
@@ -124,24 +130,12 @@
 <body>
 
 <div class="gallery">
-  <div class="gallery-item" style="animation-delay:0s;">
-    <img src="https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00MDUtYzA3YWEtbW9ja3VwLmpwZw.jpg" alt="거실">
-  </div>
-  <div class="gallery-item" style="animation-delay:0.1s;">
-    <img src="https://cdn3.pixelcut.app/pixa_cms/media/997e277a-05a3-48d9-9eef-a24f6b1df2a5_hero_image_64571338.webp" alt="작품2">
-  </div>
-  <div class="gallery-item" style="animation-delay:0.2s;">
-    <img src="https://media.posterstore.com/site_images/68340a6633b19649a6b2f00c_summer%20vibe.jpg?auto=compress%2Cformat&fit=max&w=3840" alt="작품3">
-  </div>
-  <div class="gallery-item" style="animation-delay:0.3s;">
-    <img src="https://saltedjam.com/cdn/shop/files/il_fullxfull.6294771317_406s_44bf347f-04b7-444c-95a5-20e0394b684e_700x700.jpg?v=1749504024" alt="작품4">
-  </div>
-  <div class="gallery-item" style="animation-delay:0.4s;">
-    <img src="https://www.thespruce.com/thmb/NgyKAegQFX9F-beJdDuFkeWZLM8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gallery-wall-decor-designs-4129057-hero-e6156f68882640aeb3d62b43c80fd626.jpg" alt="작품5">
-  </div>
-    <div class="gallery-item" style="animation-delay:0.4s;">
-    <img src="https://www.thespruce.com/thmb/NgyKAegQFX9F-beJdDuFkeWZLM8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gallery-wall-decor-designs-4129057-hero-e6156f68882640aeb3d62b43c80fd626.jpg" alt="작품6">
-  </div>
+  <div class="gallery-item" style="animation-delay:0s;"><img src="https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00MDUtYzA3YWEtbW9ja3VwLmpwZw.jpg" alt="거실"></div>
+  <div class="gallery-item" style="animation-delay:0.1s;"><img src="https://cdn3.pixelcut.app/pixa_cms/media/997e277a-05a3-48d9-9eef-a24f6b1df2a5_hero_image_64571338.webp" alt="작품2"></div>
+  <div class="gallery-item" style="animation-delay:0.2s;"><img src="https://media.posterstore.com/site_images/68340a6633b19649a6b2f00c_summer%20vibe.jpg?auto=compress%2Cformat&fit=max&w=3840" alt="작품3"></div>
+  <div class="gallery-item" style="animation-delay:0.3s;"><img src="https://saltedjam.com/cdn/shop/files/il_fullxfull.6294771317_406s_44bf347f-04b7-444c-95a5-20e0394b684e_700x700.jpg?v=1749504024" alt="작품4"></div>
+  <div class="gallery-item" style="animation-delay:0.4s;"><img src="https://www.thespruce.com/thmb/NgyKAegQFX9F-beJdDuFkeWZLM8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gallery-wall-decor-designs-4129057-hero-e6156f68882640aeb3d62b43c80fd626.jpg" alt="작품5"></div>
+   <div class="gallery-item" style="animation-delay:0.4s;"><img src="https://www.thespruce.com/thmb/NgyKAegQFX9F-beJdDuFkeWZLM8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gallery-wall-decor-designs-4129057-hero-e6156f68882640aeb3d62b43c80fd626.jpg" alt="작품6"></div>
 </div>
 
 <!-- 라이트박스 -->
@@ -203,4 +197,3 @@ document.addEventListener('keydown', e => {
 
 </body>
 </html>
-
