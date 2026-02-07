@@ -69,9 +69,7 @@ section{margin:1rem 0;}
 <div id="welcomePopup">
   <img src="https://i.ibb.co/60mKyDpr/2.gif" alt="Welcome">
 </div>
-
-<!-- 패럴랙스 섹션, data-speed 지정 -->
-<section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');" data-speed="0.2"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
 <section id="menu1">
   <div class="portfolio">
     <img src="https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg">
@@ -79,7 +77,7 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg">
   </div>
 </section>
-<section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');" data-speed="0.4"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
 <section id="menu2">
   <div class="portfolio">
     <img src="https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg">
@@ -87,7 +85,7 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg">
   </div>
 </section>
-<section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');" data-speed="0.6"></section>
+<section class="parallax" style="background-image:url('https://i.ibb.co/svztSj5j/2.gif');"></section>
 <section id="menu3">
   <div class="portfolio">
     <img src="https://i.ibb.co/MkTtZrN3/Kakao-Talk-20260125-204813005-19.jpg">
@@ -95,7 +93,6 @@ section{margin:1rem 0;}
     <img src="https://i.ibb.co/0jd57V5Z/Kakao-Talk-20260125-204813005-03.jpg">
   </div>
 </section>
-
 <div class="modal-overlay" id="portfolioModal">
   <div class="modal-content" id="modalContent"></div>
   <div class="modal-nav">
@@ -103,43 +100,36 @@ section{margin:1rem 0;}
     <button id="nextBtn">›</button>
   </div>
 </div>
-
 <a href="tel:01094275691" class="floating-call">
   <img src="https://i.ibb.co/Fbm6fj7/1.gif">
 </a>
-
 <script>
-// 슬라이더
-let slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-setInterval(() => {
+let slides=document.querySelectorAll('.slide');
+let currentSlide=0;
+setInterval(()=>{
   slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
+  currentSlide=(currentSlide+1)%slides.length;
   slides[currentSlide].classList.add('active');
-}, 5000);
+},5000);
 
-// 헤더 스크롤 효과
-window.addEventListener('scroll', () => {
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+window.addEventListener('scroll',()=>{
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY>50);
 });
 
-// 메뉴 토글
-const menuToggle = document.getElementById('menuToggle');
-const topMenu = document.getElementById('topMenu');
-menuToggle.addEventListener('click', () => { topMenu.classList.toggle('open'); });
+const menuToggle=document.getElementById('menuToggle');
+const topMenu=document.getElementById('topMenu');
+menuToggle.addEventListener('click',()=>{topMenu.classList.toggle('open');});
 
-// 스무스 스크롤
-document.querySelectorAll('.top-menu a').forEach(link => {
-  link.addEventListener('click', e => {
+document.querySelectorAll('.top-menu a').forEach(link=>{
+  link.addEventListener('click',e=>{
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    const headerHeight = document.getElementById('header').offsetHeight;
-    window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' });
+    const target=document.querySelector(link.getAttribute('href'));
+    const headerHeight=document.getElementById('header').offsetHeight;
+    window.scrollTo({top:target.offsetTop-headerHeight,behavior:'smooth'});
     topMenu.classList.remove('open');
   });
 });
 
-// 포트폴리오 모달
 const portfolioObjects = [
   { main:'https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg', images:['https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg','https://i.ibb.co/mFy29F5y/Kakao-Talk-20260125-204813005-12.jpg','https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg','https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg','https://i.ibb.co/n8PQ3vQJ/Kakao-Talk-20260125-204813005-07.jpg','https://i.ibb.co/zW457Swq/Kakao-Talk-20260125-204813005-08.jpg','https://i.ibb.co/SS35f80/Kakao-Talk-20260125-204813005-10.jpg']},
   { main:'https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg', images:['https://i.ibb.co/7cbm7YJ/Kakao-Talk-20260125-204813005-14.jpg','https://i.ibb.co/pvntt9pn/Kakao-Talk-20260125-204813005-14-1.jpg','https://i.ibb.co/v4Cpftxt/Kakao-Talk-20260125-204813005-15.jpg']},
@@ -188,17 +178,15 @@ portfolioModal.addEventListener('click',()=>{
   portfolioModal.classList.remove('active');
 });
 
-// 🔹 섹션별 패럴랙스
 const parallaxSections = document.querySelectorAll('.parallax');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
   parallaxSections.forEach(section => {
-    const speed = parseFloat(section.dataset.speed) || 0.3;
+    const speed = 0.3; // 속도 조절
     section.style.backgroundPosition = `center ${scrollTop * speed}px`;
   });
 });
 
-// 웰컴 팝업
 const welcomePopup = document.getElementById('welcomePopup');
 welcomePopup.addEventListener('click', () => {
   welcomePopup.style.display = 'none';
