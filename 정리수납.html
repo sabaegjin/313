@@ -6,10 +6,9 @@
   <title>고려 정리수납</title>
   
   <meta name="description" content="고려 정리수납입니다">
+  <meta property="og:title" content="고려 정리수납">
+  <meta property="og:description" content="고려 정리수납">
 
-<meta property="og:title" content="고려 정리수납">
-<meta property="og:description" content="고려 정리수납">
-  
   <style>
     html { scroll-behavior:smooth; }
     body {
@@ -31,6 +30,7 @@
       background:rgba(10,15,30,0.45);
       border-bottom:1px solid rgba(255,255,255,0.08);
     }
+
     header .logo { font-size:18px; font-weight:700; letter-spacing:-0.4px; }
     header .right { font-size:14px; opacity:.95; }
 
@@ -40,6 +40,7 @@
       background:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       position:relative;
     }
+
     .hero::after{
       content:'';
       position:absolute; inset:0;
@@ -60,7 +61,9 @@
       letter-spacing:-1.2px;
       margin-bottom:24px;
     }
+
     .content h1 span { color:#1f4fd8; }
+
     .content p {
       color:#5a5f6b;
       font-size:16px;
@@ -94,11 +97,16 @@
       box-shadow:0 30px 80px rgba(31,79,216,0.12);
       transition:all .4s cubic-bezier(.2,.8,.2,1);
       text-align:center;
+      text-decoration:none;
+      color:inherit;
+      display:block;
     }
+
     .card:hover{
       transform:translateY(-8px);
       box-shadow:0 44px 120px rgba(31,79,216,0.22);
     }
+
     .card img { width:46px; margin-bottom:20px; opacity:.9; }
     .card p { font-weight:600; color:#1f4fd8; letter-spacing:-0.3px; }
 
@@ -107,6 +115,7 @@
       right:20px; bottom:28px;
       display:flex; flex-direction:column; gap:16px;
     }
+
     .fab {
       width:60px; height:60px;
       border-radius:50%;
@@ -115,11 +124,16 @@
       transition:transform .25s ease, box-shadow .25s ease;
       background:#fff;
     }
+
     .fab img{
       width:34px;
       height:34px;
     }
-    .fab:hover{ transform:scale(1.08); box-shadow:0 16px 40px rgba(0,0,0,0.35); }
+
+    .fab:hover{
+      transform:scale(1.08);
+      box-shadow:0 16px 40px rgba(0,0,0,0.35);
+    }
 
     @media(max-width:480px){
       .content h1{ font-size:27px; }
@@ -142,29 +156,35 @@
   <div class="time">전화 상담 : 09:00 - 18:00</div>
 
   <div class="grid">
-    <a href="tel:01062721111" class="card" style="text-decoration:none;">
+
+    <a href="tel:01062721111" class="card">
       <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" />
       <p>빠른 전화상담</p>
     </a>
-    <div class="card">
+
+    <a href="https://m.blog.naver.com/smile9634?tab=1" target="_blank" class="card">
       <img src="https://i.ibb.co/9KX5Sw9/image.jpg" />
       <p>블로그</p>
-    </div>
-    <div class="card">
+    </a>
+
+    <a href="https://open.kakao.com/o/szX8Cdii" target="_blank" class="card">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png" />
       <p>카카오톡 상담</p>
-    </div>
-    <div class="card">
+    </a>
+
+    <a href="https://youtube.com/@pshyun38?si=M41q7hMWsmRS78U-" target="_blank" class="card">
       <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" />
-      <p>유투브</p>
-    </div>
+      <p>유튜브</p>
+    </a>
+
   </div>
 </section>
 
 <div class="floating">
-  <a href="#" class="fab">
+  <a href="https://open.kakao.com/o/szX8Cdii" target="_blank" class="fab">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png" alt="카카오톡">
   </a>
+
   <a href="tel:01062721111" class="fab">
     <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="전화">
   </a>
