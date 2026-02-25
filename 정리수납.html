@@ -6,6 +6,8 @@
 <title>고려 정리수납</title>
 
 <meta name="description" content="고려 정리수납입니다">
+<meta property="og:title" content="고려 정리수납">
+<meta property="og:description" content="고려 정리수납">
 
 <style>
 html { scroll-behavior:smooth; }
@@ -14,6 +16,7 @@ margin:0;
 font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
 background:linear-gradient(180deg,#eef1f6 0%, #ffffff 40%);
 color:#1b1d21;
+-webkit-font-smoothing:antialiased;
 }
 
 header {
@@ -25,6 +28,7 @@ color:#fff;
 z-index:20;
 backdrop-filter: blur(14px);
 background:rgba(10,15,30,0.45);
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 header .logo { font-size:18px; font-weight:700; }
@@ -34,6 +38,13 @@ header .right { font-size:14px; }
 margin-top:74px;
 height:480px;
 background:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+position:relative;
+}
+
+.hero::after{
+content:'';
+position:absolute; inset:0;
+background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.15));
 }
 
 .content {
@@ -43,6 +54,31 @@ margin-top:-90px;
 padding:90px 26px 180px;
 text-align:center;
 box-shadow:0 -30px 80px rgba(0,0,0,0.08);
+}
+
+.content h1 {
+font-size:32px;
+letter-spacing:-1.2px;
+margin-bottom:24px;
+}
+
+.content h1 span { color:#1f4fd8; }
+
+.content p {
+color:#5a5f6b;
+font-size:16px;
+line-height:1.7;
+margin-bottom:38px;
+}
+
+.time {
+display:inline-block;
+padding:18px 36px;
+border-radius:50px;
+background:linear-gradient(135deg,#e9eeff,#f6f8ff);
+color:#1f4fd8;
+font-weight:600;
+margin-bottom:56px;
 }
 
 .region-grid{
@@ -69,7 +105,7 @@ background:#1f4fd8;
 color:#fff;
 }
 
-/* 얼굴 표시 영역 */
+/* 얼굴 영역 */
 .manager-box{
 margin:30px 0 50px;
 }
@@ -101,13 +137,15 @@ background:linear-gradient(180deg,#ffffff,#fbfcff);
 border-radius:28px;
 padding:38px 24px;
 box-shadow:0 30px 80px rgba(31,79,216,0.12);
-transition:.4s;
+transition:all .4s;
 text-decoration:none;
 color:inherit;
 display:block;
 }
 
-.card:hover{ transform:translateY(-8px); }
+.card:hover{
+transform:translateY(-8px);
+}
 
 .card img { width:46px; margin-bottom:20px; }
 .card p { font-weight:600; color:#1f4fd8; }
@@ -133,12 +171,16 @@ background:#fff;
 
 <header>
 <div class="logo">고려 정리수납</div>
-<div class="right">상담 및 문의 <strong id="topPhone"></strong></div>
+<div class="right">상담 및 문의 812 - 9900</strong></div>
 </header>
 
 <section class="hero"></section>
 
 <section class="content">
+
+<h1><span>최고 전문가 고려 정리수납</span></h1>
+<p>문의사항에 신속하게 답변 드리겠습니다.</p>
+<div class="time">전화 상담 : 09:00 - 18:00</div>
 
 <h2>지역을 선택하세요</h2>
 
@@ -150,9 +192,8 @@ background:#fff;
 <div class="region-btn" onclick="changeRegion(this,'gyeongsang')">경상도</div>
 </div>
 
-<!-- 얼굴 표시 -->
 <div class="manager-box">
-<img id="managerImg" src="" alt="담당자 얼굴">
+<img id="managerImg" src="">
 <div id="managerName" class="manager-name"></div>
 </div>
 
@@ -160,7 +201,7 @@ background:#fff;
 
 <a id="phoneBtn" href="#" class="card">
 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" />
-<p>빠른 전화상담</p>
+<p>전화상담</p>
 </a>
 
 <a id="blogBtn" href="#" target="_blank" class="card">
@@ -170,7 +211,7 @@ background:#fff;
 
 <a id="kakaoBtn" href="#" target="_blank" class="card">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png" />
-<p>카카오톡 상담</p>
+<p>카톡상담</p>
 </a>
 
 <a id="youtubeBtn" href="#" target="_blank" class="card">
@@ -246,7 +287,6 @@ document.getElementById("managerName").innerText = data.name;
 
 document.getElementById("phoneBtn").href = "tel:"+data.phone;
 document.getElementById("floatPhone").href = "tel:"+data.phone;
-
 document.getElementById("topPhone").innerText =
 data.phone.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");
 }
