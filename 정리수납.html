@@ -66,12 +66,12 @@ margin-bottom:38px;
 
 .time {
 display:inline-block;
-padding:18px 36px;
+padding:14px 30px;
 border-radius:50px;
 background:linear-gradient(135deg,#e9eeff,#f6f8ff);
 color:#1f4fd8;
 font-weight:600;
-margin-bottom:56px;
+margin-bottom:50px;
 }
 
 .region-grid{
@@ -83,7 +83,7 @@ margin-bottom:30px;
 }
 
 .region-btn{
-padding:10px 20px;
+padding:8px 18px;
 border-radius:30px;
 background:#eef3ff;
 color:#1f4fd8;
@@ -99,19 +99,19 @@ color:#fff;
 }
 
 .manager-box{
-margin:30px 0 50px;
+margin:25px 0 40px;
 }
 
 .manager-box img{
-width:180px;
-height:180px;
+width:160px;
+height:160px;
 object-fit:cover;
 border-radius:50%;
 box-shadow:0 15px 40px rgba(0,0,0,.15);
 }
 
 .manager-name{
-margin-top:15px;
+margin-top:12px;
 font-weight:600;
 color:#1f4fd8;
 }
@@ -119,51 +119,59 @@ color:#1f4fd8;
 .grid {
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:26px;
-max-width:560px;
+gap:20px;
+max-width:520px;
 margin:0 auto;
 }
 
 .card {
 background:linear-gradient(180deg,#ffffff,#fbfcff);
-border-radius:28px;
-padding:38px 24px;
-box-shadow:0 30px 80px rgba(31,79,216,0.12);
-transition:all .4s;
+border-radius:24px;
+padding:22px 20px; /* 🔥 세로 줄임 */
+box-shadow:0 20px 50px rgba(31,79,216,0.10);
+transition:all .3s;
 text-decoration:none;
 color:inherit;
 display:block;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-5px);
 }
 
-.card img { width:46px; margin-bottom:20px; }
-.card p { font-weight:600; color:#1f4fd8; }
+.card img { 
+width:36px; 
+margin-bottom:12px; /* 🔥 간격 축소 */
+}
+
+.card p { 
+font-weight:600; 
+color:#1f4fd8;
+margin:0;
+}
 
 .floating {
 position:fixed;
 right:20px; bottom:28px;
-display:flex; flex-direction:column; gap:16px;
+display:flex; flex-direction:column; gap:14px;
 }
 
 .fab {
-width:60px; height:60px;
+width:58px; height:58px;
 border-radius:50%;
 display:flex; align-items:center; justify-content:center;
 box-shadow:0 10px 30px rgba(0,0,0,0.28);
 background:#fff;
 }
 
-.fab img{ width:34px; }
+.fab img{ width:30px; }
 </style>
 </head>
 <body>
 
 <header>
 <div class="logo">고려 정리수납</div>
-<div class="right">상담 및 문의 <strong id="topPhone"></strong></div>
+<div class="right">상담 및 문의 031-812-9900</div>
 </header>
 
 <section class="hero"></section>
@@ -177,7 +185,7 @@ background:#fff;
 <h2>지역을 선택하세요</h2>
 
 <div class="region-grid">
-<div class="region-btn" onclick="changeRegion(this,'pyeongtaek')">평택</div>
+<div class="region-btn active" onclick="changeRegion(this,'pyeongtaek')">평택</div>
 <div class="region-btn" onclick="changeRegion(this,'ilsan')">일산</div>
 <div class="region-btn" onclick="changeRegion(this,'sejong')">세종</div>
 <div class="region-btn" onclick="changeRegion(this,'gangwon')">강원도</div>
@@ -191,22 +199,22 @@ background:#fff;
 
 <div class="grid">
 
-<a id="phoneBtn" href="tel:01062721111" class="card">
+<a id="phoneBtn" href="#" class="card">
 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" />
 <p>전화상담</p>
 </a>
 
-<a id="blogBtn" href="https://blog.naver.com/pyeongtaek" target="_blank" class="card">
+<a id="blogBtn" href="#" target="_blank" class="card">
 <img src="https://i.ibb.co/9KX5Sw9/image.jpg" />
 <p>블로그</p>
 </a>
 
-<a id="kakaoBtn" href="https://pf.kakao.com/_pyeongtaek" target="_blank" class="card">
+<a id="kakaoBtn" href="#" target="_blank" class="card">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png" />
 <p>카톡상담</p>
 </a>
 
-<a id="youtubeBtn" href="https://youtube.com/@pyeongtaek" target="_blank" class="card">
+<a id="youtubeBtn" href="#" target="_blank" class="card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" />
 <p>유투브</p>
 </a>
@@ -215,11 +223,11 @@ background:#fff;
 </section>
 
 <div class="floating">
-<a id="floatKakao" href="https://pf.kakao.com/_pyeongtaek" target="_blank" class="fab">
+<a id="floatKakao" href="#" target="_blank" class="fab">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
 </a>
 
-<a id="floatPhone" href="tel:01062721111" class="fab">
+<a id="floatPhone" href="#" class="fab">
 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
 </a>
 </div>
@@ -227,7 +235,6 @@ background:#fff;
 <script>
 
 const regionData = {
-
 pyeongtaek:{
 name:"평택 담당 매니저",
 phone:"01062721111",
@@ -235,38 +242,7 @@ img:"https://i.ibb.co/kV0LPnjx/image.jpg",
 blog:"https://m.blog.naver.com/smile9634",
 kakao:"https://open.kakao.com/o/szX8Cdii",
 youtube:"https://youtube.com/@pshyun38"
-},
-
-ilsan:{
-name:"일산 담당 매니저",
-phone:"01094275691",
-img:"https://randomuser.me/api/portraits/men/32.jpg",
-blog:"https://blog.naver.com/ilsan",
-kakao:"https://pf.kakao.com/_ilsan",
-youtube:"https://youtube.com/@ilsan"
-},
-
-sejong:{
-name:"세종 담당 매니저",
-phone:"01033334444",
-img:"https://randomuser.me/api/portraits/women/45.jpg",
-blog:"#", kakao:"#", youtube:"#"
-},
-
-gangwon:{
-name:"강원도 담당 매니저",
-phone:"01044445555",
-img:"https://randomuser.me/api/portraits/men/52.jpg",
-blog:"#", kakao:"#", youtube:"#"
-},
-
-gyeongsang:{
-name:"경상도 담당 매니저",
-phone:"01055556666",
-img:"https://randomuser.me/api/portraits/women/60.jpg",
-blog:"#", kakao:"#", youtube:"#"
 }
-
 };
 
 function changeRegion(el, region){
@@ -283,14 +259,11 @@ document.getElementById("managerName").innerText = data.name;
 
 document.getElementById("phoneBtn").href = "tel:"+data.phone;
 document.getElementById("floatPhone").href = "tel:"+data.phone;
-document.getElementById("topPhone").innerText =
-data.phone.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");
 
 document.getElementById("blogBtn").href = data.blog;
 document.getElementById("kakaoBtn").href = data.kakao;
 document.getElementById("youtubeBtn").href = data.youtube;
 document.getElementById("floatKakao").href = data.kakao;
-
 }
 
 window.onload = function(){
