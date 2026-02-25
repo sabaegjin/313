@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>고려 정리수납</title>
 
-<meta name="description" content="고려 정리수납입니다">
-<meta property="og:title" content="고려 정리수납">
-<meta property="og:description" content="고려 정리수납">
-
 <style>
 html { scroll-behavior:smooth; }
 body {
@@ -16,7 +12,6 @@ margin:0;
 font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
 background:linear-gradient(180deg,#eef1f6 0%, #ffffff 40%);
 color:#1b1d21;
--webkit-font-smoothing:antialiased;
 }
 
 header {
@@ -58,7 +53,6 @@ box-shadow:0 -30px 80px rgba(0,0,0,0.08);
 
 .content h1 {
 font-size:32px;
-letter-spacing:-1.2px;
 margin-bottom:24px;
 }
 
@@ -67,7 +61,6 @@ margin-bottom:24px;
 .content p {
 color:#5a5f6b;
 font-size:16px;
-line-height:1.7;
 margin-bottom:38px;
 }
 
@@ -105,7 +98,6 @@ background:#1f4fd8;
 color:#fff;
 }
 
-/* 얼굴 영역 */
 .manager-box{
 margin:30px 0 50px;
 }
@@ -171,7 +163,7 @@ background:#fff;
 
 <header>
 <div class="logo">고려 정리수납</div>
-<div class="right">상담 및 문의 812 - 9900</strong></div>
+<div class="right">상담 및 문의 <strong id="topPhone"></strong></div>
 </header>
 
 <section class="hero"></section>
@@ -199,35 +191,35 @@ background:#fff;
 
 <div class="grid">
 
-<a id="phoneBtn" href="#" class="card">
+<a id="phoneBtn" href="tel:01062721111" class="card">
 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" />
 <p>전화상담</p>
 </a>
 
-<a id="blogBtn" href="#" target="_blank" class="card">
+<a id="blogBtn" href="https://blog.naver.com/pyeongtaek" target="_blank" class="card">
 <img src="https://i.ibb.co/9KX5Sw9/image.jpg" />
 <p>블로그</p>
 </a>
 
-<a id="kakaoBtn" href="#" target="_blank" class="card">
+<a id="kakaoBtn" href="https://pf.kakao.com/_pyeongtaek" target="_blank" class="card">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png" />
 <p>카톡상담</p>
 </a>
 
-<a id="youtubeBtn" href="#" target="_blank" class="card">
+<a id="youtubeBtn" href="https://youtube.com/@pyeongtaek" target="_blank" class="card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" />
-<p>유튜브</p>
+<p>유투브</p>
 </a>
 
 </div>
 </section>
 
 <div class="floating">
-<a id="floatKakao" href="#" target="_blank" class="fab">
+<a id="floatKakao" href="https://pf.kakao.com/_pyeongtaek" target="_blank" class="fab">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
 </a>
 
-<a id="floatPhone" href="#" class="fab">
+<a id="floatPhone" href="tel:01062721111" class="fab">
 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
 </a>
 </div>
@@ -238,35 +230,39 @@ const regionData = {
 
 pyeongtaek:{
 name:"평택 담당 매니저",
-phone:"01011111111",
+phone:"01062721111",
 img:"https://i.ibb.co/kV0LPnjx/image.jpg",
-blog:"#", kakao:"#", youtube:"#"
+blog:"https://m.blog.naver.com/smile9634",
+kakao:"https://open.kakao.com/o/szX8Cdii",
+youtube:"https://youtube.com/@pshyun38"
 },
 
 ilsan:{
 name:"일산 담당 매니저",
 phone:"01094275691",
 img:"https://randomuser.me/api/portraits/men/32.jpg",
-blog:"#", kakao:"#", youtube:"#"
+blog:"https://blog.naver.com/ilsan",
+kakao:"https://pf.kakao.com/_ilsan",
+youtube:"https://youtube.com/@ilsan"
 },
 
 sejong:{
 name:"세종 담당 매니저",
-phone:"01033333333",
+phone:"01033334444",
 img:"https://randomuser.me/api/portraits/women/45.jpg",
 blog:"#", kakao:"#", youtube:"#"
 },
 
 gangwon:{
 name:"강원도 담당 매니저",
-phone:"01044444444",
+phone:"01044445555",
 img:"https://randomuser.me/api/portraits/men/52.jpg",
 blog:"#", kakao:"#", youtube:"#"
 },
 
 gyeongsang:{
 name:"경상도 담당 매니저",
-phone:"01055555555",
+phone:"01055556666",
 img:"https://randomuser.me/api/portraits/women/60.jpg",
 blog:"#", kakao:"#", youtube:"#"
 }
@@ -289,10 +285,16 @@ document.getElementById("phoneBtn").href = "tel:"+data.phone;
 document.getElementById("floatPhone").href = "tel:"+data.phone;
 document.getElementById("topPhone").innerText =
 data.phone.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");
+
+document.getElementById("blogBtn").href = data.blog;
+document.getElementById("kakaoBtn").href = data.kakao;
+document.getElementById("youtubeBtn").href = data.youtube;
+document.getElementById("floatKakao").href = data.kakao;
+
 }
 
 window.onload = function(){
-changeRegion(document.querySelectorAll('.region-btn')[1],'ilsan');
+changeRegion(document.querySelectorAll('.region-btn')[0],'pyeongtaek');
 }
 
 </script>
