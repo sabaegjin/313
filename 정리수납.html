@@ -127,7 +127,7 @@ margin:0 auto;
 .card {
 background:linear-gradient(180deg,#ffffff,#fbfcff);
 border-radius:24px;
-padding:22px 20px; /* 🔥 세로 줄임 */
+padding:22px 20px;
 box-shadow:0 20px 50px rgba(31,79,216,0.10);
 transition:all .3s;
 text-decoration:none;
@@ -141,7 +141,7 @@ transform:translateY(-5px);
 
 .card img { 
 width:36px; 
-margin-bottom:12px; /* 🔥 간격 축소 */
+margin-bottom:12px;
 }
 
 .card p { 
@@ -235,6 +235,7 @@ background:#fff;
 <script>
 
 const regionData = {
+
 pyeongtaek:{
 name:"평택 담당 매니저",
 phone:"01062721111",
@@ -242,7 +243,17 @@ img:"https://i.ibb.co/kV0LPnjx/image.jpg",
 blog:"https://m.blog.naver.com/smile9634",
 kakao:"https://open.kakao.com/o/szX8Cdii",
 youtube:"https://youtube.com/@pshyun38"
+},
+
+ilsan:{
+name:"일산 담당 매니저",
+phone:"01094275691",  // 🔥 수정 완료
+img:"https://i.ibb.co/mCSNqWMF/Kakao-Talk-20260205-183325710.png",
+blog:"https://naver.com",
+kakao:"https://open.kakao.com",
+youtube:"https://youtube.com",
 }
+
 };
 
 function changeRegion(el, region){
