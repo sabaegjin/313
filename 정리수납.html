@@ -1,70 +1,83 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고려 정리수납</title>
 
 <style>
-html { scroll-behavior:smooth; }
-body {
+
+html{scroll-behavior:smooth;}
+
+body{
 margin:0;
-font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-background:linear-gradient(180deg,#eef1f6 0%, #ffffff 40%);
-color:#1b1d21;
+font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial;
+background:linear-gradient(180deg,#eef1f6 0%,#fff 40%);
 }
 
-header {
-position:fixed; top:0; left:0; right:0;
+/* ===== HEADER ===== */
+header{
+position:fixed;
+top:0;
+left:0;
+right:0;
 height:74px;
-display:flex; align-items:center; justify-content:space-between;
+display:flex;
+align-items:center;
+justify-content:space-between;
 padding:0 32px;
 color:#fff;
 z-index:20;
-backdrop-filter: blur(14px);
-background:rgba(10,15,30,0.45);
-border-bottom:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(14px);
+background:rgba(10,15,30,.45);
 }
 
-header .logo { font-size:18px; font-weight:700; }
-header .right { font-size:14px; }
+.logo{font-weight:700;}
+.right{font-size:14px;}
 
-.hero {
+/* ===== HERO ===== */
+.hero{
 margin-top:74px;
-height:480px;
-background:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+height:calc(100vh - 74px); /* ✅ 화면 꽉 */
 position:relative;
+overflow:hidden;
+}
+
+.hero img{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover; /* ✅ 꽉 채움 */
+transition:.6s;
+z-index:-1;
 }
 
 .hero::after{
 content:'';
-position:absolute; inset:0;
-background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.15));
+position:absolute;
+inset:0;
+background:linear-gradient(
+180deg,
+rgba(0,0,0,.45),
+rgba(0,0,0,.15)
+);
 }
 
-.content {
+/* ===== CONTENT ===== */
+.content{
 background:#fff;
 border-radius:48px 48px 0 0;
 margin-top:-90px;
 padding:90px 26px 180px;
 text-align:center;
-box-shadow:0 -30px 80px rgba(0,0,0,0.08);
+box-shadow:0 -30px 80px rgba(0,0,0,.08);
 }
 
-.content h1 {
-font-size:32px;
-margin-bottom:24px;
-}
+.content h1 span{color:#1f4fd8;}
 
-.content h1 span { color:#1f4fd8; }
-
-.content p {
-color:#5a5f6b;
-font-size:16px;
-margin-bottom:38px;
-}
-
-.time {
+.time{
 display:inline-block;
 padding:14px 30px;
 border-radius:50px;
@@ -74,6 +87,7 @@ font-weight:600;
 margin-bottom:50px;
 }
 
+/* REGION */
 .region-grid{
 display:flex;
 justify-content:center;
@@ -98,9 +112,8 @@ background:#1f4fd8;
 color:#fff;
 }
 
-.manager-box{
-margin:25px 0 40px;
-}
+/* MANAGER */
+.manager-box{margin:25px 0 40px;}
 
 .manager-box img{
 width:160px;
@@ -116,7 +129,8 @@ font-weight:600;
 color:#1f4fd8;
 }
 
-.grid {
+/* CARD */
+.grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:20px;
@@ -124,49 +138,57 @@ max-width:520px;
 margin:0 auto;
 }
 
-.card {
-background:linear-gradient(180deg,#ffffff,#fbfcff);
+.card{
+background:linear-gradient(#fff,#fbfcff);
 border-radius:24px;
-padding:22px 20px;
-box-shadow:0 20px 50px rgba(31,79,216,0.10);
-transition:all .3s;
+padding:22px;
+box-shadow:0 20px 50px rgba(31,79,216,.10);
 text-decoration:none;
 color:inherit;
-display:block;
+transition:.3s;
 }
 
 .card:hover{
 transform:translateY(-5px);
 }
 
-.card img { 
-width:36px; 
+.card img{
+width:36px;
 margin-bottom:12px;
 }
 
-.card p { 
-font-weight:600; 
-color:#1f4fd8;
+.card p{
 margin:0;
+font-weight:600;
+color:#1f4fd8;
 }
 
-.floating {
+/* FLOAT */
+.floating{
 position:fixed;
-right:20px; bottom:28px;
-display:flex; flex-direction:column; gap:14px;
+right:20px;
+bottom:28px;
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 
-.fab {
-width:58px; height:58px;
+.fab{
+width:58px;
+height:58px;
 border-radius:50%;
-display:flex; align-items:center; justify-content:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.28);
+display:flex;
+align-items:center;
+justify-content:center;
 background:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,.28);
 }
 
-.fab img{ width:30px; }
+.fab img{width:30px;}
+
 </style>
 </head>
+
 <body>
 
 <header>
@@ -174,7 +196,11 @@ background:#fff;
 <div class="right">상담 및 문의 031-812-9900</div>
 </header>
 
-<section class="hero"></section>
+<!-- ✅ 기본 메인 배경 -->
+<section class="hero">
+<img id="heroImg"
+src="https://i.ibb.co/XxF86Ht3/Kakao-Talk-20260226-130730620.jpg">
+</section>
 
 <section class="content">
 
@@ -185,61 +211,65 @@ background:#fff;
 <h2>지역을 선택하세요</h2>
 
 <div class="region-grid">
-<div class="region-btn active" onclick="changeRegion(this,'pyeongtaek')">평택</div>
-<div class="region-btn" onclick="changeRegion(this,'ilsan')">일산</div>
-<div class="region-btn" onclick="changeRegion(this,'sejong')">세종</div>
-<div class="region-btn" onclick="changeRegion(this,'gangwon')">강원도</div>
-<div class="region-btn" onclick="changeRegion(this,'gyeongsang')">경상도</div>
+<div class="region-btn active"
+onclick="changeRegion(this,'pyeongtaek')">평택</div>
+
+<div class="region-btn"
+onclick="changeRegion(this,'ilsan')">일산</div>
+
+<div class="region-btn"
+onclick="changeRegion(this,'sejong')">세종</div>
 </div>
 
 <div class="manager-box">
-<img id="managerImg" src="">
+<img id="managerImg">
 <div id="managerName" class="manager-name"></div>
 </div>
 
 <div class="grid">
 
-<a id="phoneBtn" href="#" class="card">
-<img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" />
+<a id="phoneBtn" class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
 <p>전화상담</p>
 </a>
 
-<a id="blogBtn" href="#" target="_blank" class="card">
-<img src="https://i.ibb.co/9KX5Sw9/image.jpg" />
+<a id="blogBtn" target="_blank" class="card">
+<img src="https://i.ibb.co/9KX5Sw9/image.jpg">
 <p>블로그</p>
 </a>
 
-<a id="kakaoBtn" href="#" target="_blank" class="card">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png" />
+<a id="kakaoBtn" target="_blank" class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
 <p>카톡상담</p>
 </a>
 
-<a id="youtubeBtn" href="#" target="_blank" class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" />
-<p>유투브</p>
+<a id="youtubeBtn" target="_blank" class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png">
+<p>유튜브</p>
 </a>
 
 </div>
 </section>
 
 <div class="floating">
-<a id="floatKakao" href="#" target="_blank" class="fab">
+<a id="floatKakao" target="_blank" class="fab">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
 </a>
 
-<a id="floatPhone" href="#" class="fab">
+<a id="floatPhone" class="fab">
 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
 </a>
 </div>
 
 <script>
 
-const regionData = {
+const regionData={
 
 pyeongtaek:{
 name:"평택 담당 매니저",
 phone:"01062721111",
 img:"https://i.ibb.co/kV0LPnjx/image.jpg",
+hero:"https://i.ibb.co/C30NkFFc/3.png",
 blog:"https://m.blog.naver.com/smile9634",
 kakao:"https://open.kakao.com/o/szX8Cdii",
 youtube:"https://youtube.com/@pshyun38"
@@ -247,39 +277,65 @@ youtube:"https://youtube.com/@pshyun38"
 
 ilsan:{
 name:"일산 담당 매니저",
-phone:"01094275691",  // 🔥 수정 완료
+phone:"01094275691",
 img:"https://i.ibb.co/mCSNqWMF/Kakao-Talk-20260205-183325710.png",
+hero:"https://i.ibb.co/Qv8WJbNk/Kakao-Talk-20260226-123349214.jpg",
 blog:"https://naver.com",
 kakao:"https://open.kakao.com",
-youtube:"https://youtube.com",
+youtube:"https://youtube.com"
+},
+
+sejong:{
+name:"세종 담당 매니저",
+phone:"01094275691",
+img:"https://i.ibb.co/7NVcRjFS/4.png",
+hero:"https://i.ibb.co/7NVcRjFS/4.png",
+blog:"https://naver.com",
+kakao:"https://open.kakao.com",
+youtube:"https://youtube.com"
 }
 
 };
 
-function changeRegion(el, region){
+function changeRegion(el,region){
 
-document.querySelectorAll('.region-btn').forEach(btn=>{
-btn.classList.remove('active');
-});
+document.querySelectorAll('.region-btn')
+.forEach(btn=>btn.classList.remove('active'));
+
 el.classList.add('active');
 
-const data = regionData[region];
+const data=regionData[region];
 
-document.getElementById("managerImg").src = data.img;
-document.getElementById("managerName").innerText = data.name;
+managerImg.src=data.img;
+managerName.innerText=data.name;
 
-document.getElementById("phoneBtn").href = "tel:"+data.phone;
-document.getElementById("floatPhone").href = "tel:"+data.phone;
+phoneBtn.href="tel:"+data.phone;
+floatPhone.href="tel:"+data.phone;
 
-document.getElementById("blogBtn").href = data.blog;
-document.getElementById("kakaoBtn").href = data.kakao;
-document.getElementById("youtubeBtn").href = data.youtube;
-document.getElementById("floatKakao").href = data.kakao;
+blogBtn.href=data.blog;
+kakaoBtn.href=data.kakao;
+youtubeBtn.href=data.youtube;
+floatKakao.href=data.kakao;
+
+/* ✅ 클릭 시만 배경 변경 */
+heroImg.src=data.hero;
 }
 
-window.onload = function(){
-changeRegion(document.querySelectorAll('.region-btn')[0],'pyeongtaek');
-}
+/* ✅ 최초 접속 — 배경 유지 */
+window.onload=()=>{
+const data=regionData['pyeongtaek'];
+
+managerImg.src=data.img;
+managerName.innerText=data.name;
+
+phoneBtn.href="tel:"+data.phone;
+floatPhone.href="tel:"+data.phone;
+
+blogBtn.href=data.blog;
+kakaoBtn.href=data.kakao;
+youtubeBtn.href=data.youtube;
+floatKakao.href=data.kakao;
+};
 
 </script>
 
