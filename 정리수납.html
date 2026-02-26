@@ -6,338 +6,292 @@
 <title>고려 정리수납</title>
 
 <style>
-
-html{scroll-behavior:smooth;}
-
-body{
-margin:0;
-font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial;
-background:linear-gradient(180deg,#eef1f6 0%,#fff 40%);
+/* ===== 기본 스타일 ===== */
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR','Apple SD Gothic Neo',Arial;
+  background: linear-gradient(180deg,#eef1f6 0%,#fff 40%);
 }
 
 /* ===== HEADER ===== */
-header{
-position:fixed;
-top:0;
-left:0;
-right:0;
-height:74px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 32px;
-color:#fff;
-z-index:20;
-backdrop-filter:blur(14px);
-background:rgba(10,15,30,.45);
+header {
+  position: fixed;
+  top:0; left:0; right:0;
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.25);
+  z-index: 20;
+  color: #1f4fd8;
 }
-
-.logo{font-weight:700;}
-.right{font-size:14px;}
+header .logo { font-weight:700; }
+header .right { font-size:14px; }
 
 /* ===== HERO ===== */
-.hero{
-margin-top:74px;
-height:calc(100vh - 74px); /* ✅ 화면 꽉 */
-position:relative;
-overflow:hidden;
+.hero {
+  margin-top:74px;
+  height: calc(100vh - 74px);
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
 }
-
-.hero img{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover; /* ✅ 꽉 채움 */
-transition:.6s;
-z-index:-1;
+.hero img {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:120%; /* 120%로 늘려야 패럴랙스 시 여유 생김 */
+  object-fit: cover;
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.77,0,0.175,1);
+  z-index: -1;
+  opacity:1;
+  transform: scale(1) translateY(0);
+  filter: brightness(1.05);
 }
-
-.hero::after{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(
-180deg,
-rgba(0,0,0,.45),
-rgba(0,0,0,.15)
-);
+.hero img.fade-out { 
+  opacity:0; 
+  transform: scale(1.1) translateY(-20px);
+}
+.hero::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
+  pointer-events: none;
 }
 
 /* ===== CONTENT ===== */
-.content{
-background:#fff;
-border-radius:48px 48px 0 0;
-margin-top:-90px;
-padding:90px 26px 180px;
-text-align:center;
-box-shadow:0 -30px 80px rgba(0,0,0,.08);
+.content {
+  background:#fff;
+  border-radius:48px 48px 0 0;
+  margin-top:-90px;
+  padding:90px 26px 180px;
+  text-align:center;
+  box-shadow:0 -30px 80px rgba(0,0,0,.08);
+  opacity:0;
+  transform:translateY(40px) scale(0.95);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.68,-0.55,0.27,1.55);
+}
+.content.visible { opacity:1; transform:translateY(0) scale(1); }
+
+/* ===== 텍스트 애니메이션 ===== */
+.animated-text span {
+  display:inline-block;
+  opacity:0;
+  transform: translateY(20px) rotateX(10deg);
+  animation: fadeUp 0.7s forwards;
+  color:#1f4fd8;
+  font-weight:700;
+  font-size:2rem;
+  margin:0 2px;
+}
+@keyframes fadeUp {
+  0% { opacity:0; transform: translateY(20px) rotateX(10deg); color:#1f4fd8; }
+  50% { transform: translateY(-5px) rotateX(-5deg); color:#4a6fff; }
+  100% { opacity:1; transform: translateY(0) rotateX(0); color:#1f4fd8; }
 }
 
-.content h1 span{color:#1f4fd8;}
-
-.time{
-display:inline-block;
-padding:14px 30px;
-border-radius:50px;
-background:linear-gradient(135deg,#e9eeff,#f6f8ff);
-color:#1f4fd8;
-font-weight:600;
-margin-bottom:50px;
+.time {
+  display:inline-block;
+  padding:14px 30px;
+  border-radius:50px;
+  background:linear-gradient(135deg,#e9eeff,#f6f8ff);
+  color:#1f4fd8;
+  font-weight:600;
+  margin-bottom:50px;
+  transform: translateY(20px);
+  opacity:0;
+  animation: fadeInUp 0.8s forwards;
+  animation-delay:0.5s;
 }
+@keyframes fadeInUp { to { opacity:1; transform: translateY(0);} }
 
-/* REGION */
-.region-grid{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:12px;
-margin-bottom:30px;
+/* ===== REGION BUTTONS ===== */
+.region-grid {
+  display:flex; justify-content:center; flex-wrap:wrap; gap:12px;
+  margin-bottom:30px;
 }
-
-.region-btn{
-padding:8px 18px;
-border-radius:30px;
-background:#eef3ff;
-color:#1f4fd8;
-font-weight:600;
-cursor:pointer;
-transition:.3s;
+.region-btn {
+  padding:8px 18px;
+  border-radius:30px;
+  background:#eef3ff;
+  color:#1f4fd8;
+  font-weight:600;
+  cursor:pointer;
+  transition: all 0.3s ease-in-out;
+  transform: scale(0.95);
+  opacity:0;
 }
-
 .region-btn.active,
-.region-btn:hover{
-background:#1f4fd8;
-color:#fff;
+.region-btn:hover { background:#1f4fd8; color:#fff; transform: scale(1.05); }
+
+/* ===== MANAGER ===== */
+.manager-box {
+  margin:25px 0 40px;
+  opacity:0; transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  perspective: 800px;
 }
-
-/* MANAGER */
-.manager-box{margin:25px 0 40px;}
-
-.manager-box img{
-width:160px;
-height:160px;
-object-fit:cover;
-border-radius:50%;
-box-shadow:0 15px 40px rgba(0,0,0,.15);
+.manager-box.show { opacity:1; transform:translateY(0);}
+.manager-box img {
+  width:160px; height:160px;
+  object-fit:cover;
+  border-radius:50%;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  transform: scale(0.95) rotateY(10deg); 
+  opacity:0;
+  transition: transform 0.8s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.8s ease;
 }
+.manager-box.show img { opacity:1; transform: scale(1) rotateY(0);}
+.manager-box img:hover { transform: scale(1.05) rotateY(10deg);}
+.manager-name { margin-top:12px; font-weight:600; color:#1f4fd8; }
 
-.manager-name{
-margin-top:12px;
-font-weight:600;
-color:#1f4fd8;
+/* ===== CARD ===== */
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:520px; margin:0 auto; }
+.card {
+  background: linear-gradient(#fff,#fbfcff);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 20px 50px rgba(31,79,216,.10);
+  text-decoration:none;
+  color:inherit;
+  transition: transform 0.6s cubic-bezier(0.68,-0.55,0.27,1.55), box-shadow 0.4s ease, opacity 0.6s ease;
+  opacity:0; transform: translateY(20px) scale(0.95) rotateX(5deg);
 }
+.card.show { opacity:1; transform:translateY(0) scale(1) rotateX(0);}
+.card:hover { transform:translateY(-10px) scale(1.05) rotateX(5deg); box-shadow:0 30px 60px rgba(31,79,216,0.2);}
+.card img { width:36px; margin-bottom:12px;}
+.card p { margin:0; font-weight:600; color:#1f4fd8; }
 
-/* CARD */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-max-width:520px;
-margin:0 auto;
+/* ===== FLOATING BUTTON ===== */
+.floating { 
+  position:fixed; right:20px; bottom:28px; 
+  display:flex; flex-direction:column; gap:14px; 
+  opacity:0; transform: translateY(40px); 
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.68,-0.55,0.27,1.55);
 }
-
-.card{
-background:linear-gradient(#fff,#fbfcff);
-border-radius:24px;
-padding:22px;
-box-shadow:0 20px 50px rgba(31,79,216,.10);
-text-decoration:none;
-color:inherit;
-transition:.3s;
+.floating.show { 
+  opacity:1; 
+  transform: translateY(0);
+  animation: floatIn 0.8s cubic-bezier(0.68,-0.55,0.27,1.55) forwards;
 }
-
-.card:hover{
-transform:translateY(-5px);
+@keyframes floatIn {
+  0% { opacity:0; transform: translateY(40px); }
+  60% { opacity:1; transform: translateY(-10px); }
+  100% { opacity:1; transform: translateY(0); }
 }
-
-.card img{
-width:36px;
-margin-bottom:12px;
-}
-
-.card p{
-margin:0;
-font-weight:600;
-color:#1f4fd8;
-}
-
-/* FLOAT */
-.floating{
-position:fixed;
-right:20px;
-bottom:28px;
-display:flex;
-flex-direction:column;
-gap:14px;
-}
-
-.fab{
-width:58px;
-height:58px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#fff;
-box-shadow:0 10px 30px rgba(0,0,0,.28);
-}
-
-.fab img{width:30px;}
-
+.fab { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.28); transition: transform 0.3s ease;}
+.fab:hover { transform:scale(1.1);}
+.fab img { width:30px;}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">고려 정리수납</div>
-<div class="right">상담 및 문의 031-812-9900</div>
+  <div class="logo">고려 정리수납</div>
+  <div class="right">상담 및 문의 031-812-9900</div>
 </header>
 
-<!-- ✅ 기본 메인 배경 -->
+<!-- HERO -->
 <section class="hero">
-<img id="heroImg"
-src="https://i.ibb.co/XxF86Ht3/Kakao-Talk-20260226-130730620.jpg">
+  <img id="heroImg" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80">
 </section>
 
 <section class="content">
+  <h1 class="animated-text">
+    <span>최</span><span>고</span> <span>전</span><span>문</span><span>가</span>
+    <span>정</span><span>리</span><span>수</span><span>납</span>
+  </h1>
+  <p>문의사항에 신속하게 답변 드리겠습니다.</p>
+  <div class="time">전화 상담 : 09:00 - 18:00</div>
 
-<h1><span>최고 전문가 정리수납</span></h1>
-<p>문의사항에 신속하게 답변 드리겠습니다.</p>
-<div class="time">전화 상담 : 09:00 - 18:00</div>
+  <h2>지역을 선택하세요</h2>
+  <div class="region-grid">
+    <div class="region-btn" onclick="changeRegion(this,'pyeongtaek')">평택</div>
+    <div class="region-btn" onclick="changeRegion(this,'ilsan')">일산</div>
+    <div class="region-btn" onclick="changeRegion(this,'sejong')">세종</div>
+    <div class="region-btn" onclick="changeRegion(this,'kang')">강원</div>
+    <div class="region-btn" onclick="changeRegion(this,'keng')">경상</div>
+  </div>
 
-<h2>지역을 선택하세요</h2>
+  <div class="manager-box" id="managerBox">
+    <img id="managerImg" src="https://i.ibb.co/kV0LPnjx/image.jpg">
+    <div id="managerName" class="manager-name">평택 담당 매니저</div>
+  </div>
 
-<div class="region-grid">
-<div class="region-btn active"
-onclick="changeRegion(this,'pyeongtaek')">평택</div>
-
-<div class="region-btn"
-onclick="changeRegion(this,'ilsan')">일산</div>
-
-<div class="region-btn"
-onclick="changeRegion(this,'sejong')">세종</div>
-</div>
-
-<div class="manager-box">
-<img id="managerImg">
-<div id="managerName" class="manager-name"></div>
-</div>
-
-<div class="grid">
-
-<a id="phoneBtn" class="card">
-<img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
-<p>전화상담</p>
-</a>
-
-<a id="blogBtn" target="_blank" class="card">
-<img src="https://i.ibb.co/9KX5Sw9/image.jpg">
-<p>블로그</p>
-</a>
-
-<a id="kakaoBtn" target="_blank" class="card">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
-<p>카톡상담</p>
-</a>
-
-<a id="youtubeBtn" target="_blank" class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png">
-<p>유튜브</p>
-</a>
-
-</div>
+  <div class="grid">
+    <a id="phoneBtn" href="tel:01062721111" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png"><p>전화상담</p>
+    </a>
+    <a id="blogBtn" href="https://m.blog.naver.com/smile9634" target="_blank" class="card">
+      <img src="https://i.ibb.co/9KX5Sw9/image.jpg"><p>블로그</p>
+    </a>
+    <a id="kakaoBtn" href="https://open.kakao.com/o/szX8Cdii" target="_blank" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png"><p>카톡상담</p>
+    </a>
+    <a id="youtubeBtn" href="https://youtube.com/@pshyun38" target="_blank" class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"><p>유튜브</p>
+    </a>
+  </div>
 </section>
 
 <div class="floating">
-<a id="floatKakao" target="_blank" class="fab">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
-</a>
-
-<a id="floatPhone" class="fab">
-<img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
-</a>
+  <a id="floatKakao" target="_blank" class="fab">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
+  </a>
+  <a id="floatPhone" href="tel:01062721111" class="fab">
+    <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
+  </a>
 </div>
 
 <script>
-
-const regionData={
-
-pyeongtaek:{
-name:"평택 담당 매니저",
-phone:"01062721111",
-img:"https://i.ibb.co/kV0LPnjx/image.jpg",
-hero:"https://i.ibb.co/C30NkFFc/3.png",
-blog:"https://m.blog.naver.com/smile9634",
-kakao:"https://open.kakao.com/o/szX8Cdii",
-youtube:"https://youtube.com/@pshyun38"
-},
-
-ilsan:{
-name:"일산 담당 매니저",
-phone:"01094275691",
-img:"https://i.ibb.co/mCSNqWMF/Kakao-Talk-20260205-183325710.png",
-hero:"https://i.ibb.co/Qv8WJbNk/Kakao-Talk-20260226-123349214.jpg",
-blog:"https://naver.com",
-kakao:"https://open.kakao.com",
-youtube:"https://youtube.com"
-},
-
-sejong:{
-name:"세종 담당 매니저",
-phone:"01094275691",
-img:"https://i.ibb.co/7NVcRjFS/4.png",
-hero:"https://i.ibb.co/7NVcRjFS/4.png",
-blog:"https://naver.com",
-kakao:"https://open.kakao.com",
-youtube:"https://youtube.com"
-}
-
+const regionData = {
+  pyeongtaek:{name:"평택 담당 매니저", phone:"01062721111", img:"https://i.ibb.co/kV0LPnjx/image.jpg", hero:"https://i.ibb.co/C30NkFFc/3.png", blog:"https://m.blog.naver.com/smile9634", kakao:"https://open.kakao.com/o/szX8Cdii", youtube:"https://youtube.com/@pshyun38"},
+  ilsan:{name:"일산 담당 매니저", phone:"01094275691", img:"https://i.ibb.co/mCSNqWMF/Kakao-Talk-20260205-183325710.png", hero:"https://i.ibb.co/Qv8WJbNk/Kakao-Talk-20260226-123349214.jpg", blog:"https://naver.com", kakao:"https://open.kakao.com", youtube:"https://youtube.com"},
+  sejong:{name:"세종 담당 매니저", phone:"01094275691", img:"https://i.ibb.co/7NVcRjFS/4.png", hero:"https://i.ibb.co/7NVcRjFS/4.png", blog:"https://naver.com", kakao:"https://open.kakao.com", youtube:"https://youtube.com"},
+  kang:{name:"강원도 담당 매니저", phone:"01094275691", img:"https://i.ibb.co/gbKnLsvB/5.png", hero:"https://i.ibb.co/gbKnLsvB/5.png", blog:"https://naver.com", kakao:"https://open.kakao.com", youtube:"https://youtube.com"},
+  keng:{name:"경상도 담당 매니저", phone:"01094275691", img:"https://i.ibb.co/gbKnLsvB/5.png", hero:"https://i.ibb.co/vCHxYxR7/6.png", blog:"https://naver.com", kakao:"https://open.kakao.com", youtube:"https://youtube.com"}
 };
 
-function changeRegion(el,region){
+function changeRegion(el, region) {
+  document.querySelectorAll('.region-btn').forEach(btn=>btn.classList.remove('active'));
+  el.classList.add('active');
 
-document.querySelectorAll('.region-btn')
-.forEach(btn=>btn.classList.remove('active'));
+  const data = regionData[region];
 
-el.classList.add('active');
+  const heroImg = document.getElementById('heroImg');
+  heroImg.classList.add('fade-out');
+  setTimeout(()=>{ heroImg.src = data.hero; heroImg.classList.remove('fade-out'); },500);
 
-const data=regionData[region];
+  document.getElementById('managerImg').src = data.img;
+  document.getElementById('managerName').innerText = data.name;
 
-managerImg.src=data.img;
-managerName.innerText=data.name;
-
-phoneBtn.href="tel:"+data.phone;
-floatPhone.href="tel:"+data.phone;
-
-blogBtn.href=data.blog;
-kakaoBtn.href=data.kakao;
-youtubeBtn.href=data.youtube;
-floatKakao.href=data.kakao;
-
-/* ✅ 클릭 시만 배경 변경 */
-heroImg.src=data.hero;
+  document.getElementById('phoneBtn').href = "tel:"+data.phone;
+  document.getElementById('floatPhone').href = "tel:"+data.phone;
+  document.getElementById('blogBtn').href = data.blog;
+  document.getElementById('kakaoBtn').href = data.kakao;
+  document.getElementById('youtubeBtn').href = data.youtube;
+  document.getElementById('floatKakao').href = data.kakao;
 }
 
-/* ✅ 최초 접속 — 배경 유지 */
-window.onload=()=>{
-const data=regionData['pyeongtaek'];
+// ===== 패럴랙스 스크롤 =====
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroImg = document.getElementById('heroImg');
+  heroImg.style.transform = `scale(1) translateY(${scrollY*0.3}px)`; // 느린 움직임
+});
 
-managerImg.src=data.img;
-managerName.innerText=data.name;
-
-phoneBtn.href="tel:"+data.phone;
-floatPhone.href="tel:"+data.phone;
-
-blogBtn.href=data.blog;
-kakaoBtn.href=data.kakao;
-youtubeBtn.href=data.youtube;
-floatKakao.href=data.kakao;
+window.onload = ()=>{
+  document.querySelector('.content').classList.add('visible');
+  document.getElementById('managerBox').classList.add('show');
+  document.querySelectorAll('.card').forEach((c,i)=>{ setTimeout(()=>{c.classList.add('show');}, i*200); });
+  document.querySelector('.floating').classList.add('show');
+  document.querySelectorAll('.animated-text span').forEach((el,i)=>{ el.style.animationDelay=(i*0.1)+'s'; });
+  document.querySelectorAll('.region-btn').forEach((btn,i)=>{ setTimeout(()=>{btn.style.opacity=1; btn.style.transform='scale(1)';}, i*100); });
 };
-
 </script>
-
 </body>
 </html>
