@@ -1,397 +1,310 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="naver-site-verification" content="4ed958a74861205f7257a6c47e9e29f9e43dc749" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>사백진</title>
-<meta name="description" content="313">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1 style="display:none;">사백진</h1>
+<meta name="robots" content="index,follow">
+<meta name="google" content="notranslate">
+
+<meta name="description" content="B+S KDIC EIE Global Innovation Business Center Blockchain Exchange Platform">
+<meta name="keywords" content="B+S KDIC EIE, Blockchain Exchange, Global Innovation Business Center">
+<meta name="author" content="B+S KDIC EIE">
+
+<meta property="og:title" content="B+S KDIC EIE">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://global.soopoolleaf.com">
+<meta property="og:description" content="Global Innovation Business Center">
+<meta property="og:image" content="https://global.soopoolleaf.com/KDIC.jpg">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="B+S KDIC EIE">
+
+<title>B+S KDIC EIE</title>
+
+<meta name="description" content="B+S KDIC EIE">
 
 <!-- OG 미리보기 태그 -->
-<meta property="og:title" content="313">
+<meta property="og:title" content="B+S KDIC EIE">
 <meta property="og:description" content="社 百 眞">
 <meta property="og:image" content="https://i.ibb.co/8nFPpxYS/128-450.gif">
 <meta property="og:type" content="website">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://global.soopoolleaf.com/css/style.css?ver=8">
+
+<link href="https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Alegreya:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  :root {
-    --font-primary: 'Cormorant Garamond', serif;
-    --font-script: 'Great Vibes', cursive;
-    --color-bg: #0b0a08;
-    --color-text: #f4f1ea;
-    --color-primary: #d4af37;
-    --color-deep: #bfa760;
-    --color-light: #aaa;
-    --glow-color: #d4af37;
-  }
+body{
+    font-family:'Gowun Dodum','Alegreya','Raleway-Medium','MotoyaLMaru',serif;
+    margin:0;
+    background:#000;
+    color:#fff;
+    top:0 !important;
+}
 
-  html, body {
-    margin: 0; 
-    padding: 0;
-    height: 100%;
-    background: url('https://i.ibb.co/Ldv6XJ0B/2.png') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--color-text);
-    font-family: var(--font-primary);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+h1{
+    letter-spacing:0.35em;
+}
 
-  @keyframes rainbowGlow {
-    0% { color: #FF3C00; text-shadow: 0 0 8px #FF3C00; }
-    16% { color: #FF9500; text-shadow: 0 0 8px #FF9500; }
-    33% { color: #FFD300; text-shadow: 0 0 8px #FFD300; }
-    50% { color: #00E500; text-shadow: 0 0 8px #00E500; }
-    66% { color: #0099FF; text-shadow: 0 0 8px #0099FF; }
-    83% { color: #8000FF; text-shadow: 0 0 8px #8000FF; }
-    100% { color: #FF3C00; text-shadow: 0 0 8px #FF3C00; }
-  }
+/* 버튼 */
+.image-button{
+    max-width:414px !important;
+    width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    transition:transform .25s ease;
+}
 
-  h1 {
-    font-size: clamp(1.3rem, 4vw, 2.5rem);
-    font-family: var(--font-script);
-    margin-bottom: 1rem;
-    user-select: none;
-    animation: rainbowGlow 4s linear infinite;
-    text-align: center;
-    text-shadow:
-      0 0 8px var(--glow-color),
-      0 0 15px var(--glow-color),
-      0 0 20px var(--glow-color);
-  }
+.image-button:hover{
+    transform:scale(1.05);
+}
 
-  .cover, .lock, .container {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100dvh;
-    padding: 2rem;
-    text-align: center;
-    width: 90vw;
-    max-width: 800px;
-  }
+/* PC에서만 2배 크기 */
+@media (min-width:1028px){
+    .image-button{
+        max-width:818px !important;
+        width:616px !important;
+    }
+}
 
-  .cover.active, .lock.active, .container.active {
-    display: flex;
-  }
+/* MATRIX 클릭 방지 */
+.matrix-layer canvas{
+    pointer-events:none;
+}
 
-  p {
-    font-size: 0.9rem;
-    max-width: 80%;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-    line-height: 1.5;
-    user-select: none;
-    color: var(--color-light);
-    text-shadow: 0 0 6px rgba(212,175,55,0.5);
-  }
+/* GOOGLE 번역 UI 제거 */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame{
+    display:none !important;
+}
 
-  input[type="text"], input[type="password"] {
-    padding: 0.6rem;
-    font-size: 0.9rem;
-    border: 1px solid var(--color-light);
-    border-radius: 8px;
-    width: 180px;
-    text-align: center;
-    margin-bottom: 1rem;
-    background: #222;
-    color: var(--color-text);
-    box-shadow:
-      inset 0 0 5px #333,
-      0 0 8px var(--glow-color);
-    transition: box-shadow 0.3s ease;
-  }
+#goog-gt-tt{
+    display:none !important;
+}
 
-  input[type="text"]:focus, input[type="password"]:focus {
-    outline: none;
-    box-shadow:
-      0 0 8px var(--glow-color),
-      0 0 15px var(--glow-color);
-  }
+.goog-text-highlight{
+    background:none !important;
+    box-shadow:none !important;
+}
 
-  /* 세련된 버튼 스타일 */
-  button {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    font-family: var(--font-primary);
-    background: linear-gradient(145deg, #d4af37, #f9e79f);
-    color: #111;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    user-select: none;
-    box-shadow:
-      0 4px 12px rgba(212,175,55,0.6),
-      0 0 20px rgba(212,175,55,0.4) inset,
-      0 6px 0 rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    text-shadow: 0 0 2px rgba(255,255,255,0.6);
-  }
-
-  button:hover {
-    background: linear-gradient(145deg, #f9e79f, #d4af37);
-    color: #fff;
-    transform: translateY(-2px) scale(1.05);
-    box-shadow:
-      0 6px 18px rgba(212,175,55,0.8),
-      0 0 25px rgba(212,175,55,0.6) inset;
-  }
-
-  .error {
-    color: crimson;
-    font-size: 0.85rem;
-    user-select: none;
-    height: 1.2em;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 5px rgba(255,0,0,0.7);
-  }
-
-  h2 {
-    font-family: var(--font-script);
-    font-size: clamp(1rem, 2.5vw, 1.7rem);
-    color: var(--color-primary);
-    margin: 1.5rem 0 0.5rem 0;
-    opacity: 0;
-    transition: opacity 1.6s ease;
-    user-select: none;
-    text-shadow:
-      0 0 8px var(--glow-color),
-      0 0 10px var(--glow-color);
-  }
-
-  .paragraph {
-    max-width: 700px;
-    padding: 1rem 1.5rem;
-    background: rgba(212,175,55,0.05);
-    border-radius: 15px;
-    box-shadow:
-      0 10px 20px rgba(0,0,0,0.6),
-      inset 0 0 12px rgba(212,175,55,0.2);
-    font-size: 0.85rem;
-    line-height: 1.7;
-    text-align: center;
-    white-space: pre-line;
-    opacity: 0;
-    transition: opacity 1.6s ease;
-    user-select: text;
-    color: var(--color-text);
-    text-shadow: 0 0 4px rgba(0,0,0,0.3);
-  }
-
-  .page { display: none; }
-  .page.active { display: block; }
-
-  .fancy-link {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0 0.3em;
-    position: relative;
-    display: inline-block;
-    transition: color 0.3s ease, transform 0.3s ease;
-    text-shadow: 0 0 4px var(--glow-color);
-  }
-
-  .fancy-link::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translateY(-50%) scale(0.95);
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    border-radius: 10px;
-    z-index: -1;
-  }
-
-  .fancy-link:hover {
-    color: #fff;
-    transform: scale(1.08);
-    text-shadow:
-      0 0 8px var(--color-primary),
-      0 0 12px var(--color-primary),
-      0 0 18px var(--color-primary);
-  }
-
-  .fancy-link:hover::before {
-    opacity: 1;
-    transform: translateY(-50%) scale(1.15);
-  }
-
-  @keyframes sparkle {
-    0%, 100% { text-shadow: 0 0 5px var(--color-primary), 0 0 10px rgba(212,175,55,0.8), 0 0 15px rgba(212,175,55,0.4); }
-    50% { text-shadow: 0 0 10px var(--color-primary), 0 0 20px rgba(212,175,55,1), 0 0 30px rgba(212,175,55,0.8); }
-  }
-
-  .animated-link { animation: sparkle 3s ease-in-out infinite; }
+.skiptranslate{
+    display:none !important;
+}
 </style>
 </head>
 
-<body>
-<div class="cover active" id="cover">
-  <h1>社 百 眞</h1>
-  <p>Incipiunt vera pacta spiritualia<br>“Veritas Animae et Lux Aeterna”</p>
-  <button onclick="showLock()">3 1 3</button>
+<body class="page-landing">
+
+<section class="hero">
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+<div class="noise-lines"></div>
+
+<div class="matrix-layer" id="matrix-layer"></div>
+
+<div class="content">
+<div class="content-inner">
+
+<span class="eyebrow notranslate">B+S KDIC EIE</span>
+
+<h1 class="notranslate" translate="no">
+G&nbsp;I&nbsp;B&nbsp;D&nbsp;C
+</h1>
+
+<p>
+국제 협회 블록체인 거래소입니다.
+</p>
+
+<div class="main-action">
+<a href="https://global.soopoolleaf.com">
+<img
+src="https://i.ibb.co/8nFPpxYS/128-450.gif"
+alt="Global Innovation Business Center"
+class="image-button"
+loading="lazy">
+</a>
 </div>
 
-<div class="lock" id="lock">
-  <h1>🔒 Secret Code</h1>
-  <p>玉 皇 上 帝</p>
-  <input type="password" id="inputCode" placeholder="Enter Code" autocomplete="off" />
-  <div class="error" id="errorMsg"></div>
-  <button onclick="verifyCode()">O</button>
+<div class="lang-dropdown" id="lang-dropdown">
+<button class="btn btn-secondary auto-lang-btn" id="auto-lang-btn">
+<img class="flag" src="https://flagcdn.com/w40/kr.png">
+<span>언어 선택</span>
+<span class="caret"></span>
+</button>
+
+<div class="lang-panel">
+<div class="lang-panel-inner">
+<button class="lang-item" data-lang="ko"><img class="flag" src="https://flagcdn.com/w40/kr.png">한국어</button>
+<button class="lang-item" data-lang="mn"><img class="flag" src="https://flagcdn.com/w40/mn.png">Монгол</button>
+<button class="lang-item" data-lang="zh-CN"><img class="flag" src="https://flagcdn.com/w40/cn.png">简体中文</button>
+<button class="lang-item" data-lang="en"><img class="flag" src="https://flagcdn.com/w40/us.png">English</button>
+<button class="lang-item" data-lang="vi"><img class="flag" src="https://flagcdn.com/w40/vn.png">Tiếng Việt</button>
+<button class="lang-item" data-lang="ja"><img class="flag" src="https://flagcdn.com/w40/jp.png">日本語</button>
+<button class="lang-item" data-lang="es"><img class="flag" src="https://flagcdn.com/w40/es.png">Español</button>
+<button class="lang-item" data-lang="fr"><img class="flag" src="https://flagcdn.com/w40/fr.png">Français</button>
+<button class="lang-item" data-lang="de"><img class="flag" src="https://flagcdn.com/w40/de.png">Deutsch</button>
+<button class="lang-item" data-lang="it"><img class="flag" src="https://flagcdn.com/w40/it.png">Italiano</button>
+<button class="lang-item" data-lang="nl"><img class="flag" src="https://flagcdn.com/w40/nl.png">Nederlands</button>
+<button class="lang-item" data-lang="ru"><img class="flag" src="https://flagcdn.com/w40/ru.png">Русский</button>
+<button class="lang-item" data-lang="zh-TW"><img class="flag" src="https://flagcdn.com/w40/tw.png">繁體中文</button>
+</div>
+</div>
 </div>
 
-<div class="container" id="main">
-  <h1>巳 白 眞</h1>
-
-  <div id="page1" class="page active">
-    <h2 id="title1">📖 Pactum</h2>
-    <div class="paragraph" id="para1"></div>
-
-    <h2 id="title2">📜 Recordatio</h2>
-    <div class="paragraph" id="para2"></div>
-
-    <h2 id="title3">🕊 Editio</h2>
-    <div class="paragraph" id="para3"></div>
-
-    <h2 id="title4">🕯 Essentia</h2>
-    <div class="paragraph" id="para4"></div>
-  </div>
-
-  <div id="page2" class="page">
-    <h2 id="title5"><a href="https://www.313.kr/사백진" target="_blank" class="fancy-link animated-link">🔐 Clavis</a></h2>
-    <div class="paragraph" id="para5"></div>
-
-    <h2 id="title6">⚖️ Statum</h2>
-    <div class="paragraph" id="para6"></div>
-
-    <h2 id="title7"><a href="https://invite.kakao.com/tc/52clnCox79" target="_blank" class="fancy-link animated-link">🕯 Confirmatio</a></h2>
-    <div class="paragraph" id="para7"></div>
-  </div>
 </div>
+</div>
+</section>
+
+<div id="google_translate_element" style="display:none"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
 
 <script>
-const correctPrefix = "1172006817";
-const defaultSuffix = "1";
+var Chars = ["9", "8", "7", "6", "5", "4", "0", "3", "1", "3", "六", "2"];
+var Cells = [];
+var tileSize = 14;
+var columns = 0;
+var matrixContainer = null;
 
-const inputCodeElem = document.getElementById("inputCode");
-inputCodeElem.addEventListener("input", () => {
-  let val = inputCodeElem.value;
-  val = val.replace(/[^0-9]/g, "");
-  inputCodeElem.value = val;
-});
+function setup() {
+    matrixContainer = document.getElementById('matrix-layer');
+    var cnv = createCanvas(window.innerWidth, window.innerHeight);
+    cnv.parent('matrix-layer');
+    clear();
+    noStroke();
+    frameRate(60); // 전체 프레임은 빠르게
+    textFont("Verdana");
+    textAlign(CENTER, CENTER);
+    textSize(tileSize);
 
-const paragraphsText = [
-`『사백진』 (巳白眞)`,
-`(Closed Sacred Edition)
-(Verum Pactum Spirituale)`,
-`(Praedictum Anno MMXXV)
-(Integrum Restitutio Pecuniae)`,
-`Pactum non est commercium, sed votum.`,
-`NO. 313 - 1
-(Codex Unicus Privatus)
-(Accessum ad Portam Digitalem Sanctam)
-(Exceptum est pro codice NO. 313 - 1)`, 
-`Hoc certificatum etiam sine sigillo
-validitatem legalem habet, et cum originali congruit.`,
-`Issued By : Tria Unitas 313
-Issued At : Dosijiwon-ro 121, KR
-Issue Date : 3. 13. 2026`
-];
-
-const typingSpeed = 25;
-const waitAfterTyping = 400;
-
-function showLock() {
-  document.getElementById('cover').classList.remove('active');
-  document.getElementById('lock').classList.add('active');
-  document.getElementById('inputCode').focus();
+    columns = floor(width / tileSize);
+    initMatrix();
 }
 
-function verifyCode() {
-  const input = document.getElementById('inputCode').value.trim();
-  const error = document.getElementById('errorMsg');
-  error.textContent = "";
-  if(input.startsWith(correctPrefix)) {
-    document.getElementById('lock').classList.remove('active');
-    document.getElementById('main').classList.add('active');
-    autoPlayPages(input);
-  } else {
-    error.textContent = "Code Error.";
-  }
-}
-
-function typeParagraph(element, text, speed) {
-  return new Promise((resolve) => {
-    let i = 0;
-    element.textContent = "";
-    element.style.opacity = "1";
-    function typing() {
-      if(i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
-      } else resolve();
+function initMatrix(){
+    Cells = [];
+    for(var i = 0; i < columns; i++){
+        var x = i * tileSize + tileSize/2;
+        var startY = random(-200, height);
+        Cells.push(new MatrixColumn(x, startY));
     }
-    typing();
-  });
 }
 
-async function showSequentially(pageNum, inputCode) {
-  const startIndex = pageNum === 1 ? 0 : 4;
-  const endIndex = pageNum === 1 ? 4 : 7;
-  for(let i = startIndex; i < endIndex; i++) {
-    const title = document.getElementById(`title${i+1}`);
-    const para = document.getElementById(`para${i+1}`);
-    title.style.opacity = "1";
-    await new Promise(r => setTimeout(r, 750));
-    if(i === 4) {
-      let suffix = inputCode.slice(correctPrefix.length);
-      if(suffix.length === 0) suffix = defaultSuffix;
-      let textWithCode = paragraphsText[i].replace(/NO\. 313 - \d+/, `NO. 313 - ${suffix}`);
-      await typeParagraph(para, textWithCode, typingSpeed);
-    } else {
-      await typeParagraph(para, paragraphsText[i], typingSpeed);
+function draw(){
+    clear();
+    for(var i = 0; i < Cells.length; i++){
+        Cells[i].update();
+        Cells[i].draw();
     }
-    await new Promise(r => setTimeout(r, waitAfterTyping));
-  }
 }
 
-function resetPage(pageNum) {
-  const startIndex = pageNum === 1 ? 0 : 4;
-  const endIndex = pageNum === 1 ? 4 : 7;
-  for(let i = startIndex; i < endIndex; i++) {
-    const title = document.getElementById(`title${i+1}`);
-    const para = document.getElementById(`para${i+1}`);
-    title.style.opacity = "0";
-    para.style.opacity = "0";
-    para.textContent = "";
-  }
-}
+// ===== MatrixColumn 수정 (세로 tail + 글자 바뀌는 속도 10프레임) =====
+function MatrixColumn(x, startY) {
+    this.x = x;
+    this.y = startY;
+    this.speed = random(0, 3);  // 랜덤 내려오는 속도        // 내려오는 속도
+    this.tailLength = floor(random(10, 24)); // tail 길이
+    this.frameCount = 0;      // 글자 변경용 카운트
+    this.charIndexes = [];    // tail 글자 저장
 
-async function autoPlayPages(inputCode) {
-  for(let p = 1; p <= 2; p++) {
-    if(p > 1) {
-      resetPage(p-1);
-      document.getElementById(`page${p-1}`).classList.remove('active');
+    // tail 초기화
+    for (let i = 0; i < this.tailLength; i++) {
+        this.charIndexes.push(floor(random(Chars.length)));
     }
-    document.getElementById(`page${p}`).classList.add('active');
-    await showSequentially(p, inputCode);
-    if(p !== 2) await new Promise(r => setTimeout(r, 3000));
-  }
+
+    this.update = function() {
+        this.y += this.speed;
+        if(this.y > height + this.tailLength * tileSize){
+            this.y = random(-200, -50);
+        }
+
+        // 글자 바꾸는 속도 10프레임
+        this.frameCount++;
+        if(this.frameCount >= 19){
+            for(let i = 0; i < this.tailLength; i++){
+                this.charIndexes[i] = floor(random(Chars.length));
+            }
+            this.frameCount = 0;
+        }
+    }
+
+    this.draw = function() {
+        for(let i = 0; i < this.tailLength; i++){
+            fill(0, 255, 70, 255 - i * (255 / this.tailLength)); // tail 점점 흐려지게
+            text(Chars[this.charIndexes[i]], this.x, this.y - i * tileSize);
+        }
+    }
+}
+
+function windowResized(){
+    resizeCanvas(window.innerWidth, window.innerHeight);
+    columns = floor(width / tileSize);
+    initMatrix();
 }
 </script>
+
+<!-- 언어 선택 및 구글 번역 스크립트 유지 -->
+<script>
+// 언어 선택
+const dropdown = document.getElementById("lang-dropdown");
+const btn = document.getElementById("auto-lang-btn");
+
+btn.onclick = () => {
+    dropdown.classList.toggle("open");
+};
+
+document.querySelectorAll(".lang-item").forEach(item => {
+    item.onclick = () => {
+        const lang = item.getAttribute("data-lang");
+        const interval = setInterval(() => {
+            const select = document.querySelector(".goog-te-combo");
+            if(select){
+                select.value = lang;
+                select.dispatchEvent(new Event("change"));
+                clearInterval(interval);
+            }
+        }, 200);
+        dropdown.classList.remove("open");
+    };
+});
+
+// 외부 클릭 시 닫기
+document.addEventListener("click", function(e){
+    if(!dropdown.contains(e.target)){
+        dropdown.classList.remove("open");
+    }
+});
+</script>
+
+<script>
+function googleTranslateElementInit(){
+    new google.translate.TranslateElement(
+        {pageLanguage:'ko',includedLanguages:'ko,en,ja,zh-CN,zh-TW,vi,mn,es,fr,de,it,nl,ru'},
+        'google_translate_element'
+    );
+}
+
+function removeGoogleUI(){
+    const banner = document.querySelector('.goog-te-banner-frame');
+    if(banner){banner.remove();}
+    const frame = document.querySelector('iframe.goog-te-banner-frame');
+    if(frame){frame.remove();}
+    const tooltip = document.querySelector('#goog-gt-tt');
+    if(tooltip){tooltip.remove();}
+    const highlight = document.querySelectorAll('.goog-text-highlight');
+    highlight.forEach(el => { el.style.background="none"; });
+    document.body.style.top="0px";
+}
+setInterval(removeGoogleUI,100);
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
